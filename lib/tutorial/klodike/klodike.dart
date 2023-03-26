@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:math';
 
+import 'package:coffee_beanventory/tutorial/klodike/components/card.dart';
 import 'package:coffee_beanventory/tutorial/klodike/components/foundation.dart';
 import 'package:coffee_beanventory/tutorial/klodike/components/pile.dart';
 import 'package:coffee_beanventory/tutorial/klodike/components/stock.dart';
@@ -19,14 +21,14 @@ class KlondikeGame extends FlameGame {
   @override
   FutureOr<void> onLoad() async {
     await Flame.images.load('klondike-sprites.png');
-    final stock = Stock()
+    final stock = StockPile()
       ..size = cardSize
       ..position = Vector2(
         cardGap,
         cardGap,
       );
 
-    final waste = Waste()
+    final waste = WastePile()
       ..size = cardSize
       ..position = Vector2(
         cardWidth + 2 * cardGap,
@@ -71,13 +73,44 @@ class KlondikeGame extends FlameGame {
       )
       ..viewfinder.anchor = Anchor.topCenter;
     add(camera);
+
+    // addInitCard(world);
+    final cards = [
+      for (var rank = 1; rank <= 13; rank++)
+        for (var suit = 0; suit < 4; suit++)
+          Card(
+            intRank: rank,
+            intSuit: suit,
+          )
+    ];
+    world.addAll(cards);
+    cards.forEach(stock.acquireCard);
   }
 
-  Sprite klondikeSprite(double x, double y, double width, double height) {
-    return Sprite(
-      Flame.images.fromCache('klondike-sprites.png'),
-      srcPosition: Vector2(x, y),
-      srcSize: Vector2(width, height),
-    );
+  // For testing on display card
+  void addInitCard(World world) {
+    final random = Random();
+    for (var i = 0; i < 7; i++) {
+      for (var j = 0; j < 4; j++) {
+        final card = Card(
+          intRank: random.nextInt(13) + 1,
+          intSuit: random.nextInt(4),
+        )
+          ..position = Vector2(100 + i * 1150, 100 + j * 1500)
+          ..addToParent(world);
+        if (random.nextDouble() < 0.9) {
+          // flip face up with 90% probability
+          card.flip();
+        }
+      }
+    }
   }
+}
+
+Sprite klondikeSprite(double x, double y, double width, double height) {
+  return Sprite(
+    Flame.images.fromCache('klondike-sprites.png'),
+    srcPosition: Vector2(x, y),
+    srcSize: Vector2(width, height),
+  );
 }
