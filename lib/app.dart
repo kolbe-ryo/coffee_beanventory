@@ -1,9 +1,8 @@
-import 'package:coffee_beanventory/ui/top_page/game_screen.dart';
-import 'package:flutter/material.dart';
+// import 'package:flame/game.dart';
 
-// class GameWrapper extends StatelessWidget {
+// class GameEngine extends FlameGame {
 //   @override
-//   Widget build(BuildContext context) {
-//     return GameScreen().;
+//   Future<void> onLoad() async {
+//     await add(MyCrate());
 //   }
 // }

@@ -1,13 +1,16 @@
 // Flutter imports:
+
 import 'package:coffee_beanventory/ui/component/coffee_dispenser.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  final game = FlameGame();
+  runApp(GameWidget<FlameGame>(game: game));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class CoffeeBeanventoryApp extends StatelessWidget {
+  const CoffeeBeanventoryApp({super.key});
 
   @override
   Widget build(BuildContext context) {
