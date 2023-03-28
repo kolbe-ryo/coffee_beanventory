@@ -1,24 +1,67 @@
-// Flutter imports:
+// // Flutter imports:
+// import 'package:coffee_beanventory/ui/top_page/game_screen.dart';
+// import 'package:flame/game.dart';
+// import 'package:flutter/material.dart';
 
-import 'package:coffee_beanventory/tutorial/klodike/klodike.dart';
-import 'package:coffee_beanventory/ui/component/coffee_dispenser.dart';
+// void main() {
+//   final game = CoffeeBeanventory();
+//   runApp(GameWidget<Game>(game: game));
+// }
+
+import 'dart:math';
+
+import 'package:coffee_beanventory/ui/component/ball.dart';
+import 'package:coffee_beanventory/ui/component/ball_generator.dart';
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
-import 'package:flutter/material.dart';
+import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
-  final game = KlondikeGame();
-  runApp(GameWidget<FlameGame>(game: game));
+  runApp(GameWidget(game: Forge2DExample()));
 }
 
-// class CoffeeBeanventoryApp extends StatelessWidget {
-//   const CoffeeBeanventoryApp({super.key});
+class Forge2DExample extends Forge2DGame with HasTappables {
+  Forge2DExample() : _generator = const BallGenerator();
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Coffee Beanventory',
-//       theme: ThemeData.dark(),
-//       home: const CoffeeDispenserScreen(),
-//     );
-//   }
-// }
+  final BallGenerator _generator;
+
+  @override
+  Future<void> onLoad() async {
+    _generator.generateBalls(50).forEach(add);
+    await addAll(createBoundaries());
+    return super.onLoad();
+  }
+
+  List<Component> createBoundaries() {
+    final topLeft = Vector2.zero();
+    final bottomRight = screenToWorld(camera.viewport.effectiveSize);
+    final topRight = Vector2(bottomRight.x, topLeft.y);
+    final bottomLeft = Vector2(topLeft.x, bottomRight.y);
+
+    return [
+      Wall(topLeft, topRight),
+      Wall(topRight, bottomRight),
+      Wall(bottomLeft, bottomRight),
+      Wall(topLeft, bottomLeft),
+    ];
+  }
+}
+
+class Wall extends BodyComponent {
+  Wall(this._start, this._end);
+  final Vector2 _start;
+  final Vector2 _end;
+
+  @override
+  Body createBody() {
+    final shape = EdgeShape()..set(_start, _end);
+    final fixtureDef = FixtureDef(shape, friction: 0.3);
+    final bodyDef = BodyDef(
+      userData: this,
+      position: Vector2.zero(),
+    );
+
+    return world.createBody(bodyDef)..createFixture(fixtureDef);
+  }
+}
