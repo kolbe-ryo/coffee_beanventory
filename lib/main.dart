@@ -1,16 +1,3 @@
-// // Flutter imports:
-// import 'package:coffee_beanventory/ui/top_page/game_screen.dart';
-// import 'package:flame/game.dart';
-// import 'package:flutter/material.dart';
-
-// void main() {
-//   final game = CoffeeBeanventory();
-//   runApp(GameWidget<Game>(game: game));
-// }
-
-import 'dart:math';
-
-import 'package:coffee_beanventory/ui/component/ball.dart';
 import 'package:coffee_beanventory/ui/component/ball_generator.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
@@ -28,7 +15,7 @@ class Forge2DExample extends Forge2DGame with HasTappables {
 
   @override
   Future<void> onLoad() async {
-    _generator.generateBalls(50).forEach(add);
+    _generator.generateBalls(100).forEach(add);
     await addAll(createBoundaries());
     return super.onLoad();
   }
