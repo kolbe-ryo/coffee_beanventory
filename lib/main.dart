@@ -42,9 +42,9 @@ class Forge2DExample extends Forge2DGame with HasTappables {
 
   final BallGenerator _generator;
 
-  static const double _widthWorld = 50;
+  static const double _widthWorld = 0;
   static const double _topWorld = 50;
-  static const double _bottomWorld = 100;
+  static const double _bottomWorld = 400;
 
   @override
   // Color backgroundColor() => Colors.cyanAccent;

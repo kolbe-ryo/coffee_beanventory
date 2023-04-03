@@ -12,7 +12,7 @@ class Ball extends BodyComponent with Tappable {
 
   @override
   Body createBody() {
-    final shape = CircleShape()..radius = 1.8;
+    final shape = CircleShape()..radius = 1.4;
 
     final fixtureDef = FixtureDef(
       shape,
@@ -44,7 +44,7 @@ class Ball extends BodyComponent with Tappable {
     final _ = RPSCustomPainter()
       ..paint(
         canvas,
-        const Size(4, 4),
+        const Size(3, 3),
       );
     canvas.restore();
   }

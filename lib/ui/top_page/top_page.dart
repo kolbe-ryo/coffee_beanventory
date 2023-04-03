@@ -8,23 +8,41 @@ class TopPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final engine = Forge2DExample();
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 800,
-            child: GameWidget(
-              game: engine,
-            ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: GameWidget(
+                  game: engine,
+                ),
+              ),
+              Align(
+                alignment: Alignment.topCenter,
+                child: SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Container(
+                    color: Colors.amber,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: ElevatedButton(
+                  onPressed: () {
+                    engine.addBalls(10);
+                  },
+                  child: Text('Button'),
+                ),
+              ),
+            ],
           ),
-          ElevatedButton(
-            onPressed: () {
-              engine.addBalls(10);
-            },
-            child: Text('Button'),
-          ),
-        ],
+        ),
       ),
     );
   }
