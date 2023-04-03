@@ -1,11 +1,40 @@
 import 'package:coffee_beanventory/ui/component/ball_generator.dart';
+import 'package:coffee_beanventory/ui/top_page/top_page.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 void main() {
-  runApp(GameWidget(game: Forge2DExample()));
+  runApp(const RootPage());
+}
+
+class RootPage extends StatelessWidget {
+  const RootPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Income life',
+      theme: ThemeData.dark().copyWith(
+        appBarTheme: const AppBarTheme(
+          // color: AppColors.dark,
+          centerTitle: true,
+          elevation: 0,
+        ),
+      ),
+      home: const TopPage(),
+      // navigatorKey: GetIt.I<GlobalKey<NavigatorState>>(),
+      // localizationsDelegates: const [
+      //   S.delegate,
+      //   GlobalMaterialLocalizations.delegate,
+      //   GlobalWidgetsLocalizations.delegate,
+      //   GlobalCupertinoLocalizations.delegate,
+      // ],
+      // supportedLocales: S.delegate.supportedLocales,
+      debugShowCheckedModeBanner: false,
+    );
+  }
 }
 
 class Forge2DExample extends Forge2DGame with HasTappables {
@@ -13,25 +42,42 @@ class Forge2DExample extends Forge2DGame with HasTappables {
 
   final BallGenerator _generator;
 
+  static const double _widthWorld = 50;
+  static const double _topWorld = 50;
+  static const double _bottomWorld = 100;
+
+  @override
+  // Color backgroundColor() => Colors.cyanAccent;
+
+  BallGenerator get generator => _generator;
+
   @override
   Future<void> onLoad() async {
-    _generator.generateBalls(100).forEach(add);
-    await addAll(createBoundaries());
+    _generator.generateBalls(30).forEach(add);
+    createBoundaries().forEach(add);
     return super.onLoad();
   }
 
   List<Component> createBoundaries() {
-    final topLeft = Vector2.zero();
-    final bottomRight = screenToWorld(camera.viewport.effectiveSize);
-    final topRight = Vector2(bottomRight.x, topLeft.y);
-    final bottomLeft = Vector2(topLeft.x, bottomRight.y);
+    final topLeft = screenToWorld(Vector2(_widthWorld, _widthWorld));
+    final bottomRight = screenToWorld(
+      Vector2(
+        camera.viewport.effectiveSize.x - _widthWorld,
+        camera.viewport.effectiveSize.y - _bottomWorld,
+      ),
+    );
+    final topRight = screenToWorld(Vector2(camera.viewport.effectiveSize.x - _widthWorld, _widthWorld));
+    final bottomLeft = screenToWorld(Vector2(_widthWorld, camera.viewport.effectiveSize.y - _bottomWorld));
 
     return [
-      Wall(topLeft, topRight),
       Wall(topRight, bottomRight),
       Wall(bottomLeft, bottomRight),
       Wall(topLeft, bottomLeft),
     ];
+  }
+
+  Future<void> addBalls(int balls) async {
+    _generator.generateBalls(balls).forEach(add);
   }
 }
 

@@ -1,5 +1,7 @@
+import 'package:coffee_beanventory/main.dart';
 import 'package:coffee_beanventory/ui/component/coffee_bean.dart';
 import 'package:flame/components.dart';
+import 'package:flame/palette.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
@@ -14,9 +16,9 @@ class Ball extends BodyComponent with Tappable {
 
     final fixtureDef = FixtureDef(
       shape,
-      restitution: 0.6,
-      density: 0.8,
-      friction: 0.4,
+      // restitution: 0,
+      density: 1,
+      friction: 1,
     );
 
     final bodyDef = BodyDef(

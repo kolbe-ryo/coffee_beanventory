@@ -9,7 +9,7 @@ class BallGenerator {
   List<Ball> generateBalls(int balls) {
     final ballList = <Ball>[];
     for (var i = 0; i < balls; i++) {
-      final position = Vector2(Random().nextDouble() * 50, 0);
+      final position = Vector2(Random().nextDouble() * 20 + 10, 10);
       ballList.add(Ball(position));
     }
     return ballList;
