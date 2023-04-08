@@ -1,4 +1,5 @@
 import 'package:coffee_beanventory/main.dart';
+import 'package:coffee_beanventory/ui/component/frame_sketch.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
@@ -15,20 +16,18 @@ class TopPage extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Stack(
             children: [
-              Align(
+              const Align(
                 alignment: Alignment.topCenter,
-                child: GameWidget(
-                  game: engine,
+                child: SizedBox(
+                  width: 550,
+                  height: 550,
+                  child: FrameSketch(),
                 ),
               ),
               Align(
                 alignment: Alignment.topCenter,
-                child: SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Container(
-                    color: Colors.amber,
-                  ),
+                child: GameWidget(
+                  game: engine,
                 ),
               ),
               Align(

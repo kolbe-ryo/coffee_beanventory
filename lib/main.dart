@@ -38,18 +38,20 @@ class RootPage extends StatelessWidget {
 }
 
 class Forge2DExample extends Forge2DGame with HasTappables {
-  Forge2DExample() : _generator = const BallGenerator();
+  Forge2DExample()
+      : _generator = const BallGenerator(),
+        super(
+          gravity: Vector2(0, 20),
+        );
 
   final BallGenerator _generator;
 
-  static const double _widthWorld = 0;
-  static const double _topWorld = 50;
-  static const double _bottomWorld = 400;
+  static const double _widthWorld = 65;
+  static const double _topWorld = 0;
+  static const double _bottomWorld = 310;
 
   @override
-  // Color backgroundColor() => Colors.cyanAccent;
-
-  BallGenerator get generator => _generator;
+  Color backgroundColor() => Colors.transparent;
 
   @override
   Future<void> onLoad() async {
@@ -59,14 +61,14 @@ class Forge2DExample extends Forge2DGame with HasTappables {
   }
 
   List<Component> createBoundaries() {
-    final topLeft = screenToWorld(Vector2(_widthWorld, _widthWorld));
+    final topLeft = screenToWorld(Vector2(_widthWorld, _topWorld));
     final bottomRight = screenToWorld(
       Vector2(
         camera.viewport.effectiveSize.x - _widthWorld,
         camera.viewport.effectiveSize.y - _bottomWorld,
       ),
     );
-    final topRight = screenToWorld(Vector2(camera.viewport.effectiveSize.x - _widthWorld, _widthWorld));
+    final topRight = screenToWorld(Vector2(camera.viewport.effectiveSize.x - _widthWorld, _topWorld));
     final bottomLeft = screenToWorld(Vector2(_widthWorld, camera.viewport.effectiveSize.y - _bottomWorld));
 
     return [

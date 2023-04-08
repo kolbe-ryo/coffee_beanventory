@@ -1,7 +1,5 @@
-import 'package:coffee_beanventory/main.dart';
 import 'package:coffee_beanventory/ui/component/coffee_bean.dart';
 import 'package:flame/components.dart';
-import 'package:flame/palette.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +10,7 @@ class Ball extends BodyComponent with Tappable {
 
   @override
   Body createBody() {
-    final shape = CircleShape()..radius = 1.4;
+    final shape = CircleShape()..radius = 10;
 
     final fixtureDef = FixtureDef(
       shape,
@@ -25,7 +23,7 @@ class Ball extends BodyComponent with Tappable {
       userData: this,
       position: _position,
       type: BodyType.dynamic,
-      gravityScale: Vector2(0, 30),
+      gravityScale: Vector2(0, 10),
     );
 
     return world.createBody(bodyDef)..createFixture(fixtureDef);
@@ -44,7 +42,7 @@ class Ball extends BodyComponent with Tappable {
     final _ = RPSCustomPainter()
       ..paint(
         canvas,
-        const Size(3, 3),
+        const Size(30, 30),
       );
     canvas.restore();
   }
