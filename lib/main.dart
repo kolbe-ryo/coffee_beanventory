@@ -41,21 +41,22 @@ class Forge2DExample extends Forge2DGame with HasTappables {
   Forge2DExample()
       : _generator = const BallGenerator(),
         super(
-          gravity: Vector2(0, 20),
+          gravity: Vector2(0, 10),
+          zoom: 5,
         );
 
   final BallGenerator _generator;
 
-  static const double _widthWorld = 65;
+  static const double _widthWorld = 60;
   static const double _topWorld = 0;
-  static const double _bottomWorld = 310;
+  static const double _bottomWorld = 300;
 
   @override
   Color backgroundColor() => Colors.transparent;
 
   @override
   Future<void> onLoad() async {
-    _generator.generateBalls(30).forEach(add);
+    _generator.generateBalls(100).forEach(add);
     createBoundaries().forEach(add);
     return super.onLoad();
   }
@@ -84,7 +85,10 @@ class Forge2DExample extends Forge2DGame with HasTappables {
 }
 
 class Wall extends BodyComponent {
-  Wall(this._start, this._end);
+  Wall(this._start, this._end)
+      : super(
+        // paint: Paint()..color = Colors.transparent,
+        );
   final Vector2 _start;
   final Vector2 _end;
 
