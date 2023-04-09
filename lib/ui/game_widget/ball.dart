@@ -1,4 +1,4 @@
-import 'package:coffee_beanventory/ui/component/coffee_bean.dart';
+import 'package:coffee_beanventory/ui/component/paint/coffee_bean.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';

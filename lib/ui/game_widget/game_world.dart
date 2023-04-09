@@ -1,4 +1,4 @@
-import 'package:coffee_beanventory/ui/component/ball_generator.dart';
+import 'package:coffee_beanventory/ui/game_widget/ball_generator.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
