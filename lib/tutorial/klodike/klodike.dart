@@ -1,15 +1,19 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:math';
 
+// Package imports:
+import 'package:flame/experimental.dart';
+import 'package:flame/flame.dart';
+import 'package:flame/game.dart';
+import 'package:flame/widgets.dart';
+
+// Project imports:
 import 'package:coffee_beanventory/tutorial/klodike/components/card.dart';
 import 'package:coffee_beanventory/tutorial/klodike/components/foundation.dart';
 import 'package:coffee_beanventory/tutorial/klodike/components/pile.dart';
 import 'package:coffee_beanventory/tutorial/klodike/components/stock.dart';
 import 'package:coffee_beanventory/tutorial/klodike/components/waste.dart';
-import 'package:flame/experimental.dart';
-import 'package:flame/flame.dart';
-import 'package:flame/game.dart';
-import 'package:flame/widgets.dart';
 
 class KlondikeGame extends FlameGame {
   static const double cardWidth = 1000;

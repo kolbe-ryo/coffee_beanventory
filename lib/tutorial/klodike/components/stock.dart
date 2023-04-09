@@ -1,6 +1,9 @@
+// Package imports:
+import 'package:flame/components.dart';
+
+// Project imports:
 import 'package:coffee_beanventory/tutorial/klodike/components/card.dart';
 import 'package:coffee_beanventory/tutorial/klodike/klodike.dart';
-import 'package:flame/components.dart';
 
 class StockPile extends PositionComponent {
   StockPile({super.position}) : super(size: KlondikeGame.cardSize);

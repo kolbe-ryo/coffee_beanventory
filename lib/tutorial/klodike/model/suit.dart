@@ -1,6 +1,11 @@
-import 'package:coffee_beanventory/tutorial/klodike/klodike.dart';
-import 'package:flame/widgets.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flame/widgets.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/tutorial/klodike/klodike.dart';
 
 @immutable
 class Suit {

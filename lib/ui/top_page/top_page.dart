@@ -1,8 +1,13 @@
-import 'package:coffee_beanventory/main.dart';
-import 'package:coffee_beanventory/ui/component/frame_sketch.dart';
-import 'package:coffee_beanventory/ui/component/game_world.dart';
-import 'package:flame/game.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flame/game.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/main.dart';
+import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
+import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
 
 class TopPage extends StatelessWidget {
   const TopPage({super.key});

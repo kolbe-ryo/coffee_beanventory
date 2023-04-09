@@ -1,11 +1,17 @@
-import 'package:coffee_beanventory/ui/top_page/top_page.dart';
-
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import '../generated/l10n.dart';
+
+// Package imports:
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get_it/get_it.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/ui/top_page/top_page.dart';
+import 'package:coffee_beanventory/util/di.dart';
+import 'generated/l10n.dart';
 
 void main() {
+  setUpDI();
   runApp(const RootPage());
 }
 
@@ -16,13 +22,7 @@ class RootPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Income life',
-      theme: ThemeData.dark().copyWith(
-        appBarTheme: const AppBarTheme(
-          // color: AppColors.dark,
-          centerTitle: true,
-          elevation: 0,
-        ),
-      ),
+      theme: ThemeData.dark(),
       home: const TopPage(),
       navigatorKey: GetIt.I<GlobalKey<NavigatorState>>(),
       localizationsDelegates: const [

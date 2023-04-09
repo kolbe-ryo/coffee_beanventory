@@ -1,6 +1,11 @@
-import 'package:coffee_beanventory/tutorial/klodike/klodike.dart';
-import 'package:flame/components.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
+
+// Package imports:
+import 'package:flame/components.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/tutorial/klodike/klodike.dart';
 
 @immutable
 class Rank {

@@ -1,7 +1,12 @@
-import 'package:coffee_beanventory/ui/component/paint/coffee_bean.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
-import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/ui/component/paint/coffee_bean.dart';
 
 class Ball extends BodyComponent with Tappable {
   Ball(this._position) : super(paint: Paint()..color = _color);

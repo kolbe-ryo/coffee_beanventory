@@ -1,11 +1,17 @@
+// Dart imports:
 import 'dart:math';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flame/components.dart';
+import 'package:flame/extensions.dart';
+
+// Project imports:
 import 'package:coffee_beanventory/tutorial/klodike/klodike.dart';
 import 'package:coffee_beanventory/tutorial/klodike/model/rank.dart';
 import 'package:coffee_beanventory/tutorial/klodike/model/suit.dart';
-import 'package:flame/components.dart';
-import 'package:flame/extensions.dart';
-import 'package:flutter/material.dart';
 
 class Card extends PositionComponent {
   Card({

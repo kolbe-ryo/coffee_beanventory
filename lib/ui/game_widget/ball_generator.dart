@@ -1,7 +1,11 @@
+// Dart imports:
 import 'dart:math';
 
+// Package imports:
 import 'package:flame_forge2d/flame_forge2d.dart';
-import 'ball.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/ui/game_widget/ball.dart';
 
 class BallGenerator {
   const BallGenerator();

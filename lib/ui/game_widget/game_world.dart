@@ -1,8 +1,13 @@
-import 'package:coffee_beanventory/ui/game_widget/ball_generator.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
-import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/ui/game_widget/ball_generator.dart';
 
 class GameWorld extends Forge2DGame with HasTappables {
   GameWorld()
