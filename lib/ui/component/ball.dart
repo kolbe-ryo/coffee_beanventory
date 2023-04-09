@@ -23,7 +23,7 @@ class Ball extends BodyComponent with Tappable {
       userData: this,
       position: _position,
       type: BodyType.dynamic,
-      gravityScale: Vector2(0, 10),
+      gravityScale: Vector2(0, 20),
     );
 
     return world.createBody(bodyDef)..createFixture(fixtureDef);

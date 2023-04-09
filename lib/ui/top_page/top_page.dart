@@ -1,5 +1,6 @@
 import 'package:coffee_beanventory/main.dart';
 import 'package:coffee_beanventory/ui/component/frame_sketch.dart';
+import 'package:coffee_beanventory/ui/component/game_world.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +9,12 @@ class TopPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final engine = Forge2DExample();
+    final engine = GameWorld();
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16),
           child: Stack(
             children: [
               const Align(
