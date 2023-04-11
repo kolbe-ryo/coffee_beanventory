@@ -1,15 +1,15 @@
 // Flutter imports:
-import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flame/game.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
 import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
 
 class TopPage extends ConsumerWidget {
   const TopPage({super.key});

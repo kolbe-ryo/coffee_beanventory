@@ -1,7 +1,9 @@
-import 'package:coffee_beanventory/ui/top_page/top_page_state.dart';
+// Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/ui/top_page/top_page_state.dart';
 
 part 'top_page_view_model.g.dart';
 

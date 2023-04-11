@@ -7,9 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
 // Project imports:
+import 'package:coffee_beanventory/generated/l10n.dart';
 import 'package:coffee_beanventory/ui/top_page/top_page.dart';
 import 'package:coffee_beanventory/util/di.dart';
-import 'generated/l10n.dart';
 
 void main() {
   setUpDI();
