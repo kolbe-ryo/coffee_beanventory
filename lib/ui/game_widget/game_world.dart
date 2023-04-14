@@ -34,6 +34,9 @@ class GameWorld extends Forge2DGame with HasTappables {
     return super.onLoad();
   }
 
+  // Remove bottom layer
+  Future<void> onRemove() async {}
+
   List<Component> createBoundaries() {
     final topLeft = screenToWorld(Vector2(_widthWorld, _topWorld));
     final bottomRight = screenToWorld(
@@ -45,6 +48,8 @@ class GameWorld extends Forge2DGame with HasTappables {
     final topRight = screenToWorld(Vector2(camera.viewport.effectiveSize.x - _widthWorld, _topWorld));
     final bottomLeft = screenToWorld(Vector2(_widthWorld, camera.viewport.effectiveSize.y - _bottomWorld));
 
+    final a = Wall(topRight, bottomRight);
+
     return [
       Wall(topRight, bottomRight),
       Wall(bottomLeft, bottomRight),
@@ -52,6 +57,7 @@ class GameWorld extends Forge2DGame with HasTappables {
     ];
   }
 
+  // TODO: 追加時にstateとローカルを更新する
   Future<void> addBalls(int balls) async {
     _generator.generateBalls(balls).forEach(add);
   }
