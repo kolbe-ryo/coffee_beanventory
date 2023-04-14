@@ -11,10 +11,6 @@ part 'top_page_view_model.g.dart';
 class TopPageViewModel extends _$TopPageViewModel {
   @override
   FutureOr<TopPageState> build() async {
-    return _init();
-  }
-
-  Future<TopPageState> _init() async {
     final isLoaded = await _cacheImage();
     return TopPageState(isLoaded: isLoaded);
   }
