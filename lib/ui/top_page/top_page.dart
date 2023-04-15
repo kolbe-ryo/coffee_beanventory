@@ -44,12 +44,26 @@ class TopPage extends ConsumerWidget {
                   ),
                 ),
                 Align(
-                  alignment: Alignment.bottomCenter,
+                  alignment: Alignment.bottomLeft,
                   child: ElevatedButton(
                     onPressed: () {
                       engine.addBalls(10);
                     },
-                    child: const Text('Button'),
+                    child: const Text('Add'),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: ElevatedButton(
+                    onPressed: engine.onRemove,
+                    child: const Text('Remove'),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ElevatedButton(
+                    onPressed: engine.onCreate,
+                    child: const Text('Create'),
                   ),
                 ),
               ],

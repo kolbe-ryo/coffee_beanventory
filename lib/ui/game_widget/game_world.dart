@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/ui/game_widget/wall.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -23,6 +24,8 @@ class GameWorld extends Forge2DGame with HasTappables {
   static const double _topWorld = 0;
   static const double _bottomWorld = 300;
 
+  late Component _bottomWall;
+
   @override
   // Color backgroundColor() => Colors.orange.withOpacity(0.2);
   Color backgroundColor() => Colors.transparent;
@@ -34,8 +37,29 @@ class GameWorld extends Forge2DGame with HasTappables {
     return super.onLoad();
   }
 
+  // Add bottom layer
+  Future<void> onCreate() async {
+    final bottomRight = screenToWorld(
+      Vector2(
+        camera.viewport.effectiveSize.x - _widthWorld,
+        camera.viewport.effectiveSize.y - _bottomWorld,
+      ),
+    );
+    final bottomLeft = screenToWorld(
+      Vector2(
+        _widthWorld,
+        camera.viewport.effectiveSize.y - _bottomWorld,
+      ),
+    );
+    _bottomWall = Wall(bottomLeft, bottomRight);
+    add(_bottomWall);
+  }
+
   // Remove bottom layer
-  Future<void> onRemove() async {}
+  @override
+  Future<void> onRemove() async {
+    _bottomWall.onRemove();
+  }
 
   List<Component> createBoundaries() {
     final topLeft = screenToWorld(Vector2(_widthWorld, _topWorld));
@@ -48,38 +72,17 @@ class GameWorld extends Forge2DGame with HasTappables {
     final topRight = screenToWorld(Vector2(camera.viewport.effectiveSize.x - _widthWorld, _topWorld));
     final bottomLeft = screenToWorld(Vector2(_widthWorld, camera.viewport.effectiveSize.y - _bottomWorld));
 
-    final a = Wall(topRight, bottomRight);
+    _bottomWall = Wall(bottomLeft, bottomRight);
 
     return [
       Wall(topRight, bottomRight),
-      Wall(bottomLeft, bottomRight),
       Wall(topLeft, bottomLeft),
+      _bottomWall,
     ];
   }
 
   // TODO: 追加時にstateとローカルを更新する
   Future<void> addBalls(int balls) async {
     _generator.generateBalls(balls).forEach(add);
-  }
-}
-
-class Wall extends BodyComponent {
-  Wall(this._start, this._end)
-      : super(
-        // paint: Paint()..color = Colors.transparent,
-        );
-  final Vector2 _start;
-  final Vector2 _end;
-
-  @override
-  Body createBody() {
-    final shape = EdgeShape()..set(_start, _end);
-    final fixtureDef = FixtureDef(shape, friction: 0.3);
-    final bodyDef = BodyDef(
-      userData: this,
-      position: Vector2.zero(),
-    );
-
-    return world.createBody(bodyDef)..createFixture(fixtureDef);
   }
 }
