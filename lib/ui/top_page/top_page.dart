@@ -7,10 +7,10 @@ import 'package:flame/game.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Project imports:
+import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
 import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
 import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
-import '../../constant/constants.dart';
 
 class TopPage extends ConsumerWidget {
   const TopPage({super.key});
@@ -27,10 +27,6 @@ class TopPage extends ConsumerWidget {
             padding: const EdgeInsets.all(0),
             child: Stack(
               children: [
-                const Align(
-                  alignment: Alignment.topCenter,
-                  child: FrameSketch(),
-                ),
                 Visibility(
                   visible: state.isLoaded,
                   child: Align(
@@ -39,6 +35,10 @@ class TopPage extends ConsumerWidget {
                       game: engine,
                     ),
                   ),
+                ),
+                const Align(
+                  alignment: Alignment.topCenter,
+                  child: FrameSketch(),
                 ),
                 Align(
                   alignment: Alignment.bottomLeft,

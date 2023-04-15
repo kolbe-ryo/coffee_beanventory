@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:coffee_beanventory/ui/game_widget/wall.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -8,26 +7,70 @@ import 'package:flame/game.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 // Project imports:
+import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/ui/game_widget/ball_generator.dart';
-import '../../constant/constants.dart';
+import 'package:coffee_beanventory/ui/game_widget/wall.dart';
 
 class GameWorld extends Forge2DGame with HasTappables {
   GameWorld(this._mediaQuery)
       : _generator = const BallGenerator(),
-        super(
-          // gravity: Vector2(0, 10),
-          zoom: 5,
-        );
+        super(zoom: 5);
 
   final BallGenerator _generator;
   final Size _mediaQuery;
-
   late Component _bottomWall;
 
   @override
-  // Color backgroundColor() => Colors.orange.withOpacity(0.2);
   Color backgroundColor() => Colors.transparent;
 
+  // Getter for coordinates for Walls
+  double get _paddingWidth => baseWidthRate * _mediaQuery.width;
+
+  double get _bottomCoordinateY => _mediaQuery.width * aspectRateOfFlame - _paddingWidth;
+
+  Vector2 get _topLeftCoordinateVector => screenToWorld(
+        Vector2(
+          _paddingWidth,
+          topWorld,
+        ),
+      );
+
+  Vector2 get _topRightCoordinateVector => screenToWorld(
+        Vector2(
+          camera.viewport.effectiveSize.x - _paddingWidth,
+          topWorld,
+        ),
+      );
+
+  Vector2 get _bottomLeftCoordinateVector => screenToWorld(
+        Vector2(
+          _paddingWidth,
+          _bottomCoordinateY,
+        ),
+      );
+
+  Vector2 get _bottomRightCoordinateVector => screenToWorld(
+        Vector2(
+          camera.viewport.effectiveSize.x - _paddingWidth,
+          _bottomCoordinateY,
+        ),
+      );
+
+  Vector2 get _bottomLeftCenterCoordinateVector => screenToWorld(
+        Vector2(
+          _mediaQuery.width / 3,
+          _bottomCoordinateY,
+        ),
+      );
+
+  Vector2 get _bottomRightCenterCoordinateVector => screenToWorld(
+        Vector2(
+          _mediaQuery.width * 2 / 3,
+          _bottomCoordinateY,
+        ),
+      );
+
+  // Initial method
   @override
   Future<void> onLoad() async {
     _generator.generateBalls(30).forEach(add);
@@ -35,13 +78,26 @@ class GameWorld extends Forge2DGame with HasTappables {
     return super.onLoad();
   }
 
+  // Create initial boundaries
+  List<Component> createBoundaries() {
+    _bottomWall = Wall(_bottomLeftCoordinateVector, _bottomRightCoordinateVector);
+
+    return [
+      // Left Wall
+      Wall(_topLeftCoordinateVector, _bottomLeftCoordinateVector),
+      // Right Wall
+      Wall(_topRightCoordinateVector, _bottomRightCoordinateVector),
+      // TODO: Left Bottom Wall
+      // TODO: RIght Bottom Wall
+
+      // Center Bottom Wall
+      _bottomWall,
+    ];
+  }
+
   // Add bottom layer
   Future<void> onCreate() async {
-    final widthWorld = baseWidthRate * _mediaQuery.width;
-    final bottomWorld = _mediaQuery.width * aspectRateOfFlame - widthWorld;
-    final bottomLeft = screenToWorld(Vector2(widthWorld, bottomWorld));
-    final bottomRight = screenToWorld(Vector2(camera.viewport.effectiveSize.x - widthWorld, bottomWorld));
-    _bottomWall = Wall(bottomLeft, bottomRight);
+    _bottomWall = Wall(_bottomLeftCoordinateVector, _bottomRightCoordinateVector);
     add(_bottomWall);
   }
 
@@ -49,23 +105,6 @@ class GameWorld extends Forge2DGame with HasTappables {
   @override
   Future<void> onRemove() async {
     _bottomWall.onRemove();
-  }
-
-  List<Component> createBoundaries() {
-    final widthWorld = baseWidthRate * _mediaQuery.width;
-    final bottomWorld = _mediaQuery.width * aspectRateOfFlame - widthWorld;
-    final topLeft = screenToWorld(Vector2(widthWorld, topWorld));
-    final topRight = screenToWorld(Vector2(camera.viewport.effectiveSize.x - widthWorld, topWorld));
-    final bottomLeft = screenToWorld(Vector2(widthWorld, bottomWorld));
-    final bottomRight = screenToWorld(Vector2(camera.viewport.effectiveSize.x - widthWorld, bottomWorld));
-
-    _bottomWall = Wall(bottomLeft, bottomRight);
-
-    return [
-      Wall(topRight, bottomRight),
-      Wall(topLeft, bottomLeft),
-      _bottomWall,
-    ];
   }
 
   // TODO: 追加時にstateとローカルを更新する
