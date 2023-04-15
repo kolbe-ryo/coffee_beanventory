@@ -10,29 +10,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
 import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
 import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
+import '../../constant/constants.dart';
 
 class TopPage extends ConsumerWidget {
   const TopPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final engine = GameWorld();
+    final engine = GameWorld(MediaQuery.of(context).size);
     final topPageProvider = ref.watch(topPageViewModelProvider);
     return topPageProvider.when(
       data: (state) => SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.blueGrey,
           body: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(0),
             child: Stack(
               children: [
                 const Align(
                   alignment: Alignment.topCenter,
-                  child: SizedBox(
-                    width: 550,
-                    height: 550,
-                    child: FrameSketch(),
-                  ),
+                  child: FrameSketch(),
                 ),
                 Visibility(
                   visible: state.isLoaded,

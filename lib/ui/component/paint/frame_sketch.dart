@@ -9,9 +9,10 @@ class FrameSketch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final flameSize = MediaQuery.of(context).size;
     return SvgPicture.asset(
       'assets/images/frame_sketch.svg',
-      color: Colors.brown.shade600,
+      width: flameSize.width,
     );
   }
 }

@@ -28,7 +28,7 @@ class Ball extends BodyComponent with Tappable {
       userData: this,
       position: _position,
       type: BodyType.dynamic,
-      gravityScale: Vector2(0, 20),
+      gravityScale: Vector2(0, 10),
     );
 
     return world.createBody(bodyDef)..createFixture(fixtureDef);
@@ -44,11 +44,10 @@ class Ball extends BodyComponent with Tappable {
   void render(Canvas canvas) {
     super.render(canvas);
     canvas.save();
-    final _ = RPSCustomPainter()
-      ..paint(
-        canvas,
-        const Size(5, 5),
-      );
+    RPSCustomPainter().paint(
+      canvas,
+      const Size(5, 5),
+    );
     canvas.restore();
   }
 }

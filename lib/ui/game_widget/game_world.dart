@@ -9,20 +9,18 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/ui/game_widget/ball_generator.dart';
+import '../../constant/constants.dart';
 
 class GameWorld extends Forge2DGame with HasTappables {
-  GameWorld()
+  GameWorld(this._mediaQuery)
       : _generator = const BallGenerator(),
         super(
-          gravity: Vector2(0, 10),
+          // gravity: Vector2(0, 10),
           zoom: 5,
         );
 
   final BallGenerator _generator;
-
-  static const double _widthWorld = 60;
-  static const double _topWorld = 0;
-  static const double _bottomWorld = 300;
+  final Size _mediaQuery;
 
   late Component _bottomWall;
 
@@ -39,18 +37,10 @@ class GameWorld extends Forge2DGame with HasTappables {
 
   // Add bottom layer
   Future<void> onCreate() async {
-    final bottomRight = screenToWorld(
-      Vector2(
-        camera.viewport.effectiveSize.x - _widthWorld,
-        camera.viewport.effectiveSize.y - _bottomWorld,
-      ),
-    );
-    final bottomLeft = screenToWorld(
-      Vector2(
-        _widthWorld,
-        camera.viewport.effectiveSize.y - _bottomWorld,
-      ),
-    );
+    final widthWorld = baseWidthRate * _mediaQuery.width;
+    final bottomWorld = _mediaQuery.width * aspectRateOfFlame - widthWorld;
+    final bottomLeft = screenToWorld(Vector2(widthWorld, bottomWorld));
+    final bottomRight = screenToWorld(Vector2(camera.viewport.effectiveSize.x - widthWorld, bottomWorld));
     _bottomWall = Wall(bottomLeft, bottomRight);
     add(_bottomWall);
   }
@@ -62,15 +52,12 @@ class GameWorld extends Forge2DGame with HasTappables {
   }
 
   List<Component> createBoundaries() {
-    final topLeft = screenToWorld(Vector2(_widthWorld, _topWorld));
-    final bottomRight = screenToWorld(
-      Vector2(
-        camera.viewport.effectiveSize.x - _widthWorld,
-        camera.viewport.effectiveSize.y - _bottomWorld,
-      ),
-    );
-    final topRight = screenToWorld(Vector2(camera.viewport.effectiveSize.x - _widthWorld, _topWorld));
-    final bottomLeft = screenToWorld(Vector2(_widthWorld, camera.viewport.effectiveSize.y - _bottomWorld));
+    final widthWorld = baseWidthRate * _mediaQuery.width;
+    final bottomWorld = _mediaQuery.width * aspectRateOfFlame - widthWorld;
+    final topLeft = screenToWorld(Vector2(widthWorld, topWorld));
+    final topRight = screenToWorld(Vector2(camera.viewport.effectiveSize.x - widthWorld, topWorld));
+    final bottomLeft = screenToWorld(Vector2(widthWorld, bottomWorld));
+    final bottomRight = screenToWorld(Vector2(camera.viewport.effectiveSize.x - widthWorld, bottomWorld));
 
     _bottomWall = Wall(bottomLeft, bottomRight);
 
