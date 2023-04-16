@@ -15,6 +15,12 @@ class TopPageViewModel extends _$TopPageViewModel {
     return TopPageState(isLoaded: isLoaded);
   }
 
+  Future<void> setIsRemoveBottomLayer() async {
+    state = await AsyncValue.guard(
+      () async {},
+    );
+  }
+
   Future<bool> _cacheImage() async {
     await precachePicture(
       ExactAssetPicture(

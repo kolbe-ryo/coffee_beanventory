@@ -17,7 +17,10 @@ class TopPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final engine = GameWorld(MediaQuery.of(context).size);
+    final engine = GameWorld(
+      mediaQuery: MediaQuery.of(context).size,
+      ref: ref,
+    );
     final topPageProvider = ref.watch(topPageViewModelProvider);
     return topPageProvider.when(
       data: (state) => SafeArea(

@@ -8,5 +8,6 @@ class TopPageState with _$TopPageState {
   const factory TopPageState({
     @Default(0) int pageIndex,
     @Default(false) bool isLoaded,
+    @Default(false) bool isRemoveBottomLayer,
   }) = _TopPageState;
 }

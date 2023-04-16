@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CoffeeBeanventoryModel {
+// equals quantities of beans
   int get grams => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -96,6 +97,7 @@ class __$$_CoffeeBeanventoryModelCopyWithImpl<$Res>
 class _$_CoffeeBeanventoryModel implements _CoffeeBeanventoryModel {
   const _$_CoffeeBeanventoryModel({this.grams = 0});
 
+// equals quantities of beans
   @override
   @JsonKey()
   final int grams;
@@ -128,7 +130,7 @@ abstract class _CoffeeBeanventoryModel implements CoffeeBeanventoryModel {
   const factory _CoffeeBeanventoryModel({final int grams}) =
       _$_CoffeeBeanventoryModel;
 
-  @override
+  @override // equals quantities of beans
   int get grams;
   @override
   @JsonKey(ignore: true)
