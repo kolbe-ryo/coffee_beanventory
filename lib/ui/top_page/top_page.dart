@@ -23,48 +23,45 @@ class TopPage extends ConsumerWidget {
       data: (state) => SafeArea(
         child: Scaffold(
           backgroundColor: Colors.blueGrey,
-          body: Padding(
-            padding: const EdgeInsets.all(0),
-            child: Stack(
-              children: [
-                Visibility(
-                  visible: state.isLoaded,
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: GameWidget(
-                      game: engine,
-                    ),
-                  ),
-                ),
-                const Align(
+          body: Stack(
+            children: [
+              Visibility(
+                visible: state.isLoaded,
+                child: Align(
                   alignment: Alignment.topCenter,
-                  child: FrameSketch(),
-                ),
-                Align(
-                  alignment: Alignment.bottomLeft,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      engine.addBalls(10);
-                    },
-                    child: const Text('Add'),
+                  child: GameWidget(
+                    game: engine,
                   ),
                 ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: ElevatedButton(
-                    onPressed: engine.onRemove,
-                    child: const Text('Remove'),
-                  ),
+              ),
+              const Align(
+                alignment: Alignment.topCenter,
+                child: FrameSketch(),
+              ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: ElevatedButton(
+                  onPressed: () {
+                    engine.addBalls(10);
+                  },
+                  child: const Text('Add'),
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: ElevatedButton(
-                    onPressed: engine.onCreate,
-                    child: const Text('Create'),
-                  ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: ElevatedButton(
+                  onPressed: engine.onRemove,
+                  child: const Text('Remove'),
                 ),
-              ],
-            ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: ElevatedButton(
+                  onPressed: engine.onCreate,
+                  child: const Text('Create'),
+                ),
+              ),
+            ],
           ),
         ),
       ),
