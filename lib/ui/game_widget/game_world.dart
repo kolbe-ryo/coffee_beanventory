@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,18 +10,15 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/ui/game_widget/ball_generator.dart';
 import 'package:coffee_beanventory/ui/game_widget/wall.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GameWorld extends Forge2DGame with HasTappables {
-  GameWorld({
-    required this.mediaQuery,
-    required this.ref,
-  })  : _generator = const BallGenerator(),
+  GameWorld({required this.mediaQuery})
+      : _generator = const BallGenerator(),
         super(zoom: 5);
 
   final BallGenerator _generator;
   final Size mediaQuery;
-  final WidgetRef ref;
+
   late Component _bottomWall;
 
   @override
@@ -105,10 +101,6 @@ class GameWorld extends Forge2DGame with HasTappables {
 
   // Add bottom layer
   Future<void> onCreate() async {
-    final topPageProvider = ref.watch(topPageViewModelProvider);
-    if (topPageProvider.valueOrNull?.isRemoveBottomLayer ?? false) {
-      return;
-    }
     _bottomWall = Wall(_bottomLeftCenterCoordinateVector, _bottomRightCenterCoordinateVector);
     add(_bottomWall);
   }
@@ -117,6 +109,10 @@ class GameWorld extends Forge2DGame with HasTappables {
   @override
   Future<void> onRemove() async {
     _bottomWall.onRemove();
+  }
+
+  int onCount() {
+    return world.bodies.length - 5;
   }
 
   // TODO: 追加時にstateとローカルを更新する

@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TopPageState {
   int get pageIndex => throw _privateConstructorUsedError;
-  bool get isLoaded => throw _privateConstructorUsedError;
   bool get isRemoveBottomLayer => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +30,7 @@ abstract class $TopPageStateCopyWith<$Res> {
           TopPageState value, $Res Function(TopPageState) then) =
       _$TopPageStateCopyWithImpl<$Res, TopPageState>;
   @useResult
-  $Res call({int pageIndex, bool isLoaded, bool isRemoveBottomLayer});
+  $Res call({int pageIndex, bool isRemoveBottomLayer});
 }
 
 /// @nodoc
@@ -48,7 +47,6 @@ class _$TopPageStateCopyWithImpl<$Res, $Val extends TopPageState>
   @override
   $Res call({
     Object? pageIndex = null,
-    Object? isLoaded = null,
     Object? isRemoveBottomLayer = null,
   }) {
     return _then(_value.copyWith(
@@ -56,10 +54,6 @@ class _$TopPageStateCopyWithImpl<$Res, $Val extends TopPageState>
           ? _value.pageIndex
           : pageIndex // ignore: cast_nullable_to_non_nullable
               as int,
-      isLoaded: null == isLoaded
-          ? _value.isLoaded
-          : isLoaded // ignore: cast_nullable_to_non_nullable
-              as bool,
       isRemoveBottomLayer: null == isRemoveBottomLayer
           ? _value.isRemoveBottomLayer
           : isRemoveBottomLayer // ignore: cast_nullable_to_non_nullable
@@ -76,7 +70,7 @@ abstract class _$$_TopPageStateCopyWith<$Res>
       __$$_TopPageStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int pageIndex, bool isLoaded, bool isRemoveBottomLayer});
+  $Res call({int pageIndex, bool isRemoveBottomLayer});
 }
 
 /// @nodoc
@@ -91,7 +85,6 @@ class __$$_TopPageStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? pageIndex = null,
-    Object? isLoaded = null,
     Object? isRemoveBottomLayer = null,
   }) {
     return _then(_$_TopPageState(
@@ -99,10 +92,6 @@ class __$$_TopPageStateCopyWithImpl<$Res>
           ? _value.pageIndex
           : pageIndex // ignore: cast_nullable_to_non_nullable
               as int,
-      isLoaded: null == isLoaded
-          ? _value.isLoaded
-          : isLoaded // ignore: cast_nullable_to_non_nullable
-              as bool,
       isRemoveBottomLayer: null == isRemoveBottomLayer
           ? _value.isRemoveBottomLayer
           : isRemoveBottomLayer // ignore: cast_nullable_to_non_nullable
@@ -114,24 +103,18 @@ class __$$_TopPageStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TopPageState implements _TopPageState {
-  const _$_TopPageState(
-      {this.pageIndex = 0,
-      this.isLoaded = false,
-      this.isRemoveBottomLayer = false});
+  const _$_TopPageState({this.pageIndex = 0, this.isRemoveBottomLayer = false});
 
   @override
   @JsonKey()
   final int pageIndex;
   @override
   @JsonKey()
-  final bool isLoaded;
-  @override
-  @JsonKey()
   final bool isRemoveBottomLayer;
 
   @override
   String toString() {
-    return 'TopPageState(pageIndex: $pageIndex, isLoaded: $isLoaded, isRemoveBottomLayer: $isRemoveBottomLayer)';
+    return 'TopPageState(pageIndex: $pageIndex, isRemoveBottomLayer: $isRemoveBottomLayer)';
   }
 
   @override
@@ -141,15 +124,12 @@ class _$_TopPageState implements _TopPageState {
             other is _$_TopPageState &&
             (identical(other.pageIndex, pageIndex) ||
                 other.pageIndex == pageIndex) &&
-            (identical(other.isLoaded, isLoaded) ||
-                other.isLoaded == isLoaded) &&
             (identical(other.isRemoveBottomLayer, isRemoveBottomLayer) ||
                 other.isRemoveBottomLayer == isRemoveBottomLayer));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, pageIndex, isLoaded, isRemoveBottomLayer);
+  int get hashCode => Object.hash(runtimeType, pageIndex, isRemoveBottomLayer);
 
   @JsonKey(ignore: true)
   @override
@@ -160,14 +140,10 @@ class _$_TopPageState implements _TopPageState {
 
 abstract class _TopPageState implements TopPageState {
   const factory _TopPageState(
-      {final int pageIndex,
-      final bool isLoaded,
-      final bool isRemoveBottomLayer}) = _$_TopPageState;
+      {final int pageIndex, final bool isRemoveBottomLayer}) = _$_TopPageState;
 
   @override
   int get pageIndex;
-  @override
-  bool get isLoaded;
   @override
   bool get isRemoveBottomLayer;
   @override

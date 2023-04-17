@@ -6,12 +6,12 @@ part of 'top_page_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$topPageViewModelHash() => r'337978111accf530e91a1dfb2fcf42bf98afd2c1';
+String _$topPageViewModelHash() => r'361c9061e1aab0fd3224e3eb85847bc026e7417a';
 
 /// See also [TopPageViewModel].
 @ProviderFor(TopPageViewModel)
 final topPageViewModelProvider =
-    AutoDisposeAsyncNotifierProvider<TopPageViewModel, TopPageState>.internal(
+    AutoDisposeNotifierProvider<TopPageViewModel, TopPageState>.internal(
   TopPageViewModel.new,
   name: r'topPageViewModelProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,5 +21,5 @@ final topPageViewModelProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$TopPageViewModel = AutoDisposeAsyncNotifier<TopPageState>;
+typedef _$TopPageViewModel = AutoDisposeNotifier<TopPageState>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

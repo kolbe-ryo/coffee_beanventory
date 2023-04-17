@@ -9,3 +9,6 @@ const double baseWidthRate = 0.1;
 
 // Game top axis
 const double topWorld = 0;
+
+// Image path
+const String imagePath = 'assets/images/frame_sketch.svg';
