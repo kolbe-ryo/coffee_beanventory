@@ -19,7 +19,7 @@ class Ball extends BodyComponent with Tappable {
 
     final fixtureDef = FixtureDef(
       shape,
-      // restitution: 0,
+      restitution: 0,
       density: 1,
       friction: 1,
     );
@@ -28,7 +28,7 @@ class Ball extends BodyComponent with Tappable {
       userData: this,
       position: _position,
       type: BodyType.dynamic,
-      gravityScale: Vector2(0, 40),
+      gravityScale: Vector2(0, 10),
     );
 
     return world.createBody(bodyDef)..createFixture(fixtureDef);
@@ -39,6 +39,9 @@ class Ball extends BodyComponent with Tappable {
     body.applyLinearImpulse(Vector2.random() * 5000);
     return false;
   }
+
+  @override
+  void onRemove() {}
 
   @override
   void render(Canvas canvas) {

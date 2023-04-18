@@ -48,12 +48,12 @@ class TopPage extends ConsumerWidget {
               Align(
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
-                  onPressed: () async {
+                  onPressed: () {
                     final isRemoveBottomLayer = ref.read(topPageViewModelProvider).isRemoveBottomLayer;
                     if (isRemoveBottomLayer) {
                       return;
                     }
-                    await engine.onRemove();
+                    engine.onRemove();
                     ref.watch(topPageViewModelProvider.notifier).switchIsRemoveBottomLayer(isRemove: true);
                   },
                   child: const Text('Remove'),
@@ -62,12 +62,12 @@ class TopPage extends ConsumerWidget {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton(
-                  onPressed: () async {
+                  onPressed: () {
                     final isRemoveBottomLayer = ref.read(topPageViewModelProvider).isRemoveBottomLayer;
                     if (!isRemoveBottomLayer) {
                       return;
                     }
-                    await engine.onCreate();
+                    engine.onCreate();
                     ref.watch(topPageViewModelProvider.notifier).switchIsRemoveBottomLayer(isRemove: false);
                   },
                   child: const Text('Create'),
@@ -81,6 +81,13 @@ class TopPage extends ConsumerWidget {
                     logger.info(ballCounts);
                   },
                   child: const Text('Count'),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: ElevatedButton(
+                  onPressed: engine.onRemoveBalls,
+                  child: const Text('Remove Ball'),
                 ),
               ),
             ],

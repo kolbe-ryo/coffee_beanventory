@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:coffee_beanventory/ui/game_widget/ball.dart';
+import 'package:coffee_beanventory/util/logger.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -18,6 +20,8 @@ class GameWorld extends Forge2DGame with HasTappables {
 
   final BallGenerator _generator;
   final Size mediaQuery;
+
+  late Component _bottomFlameWall;
 
   late Component _bottomWall;
 
@@ -71,6 +75,22 @@ class GameWorld extends Forge2DGame with HasTappables {
           _bottomCoordinateY + _paddingWidth * 0.3,
         ),
       );
+
+  Vector2 get _bottomLeftForRemoveBody => screenToWorld(
+        Vector2(
+          0,
+          mediaQuery.height - 100,
+        ),
+      );
+
+  Vector2 get _bottomRightForRemoveBody => screenToWorld(
+        Vector2(
+          mediaQuery.width,
+          mediaQuery.height - 100,
+        ),
+      );
+
+  //TODO: onContactで最下部に接触した時点で削除できるか（Ball側かも？）
   // ================================
 
   // Initial method
@@ -83,7 +103,8 @@ class GameWorld extends Forge2DGame with HasTappables {
 
   // Create initial boundaries
   List<Component> createBoundaries() {
-    _bottomWall = Wall(_bottomLeftCenterCoordinateVector, _bottomRightCenterCoordinateVector);
+    _bottomFlameWall = Wall(_bottomLeftCenterCoordinateVector, _bottomRightCenterCoordinateVector);
+    _bottomWall = Wall(_bottomLeftForRemoveBody, _bottomRightForRemoveBody);
 
     return [
       // Left Wall
@@ -92,26 +113,43 @@ class GameWorld extends Forge2DGame with HasTappables {
       Wall(_topRightCoordinateVector, _bottomRightCoordinateVector),
       // Left Bottom Wall
       Wall(_bottomLeftCoordinateVector, _bottomLeftCenterCoordinateVector),
-      // RIght Bottom Wall
+      // Right Bottom Wall
       Wall(_bottomRightCenterCoordinateVector, _bottomRightCoordinateVector),
       // Center Bottom Wall
-      _bottomWall,
+      _bottomFlameWall,
+      // Bottom For Remove Body
+      // _bottomWall,
     ];
   }
 
   // Add bottom layer
-  Future<void> onCreate() async {
-    _bottomWall = Wall(_bottomLeftCenterCoordinateVector, _bottomRightCenterCoordinateVector);
-    add(_bottomWall);
+  void onCreate() {
+    _bottomFlameWall = Wall(_bottomLeftCenterCoordinateVector, _bottomRightCenterCoordinateVector);
+    add(_bottomFlameWall);
   }
 
   // Remove bottom layer
   @override
   Future<void> onRemove() async {
-    _bottomWall.onRemove();
+    _bottomFlameWall.onRemove();
+  }
+
+  void onRemoveBalls() {
+    logger.info(world.bodies.length);
+
+    for (var i = 0; i < world.bodies.length; i++) {
+      if (world.bodies[i].position.g > 150) {
+        world.destroyBody(world.bodies[i]);
+        i--;
+      }
+    }
+    logger.info(world.bodies.length);
   }
 
   int onCount() {
+    final allBody = world.bodies;
+    logger.info(allBody.first.userData.runtimeType);
+    logger.info(allBody.first.position.g);
     return world.bodies.length - 5;
   }
 
