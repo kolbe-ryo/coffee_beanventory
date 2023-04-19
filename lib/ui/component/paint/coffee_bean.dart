@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class RPSCustomPainter extends CustomPainter {
@@ -27,7 +29,13 @@ class RPSCustomPainter extends CustomPainter {
 
     final paint0Fill = Paint()
       ..style = PaintingStyle.fill
-      ..color = Colors.brown.shade800;
+      ..shader = LinearGradient(
+        colors: [Color.fromARGB(255, 28, 16, 4), Color.fromARGB(255, 42, 28, 13), Color.fromARGB(255, 64, 41, 13)],
+        stops: [0, 0.5, 1],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ).createShader(Rect.fromCircle(center: Offset(0, 0), radius: 3))
+      ..color = Color.fromARGB(255, 35, 16, 1);
     canvas.drawPath(path0.shift(offset), paint0Fill);
 
     final path1 = Path();
@@ -52,7 +60,13 @@ class RPSCustomPainter extends CustomPainter {
 
     final paint1Fill = Paint()
       ..style = PaintingStyle.fill
-      ..color = Colors.brown.shade900;
+      ..shader = LinearGradient(
+        colors: [Color.fromARGB(255, 55, 31, 9), Color.fromARGB(255, 46, 30, 14), Color.fromARGB(255, 29, 17, 6)],
+        stops: [0, 0.5, 1],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ).createShader(Rect.fromCircle(center: Offset(0, 0), radius: 3))
+      ..color = Color.fromARGB(255, 35, 16, 1);
     canvas.drawPath(path1.shift(offset), paint1Fill);
   }
 

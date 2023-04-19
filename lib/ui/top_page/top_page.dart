@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
 import 'package:coffee_beanventory/util/image_cacher.dart';
 import 'package:coffee_beanventory/util/logger.dart';
@@ -23,7 +24,7 @@ class TopPage extends ConsumerWidget {
     return imageCacher.when(
       data: (state) => SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Color.fromARGB(255, 65, 65, 65),
           body: Stack(
             children: [
               Align(
@@ -34,7 +35,11 @@ class TopPage extends ConsumerWidget {
               ),
               const Align(
                 alignment: Alignment.topCenter,
-                child: FrameSketch(),
+                child: ImageWidget(frameImagePath),
+              ),
+              const Align(
+                alignment: Alignment.bottomCenter,
+                child: ImageWidget(metalImagePath),
               ),
               Align(
                 alignment: Alignment.bottomLeft,

@@ -15,7 +15,7 @@ class ImageCacher extends _$ImageCacher {
     await precachePicture(
       ExactAssetPicture(
         SvgPicture.svgStringDecoderBuilder,
-        imagePath,
+        frameImagePath,
       ),
       null,
     );
