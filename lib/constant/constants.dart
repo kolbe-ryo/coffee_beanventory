@@ -14,3 +14,8 @@ const double topWorld = 0;
 const String frameImagePath = 'assets/images/frame_sketch.svg';
 
 const String metalImagePath = 'assets/images/metal_plate.svg';
+
+const List<String> svgImages = [
+  frameImagePath,
+  metalImagePath,
+];

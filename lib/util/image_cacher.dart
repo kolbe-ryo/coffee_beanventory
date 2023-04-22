@@ -1,4 +1,5 @@
 import 'package:coffee_beanventory/constant/constants.dart';
+import 'package:coffee_beanventory/util/logger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,13 +13,23 @@ class ImageCacher extends _$ImageCacher {
   }
 
   Future<bool> _cacheImage() async {
-    await precachePicture(
-      ExactAssetPicture(
-        SvgPicture.svgStringDecoderBuilder,
-        frameImagePath,
-      ),
-      null,
-    );
-    return true;
+    try {
+      for (final image in svgImages) {
+        await precachePicture(
+          ExactAssetPicture(
+            SvgPicture.svgStringDecoderBuilder,
+            image,
+          ),
+          null,
+        );
+      }
+      return true;
+      // TODO: Change Exception
+    } on Exception catch (e, trace) {
+      logger
+        ..info(e)
+        ..info(trace);
+      return false;
+    }
   }
 }
