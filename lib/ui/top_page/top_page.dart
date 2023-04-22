@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flame/game.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
@@ -19,7 +20,8 @@ class TopPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final engine = GameWorld(mediaQuery: MediaQuery.of(context).size);
+    final mediaSize = MediaQuery.of(context).size;
+    final engine = GameWorld(mediaQuery: mediaSize);
     final imageCacher = ref.watch(imageCacherProvider);
     return imageCacher.when(
       data: (state) => SafeArea(
@@ -36,10 +38,6 @@ class TopPage extends ConsumerWidget {
               const Align(
                 alignment: Alignment.topCenter,
                 child: ImageWidget(frameImagePath),
-              ),
-              const Align(
-                alignment: Alignment.bottomCenter,
-                child: ImageWidget(metalImagePath),
               ),
               Align(
                 alignment: Alignment.bottomLeft,
@@ -93,6 +91,43 @@ class TopPage extends ConsumerWidget {
                 child: ElevatedButton(
                   onPressed: engine.onRemoveBalls,
                   child: const Text('Remove Ball'),
+                ),
+              ),
+              Positioned(
+                top: mediaSize.width * aspectRateOfFlame - 50,
+                left: mediaSize.width / 2 - 50,
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromARGB(255, 137, 94, 33),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: mediaSize.width * aspectRateOfFlame - 50,
+                left: mediaSize.width / 2 - 50,
+                child: InkWell(
+                  child: SleekCircularSlider(
+                    appearance: CircularSliderAppearance(
+                      angleRange: 360,
+                      customColors: CustomSliderColors(
+                        trackColor: Colors.transparent,
+                        progressBarColor: Colors.orange,
+                        hideShadow: true,
+                      ),
+                      customWidths: CustomSliderWidths(progressBarWidth: 20),
+                      size: 100,
+                      startAngle: 0,
+                    ),
+                    min: 0,
+                    max: 100,
+                    initialValue: 0,
+                    // innerWidget: (percentage) => _CircleButton(),
+                    onChange: (value) => print(value),
+                  ),
+                  onTap: () => print('test'),
                 ),
               ),
             ],

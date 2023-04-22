@@ -9,10 +9,10 @@ part 'image_cacher.g.dart';
 class ImageCacher extends _$ImageCacher {
   @override
   FutureOr<bool> build() async {
-    return await _cacheImage();
+    return await _cacheImages();
   }
 
-  Future<bool> _cacheImage() async {
+  Future<bool> _cacheImages() async {
     try {
       for (final image in svgImages) {
         await precachePicture(

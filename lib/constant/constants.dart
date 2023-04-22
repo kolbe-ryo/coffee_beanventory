@@ -17,5 +17,5 @@ const String metalImagePath = 'assets/images/metal_plate.svg';
 
 const List<String> svgImages = [
   frameImagePath,
-  metalImagePath,
+  // metalImagePath,
 ];

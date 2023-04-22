@@ -64,14 +64,14 @@ class GameWorld extends Forge2DGame with HasTappables {
 
   Vector2 get _bottomLeftCenterCoordinateVector => screenToWorld(
         Vector2(
-          mediaQuery.width / 3,
+          mediaQuery.width * 3 / 8,
           _bottomCoordinateY + _paddingWidth * 0.3,
         ),
       );
 
   Vector2 get _bottomRightCenterCoordinateVector => screenToWorld(
         Vector2(
-          mediaQuery.width * 2 / 3,
+          mediaQuery.width * 5 / 8,
           _bottomCoordinateY + _paddingWidth * 0.3,
         ),
       );
