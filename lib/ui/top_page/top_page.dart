@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flame/game.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
+import 'package:coffee_beanventory/ui/component/dispense_knob_button.dart';
 import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
 import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
 import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
@@ -108,27 +108,7 @@ class TopPage extends ConsumerWidget {
               Positioned(
                 top: mediaSize.width * aspectRateOfFlame - 50,
                 left: mediaSize.width / 2 - 50,
-                child: InkWell(
-                  child: SleekCircularSlider(
-                    appearance: CircularSliderAppearance(
-                      angleRange: 360,
-                      customColors: CustomSliderColors(
-                        trackColor: Colors.transparent,
-                        progressBarColor: Colors.orange,
-                        hideShadow: true,
-                      ),
-                      customWidths: CustomSliderWidths(progressBarWidth: 20),
-                      size: 100,
-                      startAngle: 0,
-                    ),
-                    // min: 0,
-                    // max: 100,
-                    initialValue: 0,
-                    // innerWidget: (percentage) => _CircleButton(),
-                    onChange: (value) => print(value),
-                  ),
-                  onTap: () => print('test'),
-                ),
+                child: const DispenseKnobButton(),
               ),
             ],
           ),
