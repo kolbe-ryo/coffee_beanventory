@@ -1,6 +1,4 @@
 // Flutter imports:
-import 'package:coffee_beanventory/ui/game_widget/ball.dart';
-import 'package:coffee_beanventory/util/logger.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -10,8 +8,10 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
+import 'package:coffee_beanventory/ui/game_widget/ball.dart';
 import 'package:coffee_beanventory/ui/game_widget/ball_generator.dart';
 import 'package:coffee_beanventory/ui/game_widget/wall.dart';
+import 'package:coffee_beanventory/util/logger.dart';
 
 class GameWorld extends Forge2DGame with HasTappables {
   GameWorld({required this.mediaQuery})

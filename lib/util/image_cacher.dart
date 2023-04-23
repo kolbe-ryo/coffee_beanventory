@@ -1,7 +1,10 @@
-import 'package:coffee_beanventory/constant/constants.dart';
-import 'package:coffee_beanventory/util/logger.dart';
+// Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/constant/constants.dart';
+import 'package:coffee_beanventory/util/logger.dart';
 
 part 'image_cacher.g.dart';
 
