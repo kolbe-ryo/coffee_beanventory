@@ -134,7 +134,7 @@ class GameWorld extends Forge2DGame with HasTappables {
     _bottomFlameWall.onRemove();
   }
 
-  void onRemoveBalls() {
+  void onRemoveBeans() {
     logger.info(world.bodies.length);
 
     for (var i = 0; i < world.bodies.length; i++) {
@@ -154,7 +154,7 @@ class GameWorld extends Forge2DGame with HasTappables {
   }
 
   // TODO: 追加時にstateとローカルを更新する
-  Future<void> addBalls(int balls) async {
+  Future<void> addBeans(int balls) async {
     _generator.generateBalls(balls).forEach(add);
   }
 }

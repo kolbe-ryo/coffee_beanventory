@@ -21,8 +21,10 @@ class TopPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mediaSize = MediaQuery.of(context).size;
-    final engine = GameWorld(mediaQuery: mediaSize);
+    // final engine = GameWorld(mediaQuery: mediaSize);
+    // ref.watch(topPageViewModelProvider.notifier).world = GameWorld(mediaQuery: mediaSize);
     final imageCacher = ref.watch(imageCacherProvider);
+    final topPageVM = ref.watch(topPageViewModelProvider.notifier);
     return imageCacher.when(
       data: (state) => SafeArea(
         child: Scaffold(
@@ -32,7 +34,7 @@ class TopPage extends ConsumerWidget {
               Align(
                 alignment: Alignment.topCenter,
                 child: GameWidget(
-                  game: engine,
+                  game: topPageVM.world,
                 ),
               ),
               const Align(
@@ -43,7 +45,7 @@ class TopPage extends ConsumerWidget {
                 alignment: Alignment.bottomLeft,
                 child: ElevatedButton(
                   onPressed: () {
-                    engine.addBalls(10);
+                    topPageVM.addBeanGrams(10);
                   },
                   child: const Text('Add'),
                 ),
@@ -56,7 +58,7 @@ class TopPage extends ConsumerWidget {
                     if (isRemoveBottomLayer) {
                       return;
                     }
-                    engine.onRemove();
+                    topPageVM.world.onRemove();
                     ref.watch(topPageViewModelProvider.notifier).switchIsRemoveBottomLayer(isRemove: true);
                   },
                   child: const Text('Remove'),
@@ -70,7 +72,7 @@ class TopPage extends ConsumerWidget {
                     if (!isRemoveBottomLayer) {
                       return;
                     }
-                    engine.onCreate();
+                    topPageVM.world.onCreate();
                     ref.watch(topPageViewModelProvider.notifier).switchIsRemoveBottomLayer(isRemove: false);
                   },
                   child: const Text('Create'),
@@ -80,7 +82,7 @@ class TopPage extends ConsumerWidget {
                 alignment: Alignment.topCenter,
                 child: ElevatedButton(
                   onPressed: () {
-                    final ballCounts = engine.onCount();
+                    final ballCounts = topPageVM.world.onCount();
                     logger.info(ballCounts);
                   },
                   child: const Text('Count'),
@@ -89,7 +91,7 @@ class TopPage extends ConsumerWidget {
               Align(
                 alignment: Alignment.topRight,
                 child: ElevatedButton(
-                  onPressed: engine.onRemoveBalls,
+                  onPressed: topPageVM.world.onRemoveBeans,
                   child: const Text('Remove Ball'),
                 ),
               ),
