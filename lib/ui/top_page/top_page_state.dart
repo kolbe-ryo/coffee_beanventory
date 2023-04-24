@@ -8,5 +8,6 @@ class TopPageState with _$TopPageState {
   const factory TopPageState({
     @Default(0) int pageIndex,
     @Default(false) bool isRemoveBottomLayer,
+    @Default(0) int beanGrams,
   }) = _TopPageState;
 }

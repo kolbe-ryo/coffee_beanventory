@@ -6,7 +6,7 @@ part of 'image_cacher.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$imageCacherHash() => r'c02820bf7adf59b78e2cee9954903fb1c1a3c31c';
+String _$imageCacherHash() => r'01a49974059847c158d0b6f6c99602c38daf9068';
 
 /// See also [ImageCacher].
 @ProviderFor(ImageCacher)

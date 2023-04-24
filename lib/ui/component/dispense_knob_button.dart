@@ -13,7 +13,7 @@ class DispenseKnobButton extends StatelessWidget {
     return InkWell(
       child: SleekCircularSlider(
         appearance: CircularSliderAppearance(
-          angleRange: 360,
+          angleRange: 350,
           customColors: CustomSliderColors(
             trackColor: Colors.transparent,
             progressBarColor: Colors.orange,
@@ -21,7 +21,7 @@ class DispenseKnobButton extends StatelessWidget {
           ),
           customWidths: CustomSliderWidths(progressBarWidth: 20),
           size: 100,
-          startAngle: 0,
+          startAngle: 90,
         ),
         // min: 0,
         // max: 100,
