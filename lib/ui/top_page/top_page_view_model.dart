@@ -1,12 +1,14 @@
-// Package imports:
-import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get_it/get_it.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:state_notifier/state_notifier.dart';
 
 // Project imports:
+import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
 import 'package:coffee_beanventory/ui/top_page/top_page_state.dart';
-import 'package:state_notifier/state_notifier.dart';
 
 part 'top_page_view_model.g.dart';
 

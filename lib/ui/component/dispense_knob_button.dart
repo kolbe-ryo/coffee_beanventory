@@ -1,10 +1,12 @@
 // Flutter imports:
-import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Package imports:
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
 
 class DispenseKnobButton extends ConsumerWidget {
   const DispenseKnobButton({super.key});
