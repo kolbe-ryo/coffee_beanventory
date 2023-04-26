@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -15,6 +16,7 @@ class DispenseKnobButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var beanGrams = 0;
     return InkWell(
+      borderRadius: BorderRadius.circular(knobRadius / 2),
       child: SleekCircularSlider(
         appearance: CircularSliderAppearance(
           angleRange: 350,
@@ -23,7 +25,7 @@ class DispenseKnobButton extends ConsumerWidget {
             progressBarColor: Colors.orange,
             hideShadow: true,
           ),
-          customWidths: CustomSliderWidths(progressBarWidth: 20),
+          customWidths: CustomSliderWidths(progressBarWidth: 10),
           size: 100,
           startAngle: 90,
         ),

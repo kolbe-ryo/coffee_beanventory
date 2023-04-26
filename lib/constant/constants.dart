@@ -19,3 +19,5 @@ const List<String> svgImages = [
   frameImagePath,
   // metalImagePath,
 ];
+
+const double knobRadius = 100;

@@ -99,8 +99,8 @@ class TopPage extends ConsumerWidget {
                 top: mediaSize.width * aspectRateOfFlame - 50,
                 left: mediaSize.width / 2 - 50,
                 child: Container(
-                  height: 100,
-                  width: 100,
+                  height: knobRadius,
+                  width: knobRadius,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color.fromARGB(255, 137, 94, 33),
