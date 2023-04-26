@@ -11,7 +11,7 @@ const double baseWidthRate = 0.1;
 const double topWorld = 0;
 
 // Image path
-const String frameImagePath = 'assets/images/frame_sketch.svg';
+const String frameImagePath = 'assets/images/glass_bottle.svg';
 
 const String metalImagePath = 'assets/images/metal_plate.svg';
 

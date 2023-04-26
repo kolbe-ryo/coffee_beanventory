@@ -15,6 +15,7 @@ class ImageWidget extends StatelessWidget {
     return SvgPicture.asset(
       imagePath,
       width: flameSize.width,
+      // color: ,
     );
   }
 }

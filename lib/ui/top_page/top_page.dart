@@ -38,7 +38,7 @@ class TopPage extends ConsumerWidget {
                 ),
               ),
               const Align(
-                alignment: Alignment.topCenter,
+                alignment: Alignment.center,
                 child: ImageWidget(frameImagePath),
               ),
               Align(
