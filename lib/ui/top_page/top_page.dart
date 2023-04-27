@@ -10,7 +10,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/ui/component/dispense_knob_button.dart';
 import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
-import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
 import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
 import 'package:coffee_beanventory/util/image_cacher.dart';
 import 'package:coffee_beanventory/util/logger.dart';
@@ -21,14 +20,12 @@ class TopPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mediaSize = MediaQuery.of(context).size;
-    // final engine = GameWorld(mediaQuery: mediaSize);
-    // ref.watch(topPageViewModelProvider.notifier).world = GameWorld(mediaQuery: mediaSize);
     final imageCacher = ref.watch(imageCacherProvider);
     final topPageVM = ref.watch(topPageViewModelProvider.notifier);
     return imageCacher.when(
       data: (state) => SafeArea(
         child: Scaffold(
-          backgroundColor: Color.fromARGB(255, 65, 65, 65),
+          backgroundColor: Colors.blueGrey,
           body: Stack(
             children: [
               Align(
@@ -38,44 +35,16 @@ class TopPage extends ConsumerWidget {
                 ),
               ),
               const Align(
-                alignment: Alignment.center,
+                alignment: Alignment.topCenter,
                 child: ImageWidget(frameImagePath),
               ),
               Align(
-                alignment: Alignment.bottomLeft,
+                alignment: Alignment.topLeft,
                 child: ElevatedButton(
                   onPressed: () {
                     topPageVM.addBeanGrams(10);
                   },
                   child: const Text('Add'),
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: ElevatedButton(
-                  onPressed: () {
-                    final isRemoveBottomLayer = ref.read(topPageViewModelProvider).isRemoveBottomLayer;
-                    if (isRemoveBottomLayer) {
-                      return;
-                    }
-                    topPageVM.world.onRemove();
-                    ref.watch(topPageViewModelProvider.notifier).switchIsRemoveBottomLayer(isRemove: true);
-                  },
-                  child: const Text('Remove'),
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: ElevatedButton(
-                  onPressed: () {
-                    final isRemoveBottomLayer = ref.read(topPageViewModelProvider).isRemoveBottomLayer;
-                    if (!isRemoveBottomLayer) {
-                      return;
-                    }
-                    topPageVM.world.onCreate();
-                    ref.watch(topPageViewModelProvider.notifier).switchIsRemoveBottomLayer(isRemove: false);
-                  },
-                  child: const Text('Create'),
                 ),
               ),
               Align(
@@ -95,25 +64,9 @@ class TopPage extends ConsumerWidget {
                   child: const Text('Remove Ball'),
                 ),
               ),
-              Positioned(
-                top: mediaSize.width * aspectRateOfFlame - 50,
-                left: mediaSize.width / 2 - 50,
-                child: Container(
-                  height: knobRadius,
-                  width: knobRadius,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color.fromARGB(255, 137, 94, 33),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: mediaSize.width * aspectRateOfFlame - 50,
-                left: mediaSize.width / 2 - 50,
-                child: const DispenseKnobButton(),
-              ),
             ],
           ),
+          floatingActionButton: const DispenseKnobButton(),
         ),
       ),
       loading: () => const Center(

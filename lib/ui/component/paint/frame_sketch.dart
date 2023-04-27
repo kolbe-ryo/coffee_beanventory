@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 
+// Project imports:
+import 'package:coffee_beanventory/constant/constants.dart';
+
 class ImageWidget extends StatelessWidget {
   const ImageWidget(this.imagePath, {super.key});
 
@@ -14,7 +17,7 @@ class ImageWidget extends StatelessWidget {
     final flameSize = MediaQuery.of(context).size;
     return SvgPicture.asset(
       imagePath,
-      width: flameSize.width,
+      width: flameSize.width * widthRate,
       // color: ,
     );
   }

@@ -8,7 +8,6 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
-import 'package:coffee_beanventory/ui/game_widget/ball.dart';
 import 'package:coffee_beanventory/ui/game_widget/ball_generator.dart';
 import 'package:coffee_beanventory/ui/game_widget/wall.dart';
 import 'package:coffee_beanventory/util/logger.dart';
@@ -22,17 +21,19 @@ class GameWorld extends Forge2DGame with HasTappables {
   final Size mediaQuery;
 
   late Component _bottomFlameWall;
-
   late Component _bottomWall;
+
+  static const _heightShoulderRate = 0.53;
+  static const _heightNeckRate = 0.60;
 
   @override
   Color backgroundColor() => Colors.transparent;
 
   // Getter for coordinates for Walls
-  // ================================
-  double get _paddingWidth => baseWidthRate * mediaQuery.width;
+  // ===============================
+  double get _paddingWidth => (mediaQuery.width * (1 - widthRate + 0.05)) / 2;
 
-  double get _bottomCoordinateY => mediaQuery.width * aspectRateOfFlame - _paddingWidth;
+  double get _bottomCoordinateY => mediaQuery.height * (widthRate + 0.03);
 
   Vector2 get _topLeftCoordinateVector => screenToWorld(
         Vector2(
@@ -51,47 +52,59 @@ class GameWorld extends Forge2DGame with HasTappables {
   Vector2 get _bottomLeftCoordinateVector => screenToWorld(
         Vector2(
           _paddingWidth,
-          _bottomCoordinateY,
+          mediaQuery.height * _heightShoulderRate,
         ),
       );
 
   Vector2 get _bottomRightCoordinateVector => screenToWorld(
         Vector2(
           camera.viewport.effectiveSize.x - _paddingWidth,
-          _bottomCoordinateY,
+          mediaQuery.height * _heightShoulderRate,
+        ),
+      );
+
+  Vector2 get _slatingLeftVector => screenToWorld(
+        Vector2(
+          mediaQuery.width * 1 / 3,
+          mediaQuery.height * _heightNeckRate,
+        ),
+      );
+
+  Vector2 get _slatingRightVector => screenToWorld(
+        Vector2(
+          mediaQuery.width * 2 / 3,
+          mediaQuery.height * _heightNeckRate,
         ),
       );
 
   Vector2 get _bottomLeftCenterCoordinateVector => screenToWorld(
         Vector2(
-          mediaQuery.width * 3 / 8,
+          mediaQuery.width * 1 / 3,
           _bottomCoordinateY + _paddingWidth * 0.3,
         ),
       );
 
+// TODO
   Vector2 get _bottomRightCenterCoordinateVector => screenToWorld(
         Vector2(
-          mediaQuery.width * 5 / 8,
+          mediaQuery.width * 2 / 3,
           _bottomCoordinateY + _paddingWidth * 0.3,
         ),
       );
-
+// TODO
   Vector2 get _bottomLeftForRemoveBody => screenToWorld(
         Vector2(
           0,
           mediaQuery.height - 100,
         ),
       );
-
+// TODO
   Vector2 get _bottomRightForRemoveBody => screenToWorld(
         Vector2(
           mediaQuery.width,
           mediaQuery.height - 100,
         ),
       );
-
-  //TODO: onContactで最下部に接触した時点で削除できるか（Ball側かも？）
-  // ================================
 
   // Initial method
   @override
@@ -111,10 +124,15 @@ class GameWorld extends Forge2DGame with HasTappables {
       Wall(_topLeftCoordinateVector, _bottomLeftCoordinateVector),
       // Right Wall
       Wall(_topRightCoordinateVector, _bottomRightCoordinateVector),
+
+      // Slaiting Left Wall
+      Wall(_bottomLeftCoordinateVector, _slatingLeftVector),
+      // Slaiting Right Wall
+      Wall(_bottomRightCoordinateVector, _slatingRightVector),
       // Left Bottom Wall
-      Wall(_bottomLeftCoordinateVector, _bottomLeftCenterCoordinateVector),
+      Wall(_slatingLeftVector, _bottomLeftCenterCoordinateVector),
       // Right Bottom Wall
-      Wall(_bottomRightCenterCoordinateVector, _bottomRightCoordinateVector),
+      Wall(_slatingRightVector, _bottomRightCenterCoordinateVector),
       // Center Bottom Wall
       _bottomFlameWall,
       // Bottom For Remove Body
@@ -150,7 +168,7 @@ class GameWorld extends Forge2DGame with HasTappables {
     final allBody = world.bodies;
     logger.info(allBody.first.userData.runtimeType);
     logger.info(allBody.first.position.g);
-    return world.bodies.length - 5;
+    return world.bodies.length - 7;
   }
 
   // TODO: 追加時にstateとローカルを更新する

@@ -1,9 +1,6 @@
 // Constant space
 const kPadding = 16.0;
 
-// Aspect ratio of flame svg
-const aspectRateOfFlame = 1.356;
-
 // Game width axis from phone side
 const double baseWidthRate = 0.1;
 
@@ -11,9 +8,7 @@ const double baseWidthRate = 0.1;
 const double topWorld = 0;
 
 // Image path
-const String frameImagePath = 'assets/images/glass_bottle.svg';
-
-const String metalImagePath = 'assets/images/metal_plate.svg';
+const String frameImagePath = 'assets/images/glass_storage.svg';
 
 const List<String> svgImages = [
   frameImagePath,
@@ -21,3 +16,5 @@ const List<String> svgImages = [
 ];
 
 const double knobRadius = 100;
+
+const double widthRate = 0.7;

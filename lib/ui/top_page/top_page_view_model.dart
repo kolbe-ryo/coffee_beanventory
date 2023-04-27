@@ -25,8 +25,6 @@ class TopPageViewModel extends _$TopPageViewModel with LocatorMixin {
 
   GameWorld get world => _gameWorld;
 
-  // set world(GameWorld world) => _gameWorld = world;
-
   void switchIsRemoveBottomLayer({required bool isRemove}) => state = state.copyWith(isRemoveBottomLayer: isRemove);
 
   void addBeanGrams(int grams) {
@@ -37,7 +35,7 @@ class TopPageViewModel extends _$TopPageViewModel with LocatorMixin {
   Future<void> removeBeanGrams(int grams) async {
     state = state.copyWith(beanGrams: state.beanGrams - grams);
     await _gameWorld.onRemove();
-    await Future<void>.delayed(Duration(milliseconds: grams * 100));
+    await Future<void>.delayed(Duration(milliseconds: grams * 50));
     _gameWorld
       ..onCreate()
       ..onRemoveBeans();
