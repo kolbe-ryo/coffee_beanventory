@@ -84,21 +84,20 @@ class GameWorld extends Forge2DGame with HasTappables {
         ),
       );
 
-// TODO
   Vector2 get _bottomRightCenterCoordinateVector => screenToWorld(
         Vector2(
           mediaQuery.width * 2 / 3,
           _bottomCoordinateY + _paddingWidth * 0.3,
         ),
       );
-// TODO
+
   Vector2 get _bottomLeftForRemoveBody => screenToWorld(
         Vector2(
           0,
           mediaQuery.height - 100,
         ),
       );
-// TODO
+
   Vector2 get _bottomRightForRemoveBody => screenToWorld(
         Vector2(
           mediaQuery.width,
@@ -124,7 +123,6 @@ class GameWorld extends Forge2DGame with HasTappables {
       Wall(_topLeftCoordinateVector, _bottomLeftCoordinateVector),
       // Right Wall
       Wall(_topRightCoordinateVector, _bottomRightCoordinateVector),
-
       // Slaiting Left Wall
       Wall(_bottomLeftCoordinateVector, _slatingLeftVector),
       // Slaiting Right Wall
@@ -135,8 +133,6 @@ class GameWorld extends Forge2DGame with HasTappables {
       Wall(_slatingRightVector, _bottomRightCenterCoordinateVector),
       // Center Bottom Wall
       _bottomFlameWall,
-      // Bottom For Remove Body
-      // _bottomWall,
     ];
   }
 
