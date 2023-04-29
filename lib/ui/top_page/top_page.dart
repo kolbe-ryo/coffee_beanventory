@@ -19,7 +19,7 @@ class TopPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final mediaSize = MediaQuery.of(context).size;
+    // final mediaSize = MediaQuery.of(context).size;
     final imageCacher = ref.watch(imageCacherProvider);
     final topPageVM = ref.watch(topPageViewModelProvider.notifier);
     return imageCacher.when(
@@ -42,15 +42,6 @@ class TopPage extends ConsumerWidget {
                 alignment: Alignment.topLeft,
                 child: ElevatedButton(
                   onPressed: () {
-                    topPageVM.addBeanGrams(10);
-                  },
-                  child: const Text('Add'),
-                ),
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: ElevatedButton(
-                  onPressed: () {
                     final ballCounts = topPageVM.world.onCount();
                     logger.info(ballCounts);
                   },
@@ -66,7 +57,23 @@ class TopPage extends ConsumerWidget {
               ),
             ],
           ),
-          floatingActionButton: const DispenseKnobButton(),
+          floatingActionButton: Column(
+            verticalDirection: VerticalDirection.up, // childrenの先頭が下に配置されます。
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              DispenseKnobButton(
+                buttonText: 'Use',
+                function: ref.watch(topPageViewModelProvider.notifier).removeBeanGrams,
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: kPadding),
+                child: DispenseKnobButton(
+                  buttonText: 'Add',
+                  function: ref.watch(topPageViewModelProvider.notifier).addBeanGrams,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       loading: () => const Center(

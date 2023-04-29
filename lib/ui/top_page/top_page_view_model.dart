@@ -27,9 +27,9 @@ class TopPageViewModel extends _$TopPageViewModel with LocatorMixin {
 
   void switchIsRemoveBottomLayer({required bool isRemove}) => state = state.copyWith(isRemoveBottomLayer: isRemove);
 
-  void addBeanGrams(int grams) {
+  Future<void> addBeanGrams(int grams) async {
     state = state.copyWith(beanGrams: state.beanGrams + grams);
-    _gameWorld.addBeans(grams);
+    await _gameWorld.addBeans(grams);
   }
 
   Future<void> removeBeanGrams(int grams) async {

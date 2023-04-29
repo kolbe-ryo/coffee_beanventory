@@ -18,3 +18,5 @@ const List<String> svgImages = [
 const double knobRadius = 100;
 
 const double widthRate = 0.7;
+
+const double gameZoom = 5;

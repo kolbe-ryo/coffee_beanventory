@@ -14,14 +14,13 @@ import 'package:coffee_beanventory/util/logger.dart';
 
 class GameWorld extends Forge2DGame with HasTappables {
   GameWorld({required this.mediaQuery})
-      : _generator = const BallGenerator(),
-        super(zoom: 5);
+      : _generator = BallGenerator(mediaQuery.width),
+        super(zoom: gameZoom);
 
   final BallGenerator _generator;
   final Size mediaQuery;
 
   late Component _bottomFlameWall;
-  late Component _bottomWall;
 
   static const _heightShoulderRate = 0.53;
   static const _heightNeckRate = 0.60;
@@ -91,20 +90,6 @@ class GameWorld extends Forge2DGame with HasTappables {
         ),
       );
 
-  Vector2 get _bottomLeftForRemoveBody => screenToWorld(
-        Vector2(
-          0,
-          mediaQuery.height - 100,
-        ),
-      );
-
-  Vector2 get _bottomRightForRemoveBody => screenToWorld(
-        Vector2(
-          mediaQuery.width,
-          mediaQuery.height - 100,
-        ),
-      );
-
   // Initial method
   @override
   Future<void> onLoad() async {
@@ -116,7 +101,6 @@ class GameWorld extends Forge2DGame with HasTappables {
   // Create initial boundaries
   List<Component> createBoundaries() {
     _bottomFlameWall = Wall(_bottomLeftCenterCoordinateVector, _bottomRightCenterCoordinateVector);
-    _bottomWall = Wall(_bottomLeftForRemoveBody, _bottomRightForRemoveBody);
 
     return [
       // Left Wall
