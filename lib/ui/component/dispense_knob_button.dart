@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/enum/color_index_enum.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -22,32 +23,33 @@ class DispenseKnobButton extends StatelessWidget {
     var beanGrams = 0;
     return InkWell(
       borderRadius: BorderRadius.circular(knobRadius / 2),
+      splashColor: ColorIndexEnum.warm.colors['splashColor'],
       child: SleekCircularSlider(
         appearance: CircularSliderAppearance(
           angleRange: 280,
           animDurationMultiplier: 0.1,
           customColors: CustomSliderColors(
-            trackColor: Colors.amberAccent,
-            progressBarColor: Colors.orange,
+            trackColor: ColorIndexEnum.warm.colors['trackColor'],
+            progressBarColor: ColorIndexEnum.warm.colors['progressBarColor'],
           ),
           customWidths: CustomSliderWidths(
-            handlerSize: 6,
-            progressBarWidth: 6,
-            trackWidth: 5,
+            handlerSize: 7,
+            progressBarWidth: 7,
+            trackWidth: 6,
           ),
           infoProperties: InfoProperties(
             bottomLabelText: buttonText,
             bottomLabelStyle: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w300,
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
             ),
             mainLabelStyle: const TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w300,
+              fontSize: 30,
+              fontWeight: FontWeight.w400,
             ),
             modifier: (percentage) => '${percentage.round()}',
           ),
-          size: 70,
+          size: 80,
           startAngle: 130,
         ),
         // max: 100,

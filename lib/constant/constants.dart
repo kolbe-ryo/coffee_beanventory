@@ -1,4 +1,6 @@
 // Constant space
+import 'package:flutter/material.dart';
+
 const kPadding = 16.0;
 
 // Game width axis from phone side

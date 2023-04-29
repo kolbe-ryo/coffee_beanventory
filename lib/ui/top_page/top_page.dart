@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/enum/color_index_enum.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class TopPage extends ConsumerWidget {
     return imageCacher.when(
       data: (state) => SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: ColorIndexEnum.warm.colors['background'],
           body: Stack(
             children: [
               Align(
