@@ -15,6 +15,7 @@ part 'top_page_view_model.g.dart';
 @riverpod
 class TopPageViewModel extends _$TopPageViewModel with LocatorMixin {
   late final GameWorld _gameWorld;
+  GameWorld get world => _gameWorld;
 
   @override
   TopPageState build() {
@@ -22,10 +23,6 @@ class TopPageViewModel extends _$TopPageViewModel with LocatorMixin {
     _gameWorld = GameWorld(mediaQuery: MediaQuery.of(context).size);
     return const TopPageState();
   }
-
-  GameWorld get world => _gameWorld;
-
-  void switchIsRemoveBottomLayer({required bool isRemove}) => state = state.copyWith(isRemoveBottomLayer: isRemove);
 
   Future<void> addBeanGrams(int grams) async {
     state = state.copyWith(beanGrams: state.beanGrams + grams);
@@ -36,9 +33,10 @@ class TopPageViewModel extends _$TopPageViewModel with LocatorMixin {
     state = state.copyWith(beanGrams: state.beanGrams - grams);
     await _gameWorld.onRemove();
     await Future<void>.delayed(Duration(milliseconds: grams * 50));
-    _gameWorld
-      ..onCreate()
-      ..onRemoveBeans();
-    switchIsRemoveBottomLayer(isRemove: false);
+    _gameWorld.onCreate();
+
+    // 1秒後に落下した
+    await Future<void>.delayed(const Duration(seconds: 1));
+    _gameWorld.onRemoveBeans();
   }
 }

@@ -100,6 +100,7 @@ class GameWorld extends Forge2DGame with HasTappables {
 
   // Create initial boundaries
   List<Component> createBoundaries() {
+    logger.info(_bottomLeftCoordinateVector.g);
     _bottomFlameWall = Wall(_bottomLeftCenterCoordinateVector, _bottomRightCenterCoordinateVector);
 
     return [
@@ -133,21 +134,19 @@ class GameWorld extends Forge2DGame with HasTappables {
   }
 
   void onRemoveBeans() {
-    logger.info(world.bodies.length);
-
+    logger.info(world.bodies[0].position.g);
+    final bottomScreen = screenToWorld(Vector2(0, mediaQuery.height)).g;
     for (var i = 0; i < world.bodies.length; i++) {
-      if (world.bodies[i].position.g > 150) {
-        world.destroyBody(world.bodies[i]);
-        i--;
+      if (world.bodies[i].position.g > bottomScreen) {
+        world.destroyBody(world.bodies[i--]);
       }
     }
-    logger.info(world.bodies.length);
+    logger.info(world.bodies.length - 7);
   }
 
   int onCount() {
     final allBody = world.bodies;
     logger.info(allBody.first.userData.runtimeType);
-    logger.info(allBody.first.position.g);
     return world.bodies.length - 7;
   }
 
