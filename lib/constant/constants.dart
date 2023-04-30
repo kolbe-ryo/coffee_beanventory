@@ -12,11 +12,6 @@ const double topWorld = 0;
 // Image path
 const String frameImagePath = 'assets/images/glass_storage.svg';
 
-const List<String> svgImages = [
-  frameImagePath,
-  // metalImagePath,
-];
-
 const double knobRadius = 100;
 
 const double widthRate = 0.7;
