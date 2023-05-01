@@ -39,23 +39,6 @@ class TopPage extends ConsumerWidget {
                 alignment: Alignment.topCenter,
                 child: ImageWidget(frameImagePath),
               ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: ElevatedButton(
-                  onPressed: () {
-                    final ballCounts = topPageVM.world.onCount();
-                    logger.info(ballCounts);
-                  },
-                  child: const Text('Count'),
-                ),
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: ElevatedButton(
-                  onPressed: topPageVM.world.onRemoveBeans,
-                  child: const Text('Remove Ball'),
-                ),
-              ),
             ],
           ),
           floatingActionButton: Column(
