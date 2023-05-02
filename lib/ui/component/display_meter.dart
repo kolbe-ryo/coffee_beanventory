@@ -1,12 +1,14 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+
+// Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/enum/color_index_enum.dart';
 import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-// Package imports:
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class DisplayMeter extends ConsumerWidget {
   const DisplayMeter({
@@ -35,13 +37,13 @@ class DisplayMeter extends ConsumerWidget {
           bottomLabelText: buttonText,
           bottomLabelStyle: const TextStyle(
             fontSize: regularFontSize,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w300,
           ),
           mainLabelStyle: const TextStyle(
             fontSize: largeFontSize,
             fontWeight: FontWeight.w400,
           ),
-          modifier: (_) => meterValue.toString(),
+          modifier: (_) => '${meterValue}g',
         ),
         size: circleMeterRadius,
         startAngle: circleAngle,

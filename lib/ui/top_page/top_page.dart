@@ -1,7 +1,4 @@
 // Flutter imports:
-import 'package:coffee_beanventory/enum/color_index_enum.dart';
-import 'package:coffee_beanventory/ui/component/display_meter.dart';
-import 'package:coffee_beanventory/util/logger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,10 +8,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
+import 'package:coffee_beanventory/enum/color_index_enum.dart';
 import 'package:coffee_beanventory/ui/component/dispense_knob_button.dart';
+import 'package:coffee_beanventory/ui/component/display_meter.dart';
 import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
 import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
 import 'package:coffee_beanventory/util/image_cacher.dart';
+import 'package:coffee_beanventory/util/logger.dart';
 
 class TopPage extends ConsumerWidget {
   const TopPage({super.key});
