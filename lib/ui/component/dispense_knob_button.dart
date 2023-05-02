@@ -26,31 +26,30 @@ class DispenseKnobButton extends StatelessWidget {
       splashColor: ColorIndexEnum.cold.colors['splashColor'],
       child: SleekCircularSlider(
         appearance: CircularSliderAppearance(
-          angleRange: 280,
-          animDurationMultiplier: 0.1,
+          angleRange: angleRange,
           customColors: CustomSliderColors(
             trackColor: ColorIndexEnum.cold.colors['trackColor'],
             progressBarColor: ColorIndexEnum.cold.colors['progressBarColor'],
           ),
           customWidths: CustomSliderWidths(
-            handlerSize: 7,
-            progressBarWidth: 7,
-            trackWidth: 6,
+            handlerSize: handlerSize,
+            progressBarWidth: progressBarWidth,
+            trackWidth: trackWidth,
           ),
           infoProperties: InfoProperties(
             bottomLabelText: buttonText,
             bottomLabelStyle: const TextStyle(
-              fontSize: 15,
+              fontSize: regularFontSize,
               fontWeight: FontWeight.w400,
             ),
             mainLabelStyle: const TextStyle(
-              fontSize: 30,
+              fontSize: largeFontSize,
               fontWeight: FontWeight.w400,
             ),
-            modifier: (percentage) => '${percentage.round()}',
+            modifier: (percentage) => '${percentage.round()}g',
           ),
-          size: 80,
-          startAngle: 130,
+          size: circleMeterRadius,
+          startAngle: circleAngle,
         ),
         // max: 100,
         initialValue: 0,

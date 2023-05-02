@@ -17,3 +17,20 @@ const double knobRadius = 100;
 const double widthRate = 0.7;
 
 const double gameZoom = 5;
+
+// Meter constants
+const double circleMeterRadius = 80;
+
+const double circleAngle = 130;
+
+const double largeFontSize = 25;
+
+const double regularFontSize = 15;
+
+const double handlerSize = 7;
+
+const double progressBarWidth = 7;
+
+const double trackWidth = 6;
+
+const double angleRange = 280;

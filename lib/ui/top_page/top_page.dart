@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:coffee_beanventory/enum/color_index_enum.dart';
+import 'package:coffee_beanventory/ui/component/display_meter.dart';
 import 'package:coffee_beanventory/util/logger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,33 +39,51 @@ class TopPage extends ConsumerWidget {
                 alignment: Alignment.topCenter,
                 child: ImageWidget(frameImagePath),
               ),
-              Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  icon: const Icon(Icons.settings),
-                  color: Colors.grey,
-                  iconSize: 35,
-                  splashRadius: 10,
-                  // TODO: implement Navigator to settings page
-                  onPressed: () => logger.info('message'),
-                ),
-              ),
             ],
           ),
-          floatingActionButton: Column(
-            verticalDirection: VerticalDirection.up, // childrenの先頭が下に配置されます。
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              DispenseKnobButton(
-                buttonText: 'Use',
-                function: ref.watch(topPageViewModelProvider.notifier).removeBeanGrams,
-              ),
-              Container(
-                margin: const EdgeInsets.only(bottom: kPadding),
-                child: DispenseKnobButton(
-                  buttonText: 'Add',
-                  function: ref.watch(topPageViewModelProvider.notifier).addBeanGrams,
+          floatingActionButton: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: kPadding * 2),
+                child: Column(
+                  verticalDirection: VerticalDirection.up, // childrenの先頭が下に配置されます。
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    IconButton(
+                      icon: const Icon(Icons.settings),
+                      color: Colors.grey,
+                      iconSize: 50,
+                      splashRadius: 10,
+                      // TODO: implement Navigator to settings page
+                      onPressed: () => logger.info('message'),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: kPadding),
+                      child: DisplayMeter(
+                        buttonText: 'Stock',
+                      ),
+                    ),
+                  ],
                 ),
+              ),
+              Column(
+                verticalDirection: VerticalDirection.up, // childrenの先頭が下に配置されます。
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  DispenseKnobButton(
+                    buttonText: 'Use',
+                    function: ref.watch(topPageViewModelProvider.notifier).removeBeanGrams,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: kPadding),
+                    child: DispenseKnobButton(
+                      buttonText: 'Add',
+                      function: ref.watch(topPageViewModelProvider.notifier).addBeanGrams,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
