@@ -23,14 +23,14 @@ class DispenseKnobButton extends StatelessWidget {
     var beanGrams = 0;
     return InkWell(
       borderRadius: BorderRadius.circular(knobRadius / 2),
-      splashColor: ColorIndexEnum.warm.colors['splashColor'],
+      splashColor: ColorIndexEnum.cold.colors['splashColor'],
       child: SleekCircularSlider(
         appearance: CircularSliderAppearance(
           angleRange: 280,
           animDurationMultiplier: 0.1,
           customColors: CustomSliderColors(
-            trackColor: ColorIndexEnum.warm.colors['trackColor'],
-            progressBarColor: ColorIndexEnum.warm.colors['progressBarColor'],
+            trackColor: ColorIndexEnum.cold.colors['trackColor'],
+            progressBarColor: ColorIndexEnum.cold.colors['progressBarColor'],
           ),
           customWidths: CustomSliderWidths(
             handlerSize: 7,

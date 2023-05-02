@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:coffee_beanventory/enum/color_index_enum.dart';
+import 'package:coffee_beanventory/util/logger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,13 +20,12 @@ class TopPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final mediaSize = MediaQuery.of(context).size;
     final imageCacher = ref.watch(imageCacherProvider);
     final topPageVM = ref.watch(topPageViewModelProvider.notifier);
     return imageCacher.when(
       data: (state) => SafeArea(
         child: Scaffold(
-          backgroundColor: ColorIndexEnum.warm.colors['background'],
+          backgroundColor: ColorIndexEnum.cold.colors['background'],
           body: Stack(
             children: [
               Align(
@@ -37,6 +37,17 @@ class TopPage extends ConsumerWidget {
               const Align(
                 alignment: Alignment.topCenter,
                 child: ImageWidget(frameImagePath),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: const Icon(Icons.settings),
+                  color: Colors.grey,
+                  iconSize: 35,
+                  splashRadius: 10,
+                  // TODO: implement Navigator to settings page
+                  onPressed: () => logger.info('message'),
+                ),
               ),
             ],
           ),

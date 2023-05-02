@@ -22,8 +22,9 @@ class GameWorld extends Forge2DGame with HasTappables {
 
   late Component _bottomFlameWall;
 
-  static const _heightShoulderRate = 0.53;
-  static const _heightNeckRate = 0.60;
+  static const topWorld = 0.0;
+  static const _heightShoulderRate = 0.95;
+  static const _heightNeckRate = 1.05;
 
   @override
   Color backgroundColor() => Colors.transparent;
@@ -32,7 +33,7 @@ class GameWorld extends Forge2DGame with HasTappables {
   // ===============================
   double get _paddingWidth => (mediaQuery.width * (1 - widthRate + 0.05)) / 2;
 
-  double get _bottomCoordinateY => mediaQuery.height * (widthRate + 0.03);
+  double get _bottomCoordinateY => mediaQuery.width * 1.3;
 
   Vector2 get _topLeftCoordinateVector => screenToWorld(
         Vector2(
@@ -51,28 +52,28 @@ class GameWorld extends Forge2DGame with HasTappables {
   Vector2 get _bottomLeftCoordinateVector => screenToWorld(
         Vector2(
           _paddingWidth,
-          mediaQuery.height * _heightShoulderRate,
+          mediaQuery.width * _heightShoulderRate,
         ),
       );
 
   Vector2 get _bottomRightCoordinateVector => screenToWorld(
         Vector2(
           camera.viewport.effectiveSize.x - _paddingWidth,
-          mediaQuery.height * _heightShoulderRate,
+          mediaQuery.width * _heightShoulderRate,
         ),
       );
 
   Vector2 get _slatingLeftVector => screenToWorld(
         Vector2(
           mediaQuery.width * 1 / 3,
-          mediaQuery.height * _heightNeckRate,
+          mediaQuery.width * _heightNeckRate,
         ),
       );
 
   Vector2 get _slatingRightVector => screenToWorld(
         Vector2(
           mediaQuery.width * 2 / 3,
-          mediaQuery.height * _heightNeckRate,
+          mediaQuery.width * _heightNeckRate,
         ),
       );
 
@@ -89,6 +90,7 @@ class GameWorld extends Forge2DGame with HasTappables {
           _bottomCoordinateY + _paddingWidth * 0.3,
         ),
       );
+  // ===============================
 
   // Initial method
   @override
