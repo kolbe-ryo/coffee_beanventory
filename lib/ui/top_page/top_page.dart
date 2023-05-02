@@ -13,7 +13,6 @@ import 'package:coffee_beanventory/ui/component/dispense_knob_button.dart';
 import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
 import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
 import 'package:coffee_beanventory/util/image_cacher.dart';
-import 'package:coffee_beanventory/util/logger.dart';
 
 class TopPage extends ConsumerWidget {
   const TopPage({super.key});

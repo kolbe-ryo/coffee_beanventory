@@ -1,6 +1,4 @@
 // Constant space
-import 'package:flutter/material.dart';
-
 const kPadding = 16.0;
 
 // Game width axis from phone side
@@ -11,6 +9,11 @@ const double topWorld = 0;
 
 // Image path
 const String frameImagePath = 'assets/images/glass_storage.svg';
+
+const List<String> svgImages = [
+  frameImagePath,
+  // metalImagePath,
+];
 
 const double knobRadius = 100;
 
