@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/router/router.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -25,11 +26,10 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'Income life',
       theme: ThemeData.dark(),
-      home: const TopPage(),
-      navigatorKey: GetIt.I<GlobalKey<NavigatorState>>(),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

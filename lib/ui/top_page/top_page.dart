@@ -15,6 +15,7 @@ import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
 import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
 import 'package:coffee_beanventory/util/image_cacher.dart';
 import 'package:coffee_beanventory/util/logger.dart';
+import 'package:go_router/go_router.dart';
 
 class TopPage extends ConsumerWidget {
   const TopPage({super.key});
@@ -56,8 +57,7 @@ class TopPage extends ConsumerWidget {
                       color: Colors.grey,
                       iconSize: 50,
                       splashRadius: 10,
-                      // TODO: implement Navigator to settings page
-                      onPressed: () => logger.info('message'),
+                      onPressed: () => context.go('/settings'),
                     ),
                     const Padding(
                       padding: EdgeInsets.only(bottom: kPadding),
