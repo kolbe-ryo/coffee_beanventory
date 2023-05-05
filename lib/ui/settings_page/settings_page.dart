@@ -12,16 +12,47 @@ class SettingsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
-        title: Text('Settings'),
+        backgroundColor: Colors.blueGrey,
+        elevation: 0,
+        title: const Text('Settings'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: kPadding),
         child: Column(
-          children: const [
-            CommonCard(),
-            CommonCard(),
-            CommonCard(),
+          children: [
+            const SpacerH(),
+            Row(
+              children: const [
+                Expanded(child: SquareCard()),
+                SpacerW(),
+                Expanded(child: SquareCard()),
+              ],
+            ),
+            const SpacerH(),
+            const CommonCard(),
+            const SpacerH(),
+            Row(
+              children: const [
+                Flexible(
+                  flex: 2,
+                  child: CommonCard(),
+                ),
+                SpacerW(),
+                Flexible(
+                  child: CommonCard(),
+                ),
+              ],
+            ),
+            const SpacerH(),
+            Row(
+              children: const [
+                Expanded(child: SquareCard()),
+                SpacerW(),
+                Expanded(child: SquareCard()),
+              ],
+            ),
           ],
         ),
       ),
