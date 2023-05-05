@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:coffee_beanventory/constant/constants.dart';
+import 'package:coffee_beanventory/ui/component/common_card.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -13,8 +15,15 @@ class SettingsPage extends ConsumerWidget {
       appBar: AppBar(
         title: Text('Settings'),
       ),
-      body: Center(
-        child: Text('Settings Page'),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: kPadding),
+        child: Column(
+          children: const [
+            CommonCard(),
+            CommonCard(),
+            CommonCard(),
+          ],
+        ),
       ),
     );
   }
