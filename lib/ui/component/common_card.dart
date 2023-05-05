@@ -2,14 +2,19 @@ import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:flutter/material.dart';
 
 class CommonCard extends StatelessWidget {
-  const CommonCard({super.key});
+  const CommonCard({
+    super.key,
+    required this.child,
+  });
+
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    return const Card(
+    return Card(
       elevation: 0,
       color: Colors.blueAccent,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(kPadding),
         ),
@@ -17,20 +22,26 @@ class CommonCard extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         height: cardHeight,
+        child: child,
       ),
     );
   }
 }
 
 class SquareCard extends StatelessWidget {
-  const SquareCard({super.key});
+  const SquareCard({
+    super.key,
+    required this.child,
+  });
+
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    return const Card(
+    return Card(
       elevation: 0,
       color: Colors.blueAccent,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(kPadding),
         ),
@@ -39,6 +50,7 @@ class SquareCard extends StatelessWidget {
         aspectRatio: 1,
         child: SizedBox(
           width: double.infinity,
+          child: child,
         ),
       ),
     );

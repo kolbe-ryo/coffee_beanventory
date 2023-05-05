@@ -25,34 +25,52 @@ class SettingsPage extends ConsumerWidget {
             const SpacerH(),
             Row(
               children: const [
-                Expanded(child: SquareCard()),
+                Expanded(
+                  child: SquareCard(
+                    child: Icon(Icons.apple),
+                  ),
+                ),
                 SpacerW(),
-                Expanded(child: SquareCard()),
+                Expanded(
+                    child: SquareCard(
+                  child: Icon(Icons.apple),
+                )),
               ],
             ),
             const SpacerH(),
-            const CommonCard(),
+            const CommonCard(
+              child: Icon(Icons.apple),
+            ),
             const SpacerH(),
             Row(
-              children: const [
+              children: [
                 Flexible(
                   flex: 2,
-                  child: CommonCard(),
+                  child: CommonCard(
+                    child: Icon(Icons.apple),
+                  ),
                 ),
                 SpacerW(),
                 Flexible(
-                  child: CommonCard(),
+                  child: CommonCard(
+                    child: Column(
+                      children: [
+                        Text('App Store'),
+                        Expanded(child: Icon(Icons.apple)),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
-            const SpacerH(),
-            Row(
-              children: const [
-                Expanded(child: SquareCard()),
-                SpacerW(),
-                Expanded(child: SquareCard()),
-              ],
-            ),
+            // const SpacerH(),
+            // Row(
+            //   children: const [
+            //     Expanded(child: SquareCard()),
+            //     SpacerW(),
+            //     Expanded(child: SquareCard()),
+            //   ],
+            // ),
           ],
         ),
       ),
