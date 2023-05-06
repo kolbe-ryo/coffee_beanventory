@@ -33,13 +33,16 @@ class GlobalManager extends _$GlobalManager {
   void changeUseBeans(int grams) => state = state.copyWith(useBeans: grams);
 
   Future<void> removeBeanGrams(int grams) async {
+    if (state.beanGrams - grams <= 0) {
+      return;
+    }
     state = state.copyWith(beanGrams: state.beanGrams - grams, useBeans: grams);
     await _gameWorld.onRemove();
-    await Future<void>.delayed(Duration(milliseconds: grams * 50));
+    await Future<void>.delayed(Duration(milliseconds: grams * 30));
     _gameWorld.onCreateBottomWall();
 
     // Remove falling beans after 1 second
     await Future<void>.delayed(const Duration(seconds: 1));
-    _gameWorld.onRemoveBeans();
+    _gameWorld.onRemoveBeans(remainingBeans: state.beanGrams);
   }
 }

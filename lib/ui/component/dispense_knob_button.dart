@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:coffee_beanventory/global/global_manager.dart';
+import 'package:coffee_beanventory/util/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -64,11 +65,13 @@ class DispenseKnobButton extends ConsumerWidget {
         ),
         // max: 100,
         initialValue: beanGrams.toDouble(),
-        onChange: (value) => {
-          if (isAdd)
-            {ref.read(globalManagerProvider.notifier).changeAddBeans(value.round())}
-          else
-            {ref.read(globalManagerProvider.notifier).changeUseBeans(value.round())}
+        onChange: (value) {
+          // TODO: 100に設定するのに設定できていない問題の修正
+          if (isAdd) {
+            ref.read(globalManagerProvider.notifier).changeAddBeans(value.round());
+          } else {
+            ref.read(globalManagerProvider.notifier).changeUseBeans(value.round());
+          }
         },
       ),
       onLongPress: () => function(beanGrams),

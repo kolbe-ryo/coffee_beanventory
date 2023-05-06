@@ -95,7 +95,7 @@ class GameWorld extends Forge2DGame with HasTappables {
   // Initial method
   @override
   Future<void> onLoad() async {
-    _generator.generateBalls(30).forEach(add);
+    // _generator.generateBalls(30).forEach(add);
     createBoundaries().forEach(add);
     return super.onLoad();
   }
@@ -135,20 +135,32 @@ class GameWorld extends Forge2DGame with HasTappables {
     _bottomFlameWall.onRemove();
   }
 
-  void onRemoveBeans() {
+  Future<void> onRemoveBeans({required int remainingBeans}) async {
     logger.info(world.bodies[0].position.g);
+    // 画面外に出たタイミングでBodyを削除する
     final bottomScreen = screenToWorld(Vector2(0, mediaQuery.height)).g;
     for (var i = 0; i < world.bodies.length; i++) {
       if (world.bodies[i].position.g > bottomScreen) {
         world.destroyBody(world.bodies[i--]);
       }
     }
-    // TODO: 削除しすぎた場合、追加する処理
     logger.info(world.bodies.length - 7);
+
+    // 削除しすぎた場合、追加する処理
+    final diff = remainingBeans - (world.bodies.length - 7);
+    if (diff != 0) {
+      await addBeans(diff);
+      logger.info(world.bodies.length - 7);
+    }
   }
 
   // TODO: 追加時にstateとローカルを更新する
   Future<void> addBeans(int balls) async {
     _generator.generateBalls(balls).forEach(add);
+  }
+
+  // TODO: ボトル下を通過した数がuse付近になった時点で通知する
+  Future<bool> fallBeanObserver(int useBeans) async {
+    return false;
   }
 }
