@@ -46,7 +46,7 @@ class TopPage extends ConsumerWidget {
                 child: IconButton(
                   icon: const Icon(Icons.settings),
                   color: Colors.white,
-                  iconSize: 40,
+                  iconSize: 30,
                   splashRadius: 10,
                   onPressed: () => context.go('/settings'),
                 ),

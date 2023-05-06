@@ -51,11 +51,11 @@ class DispenseKnobButton extends ConsumerWidget {
             bottomLabelText: buttonText,
             bottomLabelStyle: const TextStyle(
               fontSize: regularFontSize,
-              fontWeight: FontWeight.w300,
+              fontWeight: FontWeight.bold,
             ),
             mainLabelStyle: const TextStyle(
               fontSize: largeFontSize,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.bold,
             ),
             modifier: (percentage) => '${percentage.round()}g',
           ),
