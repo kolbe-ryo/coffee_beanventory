@@ -13,5 +13,7 @@ class GlobalState with _$GlobalState {
     @Default(0) int beanGrams,
     @Default(0) int beanStockMax,
     @Default(0) int beanAddMax,
+    @Default(0) int addBeans,
+    @Default(0) int useBeans,
   }) = _GlobalState;
 }

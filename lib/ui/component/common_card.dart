@@ -63,23 +63,27 @@ class SquareCard extends StatelessWidget {
 }
 
 class SpacerH extends StatelessWidget {
-  const SpacerH({super.key});
+  const SpacerH({super.key, this.space = kPadding / 2});
+
+  final double space;
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: kPadding / 2,
+    return SizedBox(
+      height: space,
     );
   }
 }
 
 class SpacerW extends StatelessWidget {
-  const SpacerW({super.key});
+  const SpacerW({super.key, this.space = kPadding / 2});
+
+  final double space;
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      width: kPadding / 2,
+    return SizedBox(
+      width: space,
     );
   }
 }

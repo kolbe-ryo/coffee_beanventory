@@ -21,9 +21,17 @@ class DispenseKnobButton extends ConsumerWidget {
   final Future<void> Function(int) function;
 
   @override
-  Widget build(BuildContext contex, WidgetRef ref) {
-    var beanGrams = 0;
+  Widget build(BuildContext context, WidgetRef ref) {
     final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
+    final beanGrams = ref.watch(
+      globalManagerProvider.select((value) {
+        if (isAdd) {
+          return value.addBeans;
+        } else {
+          return value.useBeans;
+        }
+      }),
+    );
     return InkWell(
       borderRadius: BorderRadius.circular(knobRadius / 2),
       splashColor: colorIndexEnum.colors['splashColor'],
@@ -55,10 +63,17 @@ class DispenseKnobButton extends ConsumerWidget {
           startAngle: circleAngle,
         ),
         // max: 100,
-        initialValue: 0,
-        onChange: (value) => beanGrams = value.round(),
+        initialValue: beanGrams.toDouble(),
+        onChange: (value) => {
+          if (isAdd)
+            {ref.read(globalManagerProvider.notifier).changeAddBeans(value.round())}
+          else
+            {ref.read(globalManagerProvider.notifier).changeUseBeans(value.round())}
+        },
       ),
       onLongPress: () => function(beanGrams),
     );
   }
+
+  bool get isAdd => function.toString().contains('addBeanGrams');
 }

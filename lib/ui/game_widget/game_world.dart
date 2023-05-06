@@ -124,7 +124,7 @@ class GameWorld extends Forge2DGame with HasTappables {
   }
 
   // Add bottom layer
-  void onCreate() {
+  void onCreateBottomWall() {
     _bottomFlameWall = Wall(_bottomLeftCenterCoordinateVector, _bottomRightCenterCoordinateVector);
     add(_bottomFlameWall);
   }
@@ -143,13 +143,8 @@ class GameWorld extends Forge2DGame with HasTappables {
         world.destroyBody(world.bodies[i--]);
       }
     }
+    // TODO: 削除しすぎた場合、追加する処理
     logger.info(world.bodies.length - 7);
-  }
-
-  int onCount() {
-    final allBody = world.bodies;
-    logger.info(allBody.first.userData.runtimeType);
-    return world.bodies.length - 7;
   }
 
   // TODO: 追加時にstateとローカルを更新する

@@ -20,6 +20,8 @@ mixin _$GlobalState {
   int get beanGrams => throw _privateConstructorUsedError;
   int get beanStockMax => throw _privateConstructorUsedError;
   int get beanAddMax => throw _privateConstructorUsedError;
+  int get addBeans => throw _privateConstructorUsedError;
+  int get useBeans => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GlobalStateCopyWith<GlobalState> get copyWith =>
@@ -36,7 +38,9 @@ abstract class $GlobalStateCopyWith<$Res> {
       {ColorIndexEnum colorIndex,
       int beanGrams,
       int beanStockMax,
-      int beanAddMax});
+      int beanAddMax,
+      int addBeans,
+      int useBeans});
 }
 
 /// @nodoc
@@ -56,6 +60,8 @@ class _$GlobalStateCopyWithImpl<$Res, $Val extends GlobalState>
     Object? beanGrams = null,
     Object? beanStockMax = null,
     Object? beanAddMax = null,
+    Object? addBeans = null,
+    Object? useBeans = null,
   }) {
     return _then(_value.copyWith(
       colorIndex: null == colorIndex
@@ -74,6 +80,14 @@ class _$GlobalStateCopyWithImpl<$Res, $Val extends GlobalState>
           ? _value.beanAddMax
           : beanAddMax // ignore: cast_nullable_to_non_nullable
               as int,
+      addBeans: null == addBeans
+          ? _value.addBeans
+          : addBeans // ignore: cast_nullable_to_non_nullable
+              as int,
+      useBeans: null == useBeans
+          ? _value.useBeans
+          : useBeans // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -90,7 +104,9 @@ abstract class _$$_GlobalStateCopyWith<$Res>
       {ColorIndexEnum colorIndex,
       int beanGrams,
       int beanStockMax,
-      int beanAddMax});
+      int beanAddMax,
+      int addBeans,
+      int useBeans});
 }
 
 /// @nodoc
@@ -108,6 +124,8 @@ class __$$_GlobalStateCopyWithImpl<$Res>
     Object? beanGrams = null,
     Object? beanStockMax = null,
     Object? beanAddMax = null,
+    Object? addBeans = null,
+    Object? useBeans = null,
   }) {
     return _then(_$_GlobalState(
       colorIndex: null == colorIndex
@@ -126,6 +144,14 @@ class __$$_GlobalStateCopyWithImpl<$Res>
           ? _value.beanAddMax
           : beanAddMax // ignore: cast_nullable_to_non_nullable
               as int,
+      addBeans: null == addBeans
+          ? _value.addBeans
+          : addBeans // ignore: cast_nullable_to_non_nullable
+              as int,
+      useBeans: null == useBeans
+          ? _value.useBeans
+          : useBeans // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -137,7 +163,9 @@ class _$_GlobalState implements _GlobalState {
       {this.colorIndex = ColorIndexEnum.warm,
       this.beanGrams = 0,
       this.beanStockMax = 0,
-      this.beanAddMax = 0});
+      this.beanAddMax = 0,
+      this.addBeans = 0,
+      this.useBeans = 0});
 
   @override
   @JsonKey()
@@ -151,10 +179,16 @@ class _$_GlobalState implements _GlobalState {
   @override
   @JsonKey()
   final int beanAddMax;
+  @override
+  @JsonKey()
+  final int addBeans;
+  @override
+  @JsonKey()
+  final int useBeans;
 
   @override
   String toString() {
-    return 'GlobalState(colorIndex: $colorIndex, beanGrams: $beanGrams, beanStockMax: $beanStockMax, beanAddMax: $beanAddMax)';
+    return 'GlobalState(colorIndex: $colorIndex, beanGrams: $beanGrams, beanStockMax: $beanStockMax, beanAddMax: $beanAddMax, addBeans: $addBeans, useBeans: $useBeans)';
   }
 
   @override
@@ -169,12 +203,16 @@ class _$_GlobalState implements _GlobalState {
             (identical(other.beanStockMax, beanStockMax) ||
                 other.beanStockMax == beanStockMax) &&
             (identical(other.beanAddMax, beanAddMax) ||
-                other.beanAddMax == beanAddMax));
+                other.beanAddMax == beanAddMax) &&
+            (identical(other.addBeans, addBeans) ||
+                other.addBeans == addBeans) &&
+            (identical(other.useBeans, useBeans) ||
+                other.useBeans == useBeans));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, colorIndex, beanGrams, beanStockMax, beanAddMax);
+  int get hashCode => Object.hash(runtimeType, colorIndex, beanGrams,
+      beanStockMax, beanAddMax, addBeans, useBeans);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +226,9 @@ abstract class _GlobalState implements GlobalState {
       {final ColorIndexEnum colorIndex,
       final int beanGrams,
       final int beanStockMax,
-      final int beanAddMax}) = _$_GlobalState;
+      final int beanAddMax,
+      final int addBeans,
+      final int useBeans}) = _$_GlobalState;
 
   @override
   ColorIndexEnum get colorIndex;
@@ -198,6 +238,10 @@ abstract class _GlobalState implements GlobalState {
   int get beanStockMax;
   @override
   int get beanAddMax;
+  @override
+  int get addBeans;
+  @override
+  int get useBeans;
   @override
   @JsonKey(ignore: true)
   _$$_GlobalStateCopyWith<_$_GlobalState> get copyWith =>

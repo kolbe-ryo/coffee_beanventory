@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/ui/component/common_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,13 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/enum/color_index_enum.dart';
 import 'package:coffee_beanventory/global/global_manager.dart';
 import 'package:coffee_beanventory/ui/component/dispense_knob_button.dart';
-import 'package:coffee_beanventory/ui/component/display_meter.dart';
 import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
 import 'package:coffee_beanventory/util/image_cacher.dart';
 
@@ -44,11 +45,15 @@ class TopPage extends ConsumerWidget {
                 alignment: Alignment.topRight,
                 child: IconButton(
                   icon: const Icon(Icons.settings),
-                  color: Colors.grey,
+                  color: Colors.white,
                   iconSize: 40,
                   splashRadius: 10,
                   onPressed: () => context.go('/settings'),
                 ),
+              ),
+              const Align(
+                alignment: Alignment.topCenter,
+                child: CoffeeBeanInfo(),
               ),
             ],
           ),
@@ -58,35 +63,14 @@ class TopPage extends ConsumerWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: kPadding * 2),
-                child: Column(
-                  verticalDirection: VerticalDirection.up, // childrenの先頭が下に配置されます。
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: kPadding),
-                      child: DisplayMeter(
-                        buttonText: 'Stock',
-                      ),
-                    ),
-                  ],
+                child: DispenseKnobButton(
+                  buttonText: 'Add',
+                  function: ref.watch(globalManagerProvider.notifier).addBeanGrams,
                 ),
               ),
-              Column(
-                verticalDirection: VerticalDirection.up, // childrenの先頭が下に配置されます。
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  DispenseKnobButton(
-                    buttonText: 'Use',
-                    function: ref.watch(globalManagerProvider.notifier).removeBeanGrams,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: kPadding),
-                    child: DispenseKnobButton(
-                      buttonText: 'Add',
-                      function: ref.watch(globalManagerProvider.notifier).addBeanGrams,
-                    ),
-                  ),
-                ],
+              DispenseKnobButton(
+                buttonText: 'Use',
+                function: ref.watch(globalManagerProvider.notifier).removeBeanGrams,
               ),
             ],
           ),
@@ -100,6 +84,38 @@ class TopPage extends ConsumerWidget {
           err.toString(),
         ),
       ),
+    );
+  }
+}
+
+class CoffeeBeanInfo extends ConsumerWidget {
+  const CoffeeBeanInfo({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final stockBeans = ref.watch(globalManagerProvider.select((value) => value.beanGrams));
+    final maxStockBeans = ref.watch(globalManagerProvider.select((value) => value.beanStockMax));
+    return Column(
+      children: [
+        const SpacerH(space: kPadding * 8),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const FaIcon(
+              FontAwesomeIcons.mugHot,
+              size: 50,
+            ),
+            const SpacerW(space: kPadding),
+            Text(
+              '${stockBeans}g',
+              style: const TextStyle(
+                fontSize: 50,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
