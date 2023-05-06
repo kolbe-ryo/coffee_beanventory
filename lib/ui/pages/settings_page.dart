@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/ui/component/common_card.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
@@ -16,9 +17,18 @@ class SettingsPage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.blueGrey,
         elevation: 0,
         title: const Text('Settings'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.close),
+            iconSize: 30,
+            splashRadius: 10,
+            onPressed: () => context.pop(),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: kPadding),

@@ -40,6 +40,16 @@ class TopPage extends ConsumerWidget {
                 alignment: Alignment.topCenter,
                 child: ImageWidget(frameImagePath),
               ),
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: const Icon(Icons.settings),
+                  color: Colors.grey,
+                  iconSize: 40,
+                  splashRadius: 10,
+                  onPressed: () => context.go('/settings'),
+                ),
+              ),
             ],
           ),
           floatingActionButton: Row(
@@ -52,13 +62,6 @@ class TopPage extends ConsumerWidget {
                   verticalDirection: VerticalDirection.up, // childrenの先頭が下に配置されます。
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    IconButton(
-                      icon: const Icon(Icons.settings),
-                      color: Colors.grey,
-                      iconSize: 50,
-                      splashRadius: 10,
-                      onPressed: () => context.go('/settings'),
-                    ),
                     const Padding(
                       padding: EdgeInsets.only(bottom: kPadding),
                       child: DisplayMeter(
