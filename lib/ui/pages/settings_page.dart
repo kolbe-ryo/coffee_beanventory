@@ -22,19 +22,23 @@ class SettingsPage extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: kPadding),
         child: Column(
           children: [
-            const SpacerH(),
             Row(
               children: const [
-                Expanded(
-                  child: SquareCard(
+                //
+                Flexible(
+                  flex: 2,
+                  child: CommonCard(
                     child: Icon(Icons.apple),
+                    height: cardHeight * 2,
                   ),
                 ),
                 SpacerW(),
-                Expanded(
-                    child: SquareCard(
-                  child: Icon(Icons.apple),
-                )),
+                Flexible(
+                  child: CommonCard(
+                    child: Icon(Icons.apple),
+                    height: cardHeight * 2,
+                  ),
+                ),
               ],
             ),
             const SpacerH(),
@@ -43,15 +47,32 @@ class SettingsPage extends ConsumerWidget {
             ),
             const SpacerH(),
             Row(
+              children: const [
+                //
+                Expanded(
+                  child: SquareCard(
+                    child: Icon(Icons.apple),
+                  ),
+                ),
+                SpacerW(),
+                Expanded(
+                  child: SquareCard(
+                    child: Icon(Icons.apple),
+                  ),
+                ),
+              ],
+            ),
+            const SpacerH(),
+            Row(
               children: [
                 Flexible(
-                  flex: 2,
                   child: CommonCard(
                     child: Icon(Icons.apple),
                   ),
                 ),
                 SpacerW(),
                 Flexible(
+                  flex: 2,
                   child: CommonCard(
                     child: Column(
                       children: [

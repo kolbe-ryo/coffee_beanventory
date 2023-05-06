@@ -5,9 +5,11 @@ class CommonCard extends StatelessWidget {
   const CommonCard({
     super.key,
     required this.child,
+    this.height = cardHeight,
   });
 
   final Widget child;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class CommonCard extends StatelessWidget {
       ),
       child: SizedBox(
         width: double.infinity,
-        height: cardHeight,
+        height: height,
         child: child,
       ),
     );

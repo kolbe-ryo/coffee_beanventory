@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:coffee_beanventory/ui/pages/settings_page.dart';
+import 'package:coffee_beanventory/ui/pages/top_page.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -6,8 +8,6 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 // Project imports:
-import 'package:coffee_beanventory/ui/settings_page/settings_page.dart';
-import 'package:coffee_beanventory/ui/top_page/top_page.dart';
 
 final router = GoRouter(
   navigatorKey: GetIt.I<GlobalKey<NavigatorState>>(),

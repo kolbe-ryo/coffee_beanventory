@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/global/global_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +14,7 @@ import 'package:coffee_beanventory/enum/color_index_enum.dart';
 import 'package:coffee_beanventory/ui/component/dispense_knob_button.dart';
 import 'package:coffee_beanventory/ui/component/display_meter.dart';
 import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
-import 'package:coffee_beanventory/ui/top_page/top_page_view_model.dart';
 import 'package:coffee_beanventory/util/image_cacher.dart';
-import 'package:coffee_beanventory/util/logger.dart';
 
 class TopPage extends ConsumerWidget {
   const TopPage({super.key});
@@ -23,7 +22,7 @@ class TopPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final imageCacher = ref.watch(imageCacherProvider);
-    final topPageVM = ref.watch(topPageViewModelProvider.notifier);
+    final topPageVM = ref.watch(globalManagerProvider.notifier);
     return imageCacher.when(
       data: (state) => SafeArea(
         child: Scaffold(
@@ -74,13 +73,13 @@ class TopPage extends ConsumerWidget {
                 children: <Widget>[
                   DispenseKnobButton(
                     buttonText: 'Use',
-                    function: ref.watch(topPageViewModelProvider.notifier).removeBeanGrams,
+                    function: ref.watch(globalManagerProvider.notifier).removeBeanGrams,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: kPadding),
                     child: DispenseKnobButton(
                       buttonText: 'Add',
-                      function: ref.watch(topPageViewModelProvider.notifier).addBeanGrams,
+                      function: ref.watch(globalManagerProvider.notifier).addBeanGrams,
                     ),
                   ),
                 ],

@@ -1,27 +1,21 @@
-// Flutter imports:
+import 'package:coffee_beanventory/global/global_state.dart';
+import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
 import 'package:get_it/get_it.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:state_notifier/state_notifier.dart';
 
-// Project imports:
-import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
-import 'package:coffee_beanventory/ui/top_page/top_page_state.dart';
-
-part 'top_page_view_model.g.dart';
+part 'global_manager.g.dart';
 
 @riverpod
-class TopPageViewModel extends _$TopPageViewModel with LocatorMixin {
+class GlobalManager extends _$GlobalManager {
   late final GameWorld _gameWorld;
   GameWorld get world => _gameWorld;
 
   @override
-  TopPageState build() {
+  GlobalState build() {
     final context = GetIt.I<GlobalKey<NavigatorState>>().currentContext!;
     _gameWorld = GameWorld(mediaQuery: MediaQuery.of(context).size);
-    return const TopPageState();
+    return const GlobalState();
   }
 
   Future<void> addBeanGrams(int grams) async {
