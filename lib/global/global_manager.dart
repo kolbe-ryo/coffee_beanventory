@@ -1,8 +1,13 @@
-import 'package:coffee_beanventory/global/global_state.dart';
-import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get_it/get_it.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/global/global_state.dart';
+import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
 
 part 'global_manager.g.dart';
 

@@ -1,6 +1,8 @@
 // Package imports:
-import 'package:coffee_beanventory/enum/color_index_enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/enum/color_index_enum.dart';
 
 part 'global_state.freezed.dart';
 
