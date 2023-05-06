@@ -21,12 +21,13 @@ class DisplayMeter extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final meterValue = ref.watch(globalManagerProvider.select((value) => value.beanGrams));
+    final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
     return SleekCircularSlider(
       appearance: CircularSliderAppearance(
         angleRange: angleRange,
         customColors: CustomSliderColors(
-          trackColor: ColorIndexEnum.cold.colors['trackColor'],
-          progressBarColor: ColorIndexEnum.cold.colors['progressBarColor'],
+          trackColor: colorIndexEnum.colors['trackColor'],
+          progressBarColor: colorIndexEnum.colors['progressBarColor'],
         ),
         customWidths: CustomSliderWidths(
           handlerSize: handlerSize,

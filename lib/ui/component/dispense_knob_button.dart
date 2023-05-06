@@ -1,5 +1,7 @@
 // Flutter imports:
+import 'package:coffee_beanventory/global/global_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Package imports:
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
@@ -8,7 +10,7 @@ import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/enum/color_index_enum.dart';
 
-class DispenseKnobButton extends StatelessWidget {
+class DispenseKnobButton extends ConsumerWidget {
   const DispenseKnobButton({
     required this.buttonText,
     required this.function,
@@ -19,17 +21,18 @@ class DispenseKnobButton extends StatelessWidget {
   final Future<void> Function(int) function;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext contex, WidgetRef ref) {
     var beanGrams = 0;
+    final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
     return InkWell(
       borderRadius: BorderRadius.circular(knobRadius / 2),
-      splashColor: ColorIndexEnum.cold.colors['splashColor'],
+      splashColor: colorIndexEnum.colors['splashColor'],
       child: SleekCircularSlider(
         appearance: CircularSliderAppearance(
           angleRange: angleRange,
           customColors: CustomSliderColors(
-            trackColor: ColorIndexEnum.cold.colors['trackColor'],
-            progressBarColor: ColorIndexEnum.cold.colors['progressBarColor'],
+            trackColor: colorIndexEnum.colors['trackColor'],
+            progressBarColor: colorIndexEnum.colors['progressBarColor'],
           ),
           customWidths: CustomSliderWidths(
             handlerSize: handlerSize,

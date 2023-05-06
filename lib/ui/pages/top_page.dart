@@ -22,17 +22,18 @@ class TopPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final imageCacher = ref.watch(imageCacherProvider);
-    final topPageVM = ref.watch(globalManagerProvider.notifier);
+    final globalManager = ref.watch(globalManagerProvider.notifier);
+    final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
     return imageCacher.when(
       data: (state) => SafeArea(
         child: Scaffold(
-          backgroundColor: ColorIndexEnum.cold.colors['background'],
+          backgroundColor: colorIndexEnum.colors['background'],
           body: Stack(
             children: [
               Align(
                 alignment: Alignment.topCenter,
                 child: GameWidget(
-                  game: topPageVM.world,
+                  game: globalManager.world,
                 ),
               ),
               const Align(
