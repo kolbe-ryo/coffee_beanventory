@@ -1,15 +1,15 @@
 // Flutter imports:
-import 'package:coffee_beanventory/global/global_manager.dart';
-import 'package:coffee_beanventory/util/logger.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Package imports:
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/enum/color_index_enum.dart';
+import 'package:coffee_beanventory/global/global_manager.dart';
+import 'package:coffee_beanventory/util/logger.dart';
 
 class DispenseKnobButton extends ConsumerWidget {
   const DispenseKnobButton({
