@@ -43,6 +43,6 @@ class GlobalManager extends _$GlobalManager {
 
     // Remove falling beans after 1 second
     await Future<void>.delayed(const Duration(seconds: 1));
-    _gameWorld.onRemoveBeans(remainingBeans: state.beanGrams);
+    await _gameWorld.onRemoveBeans(remainingBeans: state.beanGrams);
   }
 }

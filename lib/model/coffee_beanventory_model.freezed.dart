@@ -14,11 +14,21 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+CoffeeBeanventoryModel _$CoffeeBeanventoryModelFromJson(
+    Map<String, dynamic> json) {
+  return _CoffeeBeanventoryModel.fromJson(json);
+}
+
 /// @nodoc
 mixin _$CoffeeBeanventoryModel {
-// equals quantities of beans
-  int get grams => throw _privateConstructorUsedError;
+  ColorIndexEnum get colorIndex => throw _privateConstructorUsedError;
+  int get beanGrams => throw _privateConstructorUsedError;
+  int get beanStockMax => throw _privateConstructorUsedError;
+  int get beanAddMax => throw _privateConstructorUsedError;
+  int get addBeans => throw _privateConstructorUsedError;
+  int get useBeans => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CoffeeBeanventoryModelCopyWith<CoffeeBeanventoryModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -30,7 +40,13 @@ abstract class $CoffeeBeanventoryModelCopyWith<$Res> {
           $Res Function(CoffeeBeanventoryModel) then) =
       _$CoffeeBeanventoryModelCopyWithImpl<$Res, CoffeeBeanventoryModel>;
   @useResult
-  $Res call({int grams});
+  $Res call(
+      {ColorIndexEnum colorIndex,
+      int beanGrams,
+      int beanStockMax,
+      int beanAddMax,
+      int addBeans,
+      int useBeans});
 }
 
 /// @nodoc
@@ -47,12 +63,37 @@ class _$CoffeeBeanventoryModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? grams = null,
+    Object? colorIndex = null,
+    Object? beanGrams = null,
+    Object? beanStockMax = null,
+    Object? beanAddMax = null,
+    Object? addBeans = null,
+    Object? useBeans = null,
   }) {
     return _then(_value.copyWith(
-      grams: null == grams
-          ? _value.grams
-          : grams // ignore: cast_nullable_to_non_nullable
+      colorIndex: null == colorIndex
+          ? _value.colorIndex
+          : colorIndex // ignore: cast_nullable_to_non_nullable
+              as ColorIndexEnum,
+      beanGrams: null == beanGrams
+          ? _value.beanGrams
+          : beanGrams // ignore: cast_nullable_to_non_nullable
+              as int,
+      beanStockMax: null == beanStockMax
+          ? _value.beanStockMax
+          : beanStockMax // ignore: cast_nullable_to_non_nullable
+              as int,
+      beanAddMax: null == beanAddMax
+          ? _value.beanAddMax
+          : beanAddMax // ignore: cast_nullable_to_non_nullable
+              as int,
+      addBeans: null == addBeans
+          ? _value.addBeans
+          : addBeans // ignore: cast_nullable_to_non_nullable
+              as int,
+      useBeans: null == useBeans
+          ? _value.useBeans
+          : useBeans // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -66,7 +107,13 @@ abstract class _$$_CoffeeBeanventoryModelCopyWith<$Res>
       __$$_CoffeeBeanventoryModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int grams});
+  $Res call(
+      {ColorIndexEnum colorIndex,
+      int beanGrams,
+      int beanStockMax,
+      int beanAddMax,
+      int addBeans,
+      int useBeans});
 }
 
 /// @nodoc
@@ -81,30 +128,78 @@ class __$$_CoffeeBeanventoryModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? grams = null,
+    Object? colorIndex = null,
+    Object? beanGrams = null,
+    Object? beanStockMax = null,
+    Object? beanAddMax = null,
+    Object? addBeans = null,
+    Object? useBeans = null,
   }) {
     return _then(_$_CoffeeBeanventoryModel(
-      grams: null == grams
-          ? _value.grams
-          : grams // ignore: cast_nullable_to_non_nullable
+      colorIndex: null == colorIndex
+          ? _value.colorIndex
+          : colorIndex // ignore: cast_nullable_to_non_nullable
+              as ColorIndexEnum,
+      beanGrams: null == beanGrams
+          ? _value.beanGrams
+          : beanGrams // ignore: cast_nullable_to_non_nullable
+              as int,
+      beanStockMax: null == beanStockMax
+          ? _value.beanStockMax
+          : beanStockMax // ignore: cast_nullable_to_non_nullable
+              as int,
+      beanAddMax: null == beanAddMax
+          ? _value.beanAddMax
+          : beanAddMax // ignore: cast_nullable_to_non_nullable
+              as int,
+      addBeans: null == addBeans
+          ? _value.addBeans
+          : addBeans // ignore: cast_nullable_to_non_nullable
+              as int,
+      useBeans: null == useBeans
+          ? _value.useBeans
+          : useBeans // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_CoffeeBeanventoryModel implements _CoffeeBeanventoryModel {
-  const _$_CoffeeBeanventoryModel({this.grams = 0});
+  _$_CoffeeBeanventoryModel(
+      {this.colorIndex = ColorIndexEnum.warm,
+      this.beanGrams = 0,
+      this.beanStockMax = 0,
+      this.beanAddMax = 0,
+      this.addBeans = 0,
+      this.useBeans = 0});
 
-// equals quantities of beans
+  factory _$_CoffeeBeanventoryModel.fromJson(Map<String, dynamic> json) =>
+      _$$_CoffeeBeanventoryModelFromJson(json);
+
   @override
   @JsonKey()
-  final int grams;
+  final ColorIndexEnum colorIndex;
+  @override
+  @JsonKey()
+  final int beanGrams;
+  @override
+  @JsonKey()
+  final int beanStockMax;
+  @override
+  @JsonKey()
+  final int beanAddMax;
+  @override
+  @JsonKey()
+  final int addBeans;
+  @override
+  @JsonKey()
+  final int useBeans;
 
   @override
   String toString() {
-    return 'CoffeeBeanventoryModel(grams: $grams)';
+    return 'CoffeeBeanventoryModel(colorIndex: $colorIndex, beanGrams: $beanGrams, beanStockMax: $beanStockMax, beanAddMax: $beanAddMax, addBeans: $addBeans, useBeans: $useBeans)';
   }
 
   @override
@@ -112,11 +207,24 @@ class _$_CoffeeBeanventoryModel implements _CoffeeBeanventoryModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CoffeeBeanventoryModel &&
-            (identical(other.grams, grams) || other.grams == grams));
+            (identical(other.colorIndex, colorIndex) ||
+                other.colorIndex == colorIndex) &&
+            (identical(other.beanGrams, beanGrams) ||
+                other.beanGrams == beanGrams) &&
+            (identical(other.beanStockMax, beanStockMax) ||
+                other.beanStockMax == beanStockMax) &&
+            (identical(other.beanAddMax, beanAddMax) ||
+                other.beanAddMax == beanAddMax) &&
+            (identical(other.addBeans, addBeans) ||
+                other.addBeans == addBeans) &&
+            (identical(other.useBeans, useBeans) ||
+                other.useBeans == useBeans));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, grams);
+  int get hashCode => Object.hash(runtimeType, colorIndex, beanGrams,
+      beanStockMax, beanAddMax, addBeans, useBeans);
 
   @JsonKey(ignore: true)
   @override
@@ -124,14 +232,39 @@ class _$_CoffeeBeanventoryModel implements _CoffeeBeanventoryModel {
   _$$_CoffeeBeanventoryModelCopyWith<_$_CoffeeBeanventoryModel> get copyWith =>
       __$$_CoffeeBeanventoryModelCopyWithImpl<_$_CoffeeBeanventoryModel>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CoffeeBeanventoryModelToJson(
+      this,
+    );
+  }
 }
 
 abstract class _CoffeeBeanventoryModel implements CoffeeBeanventoryModel {
-  const factory _CoffeeBeanventoryModel({final int grams}) =
-      _$_CoffeeBeanventoryModel;
+  factory _CoffeeBeanventoryModel(
+      {final ColorIndexEnum colorIndex,
+      final int beanGrams,
+      final int beanStockMax,
+      final int beanAddMax,
+      final int addBeans,
+      final int useBeans}) = _$_CoffeeBeanventoryModel;
 
-  @override // equals quantities of beans
-  int get grams;
+  factory _CoffeeBeanventoryModel.fromJson(Map<String, dynamic> json) =
+      _$_CoffeeBeanventoryModel.fromJson;
+
+  @override
+  ColorIndexEnum get colorIndex;
+  @override
+  int get beanGrams;
+  @override
+  int get beanStockMax;
+  @override
+  int get beanAddMax;
+  @override
+  int get addBeans;
+  @override
+  int get useBeans;
   @override
   @JsonKey(ignore: true)
   _$$_CoffeeBeanventoryModelCopyWith<_$_CoffeeBeanventoryModel> get copyWith =>

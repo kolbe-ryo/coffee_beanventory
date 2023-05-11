@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:coffee_beanventory/model/coffee_beanventory_model.dart';
 import 'package:coffee_beanventory/repository/interface/local_storage_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,15 +15,26 @@ class LocalStorageDao implements LocalStorageInterface {
 
   late final Future<SharedPreferences> _storage;
 
+  static const String _kStorageKey = 'coffeeBeanventory';
+
   @override
-  Future<CoffeeBeanventoryModel> fetch() {
-    // TODO: implement fetch
-    throw UnimplementedError();
+  Future<CoffeeBeanventoryModel?> fetch() async {
+    final storage = await _storage;
+    final content = storage.getStringList(_kStorageKey)?.first ?? '';
+    if (content.isEmpty) {
+      return null;
+    }
+    return CoffeeBeanventoryModel.fromJson(
+      json.decode(content) as Map<String, dynamic>,
+    );
   }
 
   @override
-  Future<void> save(CoffeeBeanventoryModel model) {
-    // TODO: implement save
-    throw UnimplementedError();
+  Future<void> save(CoffeeBeanventoryModel model) async {
+    final storage = await _storage;
+
+    final content = [json.encode(model.toJson())];
+
+    await storage.setStringList(_kStorageKey, content);
   }
 }
