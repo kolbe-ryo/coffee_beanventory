@@ -1,8 +1,12 @@
+// Dart imports:
 import 'dart:convert';
 
+// Package imports:
+import 'package:shared_preferences/shared_preferences.dart';
+
+// Project imports:
 import 'package:coffee_beanventory/model/coffee_beanventory_model.dart';
 import 'package:coffee_beanventory/repository/interface/local_storage_interface.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageDao implements LocalStorageInterface {
   factory LocalStorageDao() => _instance;
