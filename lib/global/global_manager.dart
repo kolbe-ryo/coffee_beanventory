@@ -29,7 +29,7 @@ class GlobalManager extends _$GlobalManager {
   }
 
   // Fetch from local storage as the initiral action for starting
-  Future<CoffeeBeanventoryModel?> fetchFromLocalStorage() async {
+  Future<void> fetchFromLocalStorage() async {
     try {
       final response = await GetIt.I<LocalStorageInterface>().fetch();
       state = state.copyWith(
@@ -48,11 +48,10 @@ class GlobalManager extends _$GlobalManager {
     }
   }
 
-  // Save to local storage after change CoffeeBeanventory Model
-
   // Add action by user
   Future<void> addBeanGrams(int grams) async {
     state = state.copyWith(beanGrams: state.beanGrams + grams);
+    await GetIt.I<LocalStorageInterface>().save(state);
     await _gameWorld.addBeans(grams);
   }
 
@@ -64,14 +63,20 @@ class GlobalManager extends _$GlobalManager {
     if (state.beanGrams - grams <= 0) {
       return;
     }
-    state = state.copyWith(beanGrams: state.beanGrams - grams, useBeans: grams);
-    await _gameWorld.onRemove();
-    await Future<void>.delayed(Duration(milliseconds: grams * 30));
-    _gameWorld.onCreateBottomWall();
 
-    // Remove falling beans after 1 second
-    await Future<void>.delayed(const Duration(seconds: 1));
-    await _gameWorld.onRemoveBeans(remainingBeans: state.beanGrams);
+    try {
+      state = state.copyWith(beanGrams: state.beanGrams - grams, useBeans: grams);
+      await GetIt.I<LocalStorageInterface>().save(state);
+      await _gameWorld.onRemove();
+      await Future<void>.delayed(Duration(milliseconds: grams * 30));
+      _gameWorld.onCreateBottomWall();
+
+      // Remove falling beans after 1 second
+      await Future<void>.delayed(const Duration(seconds: 1));
+      await _gameWorld.onRemoveBeans(remainingBeans: state.beanGrams);
+    } on Exception catch (e) {
+      // TODO: handle exception
+    }
   }
 
   // Change using bean by user
