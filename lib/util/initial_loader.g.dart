@@ -6,7 +6,7 @@ part of 'initial_loader.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$initialLoaderHash() => r'8160e32dec102b9ad0f40697a8a7c7bb0b3b6e39';
+String _$initialLoaderHash() => r'fa31a0a49d92a31c3a07412471e40e1973fd4269';
 
 /// See also [InitialLoader].
 @ProviderFor(InitialLoader)
