@@ -6,19 +6,19 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
-import 'package:coffee_beanventory/ui/game_widget/ball.dart';
+import 'package:coffee_beanventory/ui/game_widget/bean.dart';
 
-class BallGenerator {
-  const BallGenerator(this.width);
+class BeanGenerator {
+  const BeanGenerator(this.width);
 
   final double width;
 
-  List<Ball> generateBalls(int balls) {
-    final ballList = <Ball>[];
+  List<Bean> generateBalls(int beans) {
+    final ballList = <Bean>[];
     final yCoordinate = width / 2 / gameZoom;
-    for (var i = 0; i < balls; i++) {
+    for (var i = 0; i < beans; i++) {
       final position = Vector2(Random().nextDouble() + yCoordinate - 1, 0);
-      ballList.add(Ball(position));
+      ballList.add(Bean(position));
     }
     return ballList;
   }

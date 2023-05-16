@@ -14,10 +14,10 @@ import 'package:coffee_beanventory/util/logger.dart';
 
 class GameWorld extends Forge2DGame with HasTappables {
   GameWorld({required this.mediaQuery})
-      : _generator = BallGenerator(mediaQuery.width),
+      : _generator = BeanGenerator(mediaQuery.width),
         super(zoom: gameZoom);
 
-  final BallGenerator _generator;
+  final BeanGenerator _generator;
   final Size mediaQuery;
 
   late Component _bottomFlameWall;

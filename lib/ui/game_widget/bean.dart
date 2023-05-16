@@ -8,8 +8,8 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 // Project imports:
 import 'package:coffee_beanventory/ui/component/paint/coffee_bean.dart';
 
-class Ball extends BodyComponent with Tappable {
-  Ball(this._position) : super(paint: Paint()..color = _color);
+class Bean extends BodyComponent with Tappable {
+  Bean(this._position) : super(paint: Paint()..color = _color);
   final Vector2 _position;
   static const Color _color = Colors.transparent;
 
