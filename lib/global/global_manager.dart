@@ -18,17 +18,21 @@ class GlobalManager extends _$GlobalManager {
   late final GameWorld _gameWorld;
   GameWorld get world => _gameWorld;
 
+  bool _isLoadedLocalStorage = false;
+  bool get isLoadedLocalStorage => _isLoadedLocalStorage;
+
   @override
   CoffeeBeanventoryModel build() {
     final context = GetIt.I<GlobalKey<NavigatorState>>().currentContext!;
     _gameWorld = GameWorld(mediaQuery: MediaQuery.of(context).size);
+    _fetchFromLocalStorage();
     return const CoffeeBeanventoryModel();
   }
 
   // Fetch from local storage as the initiral action for starting
   Future<CoffeeBeanventoryModel?> _fetchFromLocalStorage() async {
     try {
-      final response = await GetIt.I<LocalStorageInterface>().fetch() ?? const CoffeeBeanventoryModel();
+      final response = await GetIt.I<LocalStorageInterface>().fetch();
       state = state.copyWith(
         colorIndex: response.colorIndex,
         beanGrams: response.beanGrams,
@@ -37,6 +41,7 @@ class GlobalManager extends _$GlobalManager {
         addBeans: response.addBeans,
         useBeans: response.useBeans,
       );
+      _isLoadedLocalStorage = true;
       logger.info(state);
     } on Exception catch (e) {
       // TODO catch expected Exception

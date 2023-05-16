@@ -22,11 +22,11 @@ class LocalStorageDao implements LocalStorageInterface {
   static const String _kStorageKey = 'coffeeBeanventory';
 
   @override
-  Future<CoffeeBeanventoryModel?> fetch() async {
+  Future<CoffeeBeanventoryModel> fetch() async {
     final storage = await _storage;
     final content = storage.getStringList(_kStorageKey)?.first ?? '';
     if (content.isEmpty) {
-      return null;
+      return const CoffeeBeanventoryModel();
     }
     return CoffeeBeanventoryModel.fromJson(
       json.decode(content) as Map<String, dynamic>,
