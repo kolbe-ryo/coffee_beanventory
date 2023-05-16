@@ -23,15 +23,20 @@ class GlobalManager extends _$GlobalManager {
     return const CoffeeBeanventoryModel();
   }
 
+  // Fetch from local storage as the initiral action for starting
+
+  // Save to local storage after change CoffeeBeanventory Model
+
+  // Add action by user
   Future<void> addBeanGrams(int grams) async {
     state = state.copyWith(beanGrams: state.beanGrams + grams);
     await _gameWorld.addBeans(grams);
   }
 
+  // Change adding bean by user
   void changeAddBeans(int grams) => state = state.copyWith(addBeans: grams);
 
-  void changeUseBeans(int grams) => state = state.copyWith(useBeans: grams);
-
+  // Remove action by user
   Future<void> removeBeanGrams(int grams) async {
     if (state.beanGrams - grams <= 0) {
       return;
@@ -45,4 +50,7 @@ class GlobalManager extends _$GlobalManager {
     await Future<void>.delayed(const Duration(seconds: 1));
     await _gameWorld.onRemoveBeans(remainingBeans: state.beanGrams);
   }
+
+  // Change using bean by user
+  void changeUseBeans(int grams) => state = state.copyWith(useBeans: grams);
 }
