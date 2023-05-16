@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:coffee_beanventory/repository/interface/local_storage_interface.dart';
+import 'package:coffee_beanventory/util/logger.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -24,6 +26,23 @@ class GlobalManager extends _$GlobalManager {
   }
 
   // Fetch from local storage as the initiral action for starting
+  Future<CoffeeBeanventoryModel?> _fetchFromLocalStorage() async {
+    try {
+      final response = await GetIt.I<LocalStorageInterface>().fetch() ?? const CoffeeBeanventoryModel();
+      state = state.copyWith(
+        colorIndex: response.colorIndex,
+        beanGrams: response.beanGrams,
+        beanStockMax: response.beanStockMax,
+        beanAddMax: response.beanAddMax,
+        addBeans: response.addBeans,
+        useBeans: response.useBeans,
+      );
+      logger.info(state);
+    } on Exception catch (e) {
+      // TODO catch expected Exception
+      logger.info(e);
+    }
+  }
 
   // Save to local storage after change CoffeeBeanventory Model
 
