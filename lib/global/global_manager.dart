@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // Project imports:
-import 'package:coffee_beanventory/global/global_state.dart';
+import 'package:coffee_beanventory/model/coffee_beanventory_model.dart';
 import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
 
 part 'global_manager.g.dart';
@@ -17,10 +17,10 @@ class GlobalManager extends _$GlobalManager {
   GameWorld get world => _gameWorld;
 
   @override
-  GlobalState build() {
+  CoffeeBeanventoryModel build() {
     final context = GetIt.I<GlobalKey<NavigatorState>>().currentContext!;
     _gameWorld = GameWorld(mediaQuery: MediaQuery.of(context).size);
-    return const GlobalState();
+    return const CoffeeBeanventoryModel();
   }
 
   Future<void> addBeanGrams(int grams) async {

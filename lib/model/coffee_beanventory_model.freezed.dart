@@ -166,14 +166,15 @@ class __$$_CoffeeBeanventoryModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CoffeeBeanventoryModel implements _CoffeeBeanventoryModel {
-  _$_CoffeeBeanventoryModel(
+class _$_CoffeeBeanventoryModel extends _CoffeeBeanventoryModel {
+  const _$_CoffeeBeanventoryModel(
       {this.colorIndex = ColorIndexEnum.warm,
       this.beanGrams = 0,
       this.beanStockMax = 0,
       this.beanAddMax = 0,
       this.addBeans = 0,
-      this.useBeans = 0});
+      this.useBeans = 0})
+      : super._();
 
   factory _$_CoffeeBeanventoryModel.fromJson(Map<String, dynamic> json) =>
       _$$_CoffeeBeanventoryModelFromJson(json);
@@ -241,14 +242,15 @@ class _$_CoffeeBeanventoryModel implements _CoffeeBeanventoryModel {
   }
 }
 
-abstract class _CoffeeBeanventoryModel implements CoffeeBeanventoryModel {
-  factory _CoffeeBeanventoryModel(
+abstract class _CoffeeBeanventoryModel extends CoffeeBeanventoryModel {
+  const factory _CoffeeBeanventoryModel(
       {final ColorIndexEnum colorIndex,
       final int beanGrams,
       final int beanStockMax,
       final int beanAddMax,
       final int addBeans,
       final int useBeans}) = _$_CoffeeBeanventoryModel;
+  const _CoffeeBeanventoryModel._() : super._();
 
   factory _CoffeeBeanventoryModel.fromJson(Map<String, dynamic> json) =
       _$_CoffeeBeanventoryModel.fromJson;
