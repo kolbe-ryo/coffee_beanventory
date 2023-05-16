@@ -25,12 +25,11 @@ class GlobalManager extends _$GlobalManager {
   CoffeeBeanventoryModel build() {
     final context = GetIt.I<GlobalKey<NavigatorState>>().currentContext!;
     _gameWorld = GameWorld(mediaQuery: MediaQuery.of(context).size);
-    _fetchFromLocalStorage();
     return const CoffeeBeanventoryModel();
   }
 
   // Fetch from local storage as the initiral action for starting
-  Future<CoffeeBeanventoryModel?> _fetchFromLocalStorage() async {
+  Future<CoffeeBeanventoryModel?> fetchFromLocalStorage() async {
     try {
       final response = await GetIt.I<LocalStorageInterface>().fetch();
       state = state.copyWith(

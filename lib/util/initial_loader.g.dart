@@ -1,25 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'global_manager.dart';
+part of 'initial_loader.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$globalManagerHash() => r'a719853e3e4a1c58f97777bdd91039329b7f1687';
+String _$initialLoaderHash() => r'8160e32dec102b9ad0f40697a8a7c7bb0b3b6e39';
 
-/// See also [GlobalManager].
-@ProviderFor(GlobalManager)
-final globalManagerProvider =
-    AutoDisposeNotifierProvider<GlobalManager, CoffeeBeanventoryModel>.internal(
-  GlobalManager.new,
-  name: r'globalManagerProvider',
+/// See also [InitialLoader].
+@ProviderFor(InitialLoader)
+final initialLoaderProvider =
+    AutoDisposeAsyncNotifierProvider<InitialLoader, void>.internal(
+  InitialLoader.new,
+  name: r'initialLoaderProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$globalManagerHash,
+      : _$initialLoaderHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$GlobalManager = AutoDisposeNotifier<CoffeeBeanventoryModel>;
+typedef _$InitialLoader = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

@@ -15,17 +15,17 @@ import 'package:coffee_beanventory/global/global_manager.dart';
 import 'package:coffee_beanventory/ui/component/common_card.dart';
 import 'package:coffee_beanventory/ui/component/dispense_knob_button.dart';
 import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
-import 'package:coffee_beanventory/util/image_cacher.dart';
+import 'package:coffee_beanventory/util/initial_loader.dart';
 
 class TopPage extends ConsumerWidget {
   const TopPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final imageCacher = ref.watch(imageCacherProvider);
+    final initialLoader = ref.watch(initialLoaderProvider);
     final globalManager = ref.watch(globalManagerProvider.notifier);
     final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
-    return imageCacher.when(
+    return initialLoader.when(
       data: (state) => SafeArea(
         child: Scaffold(
           backgroundColor: colorIndexEnum.colors['background'],

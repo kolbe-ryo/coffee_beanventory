@@ -1,17 +1,20 @@
 // Package imports:
+import 'package:coffee_beanventory/global/global_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
 
-part 'image_cacher.g.dart';
+part 'initial_loader.g.dart';
 
 @riverpod
-class ImageCacher extends _$ImageCacher {
+class InitialLoader extends _$InitialLoader {
   @override
   FutureOr<void> build() async {
-    return await _cacheImages();
+    await _cacheImages();
+    await ref.watch<GlobalManager>(globalManagerProvider.notifier).fetchFromLocalStorage();
+    return;
   }
 
   FutureOr<void> _cacheImages() async {
