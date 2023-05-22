@@ -22,10 +22,10 @@ class GlobalManager extends _$GlobalManager {
   bool get isLoadedLocalStorage => _isLoadedLocalStorage;
 
   @override
-  CoffeeBeanventoryModel build() {
+  Future<CoffeeBeanventoryModel> build() async {
     final context = GetIt.I<GlobalKey<NavigatorState>>().currentContext!;
     _gameWorld = GameWorld(mediaQuery: MediaQuery.of(context).size);
-    return const CoffeeBeanventoryModel();
+    return CoffeeBeanventoryModel();
   }
 
   // Fetch from local storage as the initiral action for starting

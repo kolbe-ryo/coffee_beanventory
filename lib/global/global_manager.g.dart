@@ -6,12 +6,12 @@ part of 'global_manager.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$globalManagerHash() => r'a719853e3e4a1c58f97777bdd91039329b7f1687';
+String _$globalManagerHash() => r'973c87b51fa376adeabd15afa9cff4b98d142eb3';
 
 /// See also [GlobalManager].
 @ProviderFor(GlobalManager)
-final globalManagerProvider =
-    AutoDisposeNotifierProvider<GlobalManager, CoffeeBeanventoryModel>.internal(
+final globalManagerProvider = AutoDisposeAsyncNotifierProvider<GlobalManager,
+    CoffeeBeanventoryModel>.internal(
   GlobalManager.new,
   name: r'globalManagerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,5 +21,5 @@ final globalManagerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$GlobalManager = AutoDisposeNotifier<CoffeeBeanventoryModel>;
+typedef _$GlobalManager = AutoDisposeAsyncNotifier<CoffeeBeanventoryModel>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
