@@ -28,7 +28,7 @@ class SettingsPage extends ConsumerWidget {
           'Settings',
           style: TextStyle(
             fontSize: largeFontSize,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
           ),
         ),
         actions: [
@@ -64,7 +64,7 @@ class SettingsPage extends ConsumerWidget {
                           'About Thid App',
                           style: TextStyle(
                             fontSize: largeFontSize,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
@@ -88,7 +88,7 @@ class SettingsPage extends ConsumerWidget {
                           'Licenses',
                           style: TextStyle(
                             fontSize: largeFontSize,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
@@ -103,8 +103,8 @@ class SettingsPage extends ConsumerWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Icon(
-                    Icons.apple,
+                  FaIcon(
+                    FontAwesomeIcons.paintRoller,
                     size: settingIconSize,
                   ),
                   SpacerW(space: kPadding),
@@ -112,7 +112,7 @@ class SettingsPage extends ConsumerWidget {
                     'Theme Color Setting',
                     style: TextStyle(
                       fontSize: largeFontSize,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
@@ -121,13 +121,25 @@ class SettingsPage extends ConsumerWidget {
             const SpacerH(),
             Row(
               children: [
-                //
                 Expanded(
                   child: SquareCard(
                     onTap: () {},
-                    child: Icon(
-                      Icons.apple,
-                      size: settingIconSize,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        FaIcon(
+                          FontAwesomeIcons.trash,
+                          size: settingIconSize,
+                        ),
+                        SpacerH(space: kPadding),
+                        Text(
+                          'Reset',
+                          style: TextStyle(
+                            fontSize: largeFontSize,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
