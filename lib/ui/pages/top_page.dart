@@ -29,33 +29,36 @@ class TopPage extends ConsumerWidget {
       data: (state) => SafeArea(
         child: Scaffold(
           backgroundColor: colorIndexEnum.colors['background'],
-          body: Stack(
-            children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: GameWidget(
-                  game: globalManager.world,
+          body: Padding(
+            padding: const EdgeInsets.all(kPadding / 2),
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: GameWidget(
+                    game: globalManager.world,
+                  ),
                 ),
-              ),
-              const Align(
-                alignment: Alignment.topCenter,
-                child: ImageWidget(frameImagePath),
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  icon: const Icon(Icons.settings),
-                  color: Colors.white,
-                  iconSize: 30,
-                  splashRadius: 10,
-                  onPressed: () => context.go('/settings'),
+                const Align(
+                  alignment: Alignment.topCenter,
+                  child: ImageWidget(frameImagePath),
                 ),
-              ),
-              const Align(
-                alignment: Alignment.topCenter,
-                child: CoffeeBeanInfo(),
-              ),
-            ],
+                Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    icon: const Icon(Icons.settings),
+                    color: Colors.white,
+                    iconSize: 40,
+                    splashRadius: 10,
+                    onPressed: () => context.go('/settings'),
+                  ),
+                ),
+                const Align(
+                  alignment: Alignment.topCenter,
+                  child: CoffeeBeanInfo(),
+                ),
+              ],
+            ),
           ),
           floatingActionButton: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -37,3 +37,6 @@ const double angleRange = 280;
 
 // Card constants
 const double cardHeight = 80;
+
+// Settings
+const double settingIconSize = 40;

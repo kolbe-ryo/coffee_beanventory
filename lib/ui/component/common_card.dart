@@ -1,61 +1,79 @@
 // Flutter imports:
+import 'package:coffee_beanventory/enum/color_index_enum.dart';
+import 'package:coffee_beanventory/global/global_manager.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CommonCard extends StatelessWidget {
+class CommonCard extends ConsumerWidget {
   const CommonCard({
     super.key,
     required this.child,
     this.height = cardHeight,
+    required this.onTap,
   });
 
   final Widget child;
   final double height;
+  final void Function() onTap;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
     return Card(
       elevation: 0,
-      color: Colors.blueAccent,
+      color: colorIndexEnum.colors['trackColor'],
+      margin: EdgeInsets.zero,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(kPadding),
         ),
       ),
-      child: SizedBox(
-        width: double.infinity,
-        height: height,
-        child: child,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(kPadding),
+        onTap: onTap,
+        child: SizedBox(
+          width: double.infinity,
+          height: height,
+          child: Center(child: child),
+        ),
       ),
     );
   }
 }
 
-class SquareCard extends StatelessWidget {
+class SquareCard extends ConsumerWidget {
   const SquareCard({
     super.key,
     required this.child,
+    required this.onTap,
   });
 
   final Widget child;
+  final void Function() onTap;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
     return Card(
       elevation: 0,
-      color: Colors.blueAccent,
+      color: colorIndexEnum.colors['trackColor'],
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(kPadding),
         ),
       ),
-      child: AspectRatio(
-        aspectRatio: 1,
-        child: SizedBox(
-          width: double.infinity,
-          child: child,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(kPadding),
+        onTap: onTap,
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: SizedBox(
+            width: double.infinity,
+            child: child,
+          ),
         ),
       ),
     );
