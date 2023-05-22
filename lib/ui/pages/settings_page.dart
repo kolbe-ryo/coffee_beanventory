@@ -133,7 +133,8 @@ class SettingsPage extends ConsumerWidget {
                         ),
                         SpacerH(space: kPadding),
                         Text(
-                          'Reset',
+                          // TODO
+                          'Something',
                           style: TextStyle(
                             fontSize: largeFontSize,
                             fontWeight: FontWeight.w600,
@@ -143,13 +144,27 @@ class SettingsPage extends ConsumerWidget {
                     ),
                   ),
                 ),
-                SpacerW(),
+                const SpacerW(),
                 Expanded(
                   child: SquareCard(
                     onTap: () {},
-                    child: Icon(
-                      Icons.apple,
-                      size: settingIconSize,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        FaIcon(
+                          FontAwesomeIcons.fillDrip,
+                          size: settingIconSize,
+                        ),
+                        SpacerH(space: kPadding),
+                        Text(
+                          'Change Maximum',
+                          style: TextStyle(
+                            fontSize: largeFontSize,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -161,24 +176,31 @@ class SettingsPage extends ConsumerWidget {
                 Flexible(
                   child: CommonCard(
                     onTap: () {},
-                    child: Icon(
-                      Icons.apple,
+                    child: const FaIcon(
+                      FontAwesomeIcons.trash,
                       size: settingIconSize,
                     ),
                   ),
                 ),
-                SpacerW(),
+                const SpacerW(),
                 Flexible(
                   flex: 2,
                   child: CommonCard(
                     onTap: () {},
-                    child: Column(
-                      children: [
-                        Text('App Store'),
-                        Expanded(
-                          child: Icon(
-                            Icons.apple,
-                            size: settingIconSize,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        FaIcon(
+                          FontAwesomeIcons.paintRoller,
+                          size: settingIconSize,
+                        ),
+                        SpacerW(space: kPadding),
+                        Text(
+                          // TODO
+                          'Something',
+                          style: TextStyle(
+                            fontSize: largeFontSize,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
