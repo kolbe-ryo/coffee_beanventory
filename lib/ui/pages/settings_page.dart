@@ -51,6 +51,7 @@ class SettingsPage extends ConsumerWidget {
                   flex: 2,
                   child: CommonCard(
                     height: cardHeight * 2,
+                    // TODO: マイページに遷移
                     onTap: () {},
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -75,6 +76,7 @@ class SettingsPage extends ConsumerWidget {
                 Flexible(
                   child: CommonCard(
                     height: cardHeight * 2,
+                    // TODO: ライセンス表示
                     onTap: () {},
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -99,6 +101,7 @@ class SettingsPage extends ConsumerWidget {
             ),
             const SpacerH(),
             CommonCard(
+              // TODO: タップ時に入れ替える
               onTap: () {},
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -109,7 +112,7 @@ class SettingsPage extends ConsumerWidget {
                   ),
                   SpacerW(space: kPadding),
                   Text(
-                    'Theme Color Setting',
+                    'Color Setting',
                     style: TextStyle(
                       fontSize: largeFontSize,
                       fontWeight: FontWeight.w600,
@@ -123,6 +126,7 @@ class SettingsPage extends ConsumerWidget {
               children: [
                 Expanded(
                   child: SquareCard(
+                    // TODO: Something
                     onTap: () {},
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -147,6 +151,7 @@ class SettingsPage extends ConsumerWidget {
                 const SpacerW(),
                 Expanded(
                   child: SquareCard(
+                    // TODO: Change maximum volume for bin
                     onTap: () {},
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -157,7 +162,7 @@ class SettingsPage extends ConsumerWidget {
                         ),
                         SpacerH(space: kPadding),
                         Text(
-                          'Change Maximum',
+                          'Change Volume',
                           style: TextStyle(
                             fontSize: largeFontSize,
                             fontWeight: FontWeight.w600,
@@ -175,6 +180,7 @@ class SettingsPage extends ConsumerWidget {
               children: [
                 Flexible(
                   child: CommonCard(
+                    // TODO: Delete All
                     onTap: () {},
                     child: const FaIcon(
                       FontAwesomeIcons.trash,
@@ -186,6 +192,7 @@ class SettingsPage extends ConsumerWidget {
                 Flexible(
                   flex: 2,
                   child: CommonCard(
+                    // TODO: Something
                     onTap: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
