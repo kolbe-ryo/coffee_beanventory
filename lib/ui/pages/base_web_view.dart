@@ -60,17 +60,16 @@ class _BaseWebViewState extends ConsumerState<BaseWebView> {
     _controller.loadRequest(
       Uri.parse(widget.url),
     );
-    return SafeArea(
-      child: Scaffold(
-        appBar: widget.needAppBar
-            ? AppBar(
-                title: Text(widget.title),
-                backgroundColor: colorIndexEnum.colors[backgroundColor],
-              )
-            : null,
-        body: WebViewWidget(
-          controller: _controller,
-        ),
+    return Scaffold(
+      appBar: widget.needAppBar
+          ? AppBar(
+              title: Text(widget.title),
+              backgroundColor: colorIndexEnum.colors[backgroundColor],
+              elevation: 0,
+            )
+          : null,
+      body: WebViewWidget(
+        controller: _controller,
       ),
     );
   }
