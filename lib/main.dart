@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -27,7 +28,14 @@ class RootPage extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       title: 'Beanventory',
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark().copyWith(
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontSize: largeFontSize,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

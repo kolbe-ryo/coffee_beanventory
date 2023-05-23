@@ -25,13 +25,7 @@ class SettingsPage extends ConsumerWidget {
         automaticallyImplyLeading: false,
         backgroundColor: colorIndexEnum.colors[backgroundColor],
         elevation: 0,
-        title: const Text(
-          'Settings',
-          style: TextStyle(
-            fontSize: largeFontSize,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        title: const Text('Settings'),
         actions: [
           IconButton(
             icon: const Icon(Icons.close),
@@ -55,7 +49,7 @@ class SettingsPage extends ConsumerWidget {
                     onTap: () => Navigator.push(
                       context,
                       BaseWebView.route(
-                        title: 'このアプリについて',
+                        title: 'About Thid App',
                         url: aboutAppUrl,
                       ),
                     ),
@@ -82,8 +76,7 @@ class SettingsPage extends ConsumerWidget {
                 Flexible(
                   child: CommonCard(
                     height: cardHeight * 2,
-                    // TODO: ライセンス表示
-                    onTap: () {},
+                    onTap: () => showLicensePage(context: context),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
