@@ -1,9 +1,11 @@
 // Flutter imports:
-import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
+import 'package:coffee_beanventory/constant/constants.dart';
 
 enum ColorIndexEnum {
   @JsonValue('warm')

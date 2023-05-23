@@ -1,7 +1,4 @@
 // Flutter imports:
-import 'package:coffee_beanventory/enum/color_index_enum.dart';
-import 'package:coffee_beanventory/global/global_manager.dart';
-import 'package:coffee_beanventory/ui/pages/base_web_view.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,7 +8,10 @@ import 'package:go_router/go_router.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
+import 'package:coffee_beanventory/enum/color_index_enum.dart';
+import 'package:coffee_beanventory/global/global_manager.dart';
 import 'package:coffee_beanventory/ui/component/common_card.dart';
+import 'package:coffee_beanventory/ui/pages/base_web_view.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
