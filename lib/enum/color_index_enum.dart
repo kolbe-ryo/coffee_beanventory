@@ -31,4 +31,13 @@ extension ColorIndexEnumExt on ColorIndexEnum {
         };
     }
   }
+
+  ColorIndexEnum get switchColorIndex {
+    switch (this) {
+      case ColorIndexEnum.warm:
+        return ColorIndexEnum.cold;
+      case ColorIndexEnum.cold:
+        return ColorIndexEnum.warm;
+    }
+  }
 }

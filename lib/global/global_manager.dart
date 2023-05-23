@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/enum/color_index_enum.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -82,4 +83,6 @@ class GlobalManager extends _$GlobalManager {
 
   // Change using bean by user
   void changeUseBeans(int grams) => state = state.copyWith(useBeans: grams);
+
+  void switchColor() => state = state.copyWith(colorIndex: state.colorIndex.switchColorIndex);
 }

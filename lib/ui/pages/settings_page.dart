@@ -100,8 +100,7 @@ class SettingsPage extends ConsumerWidget {
             ),
             const SpacerH(),
             CommonCard(
-              // TODO: タップ時に入れ替える
-              onTap: () {},
+              onTap: () => ref.watch(globalManagerProvider.notifier).switchColor(),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
