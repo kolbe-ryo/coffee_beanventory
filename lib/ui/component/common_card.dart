@@ -24,7 +24,7 @@ class CommonCard extends ConsumerWidget {
     final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
     return Card(
       elevation: 0,
-      color: colorIndexEnum.colors['trackColor'],
+      color: colorIndexEnum.colors[trackColor],
       margin: EdgeInsets.zero,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
@@ -59,7 +59,7 @@ class SquareCard extends ConsumerWidget {
     final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
     return Card(
       elevation: 0,
-      color: colorIndexEnum.colors['trackColor'],
+      color: colorIndexEnum.colors[trackColor],
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(kPadding),

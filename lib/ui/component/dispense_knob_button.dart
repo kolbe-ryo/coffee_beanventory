@@ -9,7 +9,6 @@ import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/enum/color_index_enum.dart';
 import 'package:coffee_beanventory/global/global_manager.dart';
-import 'package:coffee_beanventory/util/logger.dart';
 
 class DispenseKnobButton extends ConsumerWidget {
   const DispenseKnobButton({
@@ -35,13 +34,13 @@ class DispenseKnobButton extends ConsumerWidget {
     );
     return InkWell(
       borderRadius: BorderRadius.circular(knobRadius / 2),
-      splashColor: colorIndexEnum.colors['splashColor'],
+      splashColor: colorIndexEnum.colors[splashColor],
       child: SleekCircularSlider(
         appearance: CircularSliderAppearance(
           angleRange: angleRange,
           customColors: CustomSliderColors(
-            trackColor: colorIndexEnum.colors['trackColor'],
-            progressBarColor: colorIndexEnum.colors['progressBarColor'],
+            trackColor: colorIndexEnum.colors[trackColor],
+            progressBarColor: colorIndexEnum.colors[progressBarColor],
           ),
           customWidths: CustomSliderWidths(
             handlerSize: handlerSize,

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -16,17 +17,17 @@ extension ColorIndexEnumExt on ColorIndexEnum {
     switch (this) {
       case ColorIndexEnum.warm:
         return {
-          'background': const Color.fromARGB(255, 220, 184, 148),
-          'trackColor': Colors.orangeAccent,
-          'progressBarColor': Colors.deepOrange,
-          'splashColor': Colors.deepOrangeAccent,
+          backgroundColor: const Color.fromARGB(255, 220, 184, 148),
+          trackColor: Colors.orangeAccent,
+          progressBarColor: Colors.deepOrange,
+          splashColor: Colors.deepOrangeAccent,
         };
       case ColorIndexEnum.cold:
         return {
-          'background': Colors.blueGrey,
-          'trackColor': Colors.lightBlue,
-          'progressBarColor': Colors.blueAccent,
-          'splashColor': Colors.blue,
+          backgroundColor: Colors.blueGrey,
+          trackColor: Colors.lightBlue,
+          progressBarColor: Colors.blueAccent,
+          splashColor: Colors.blue,
         };
     }
   }

@@ -40,3 +40,13 @@ const double cardHeight = 80;
 
 // Settings
 const double settingIconSize = 40;
+
+const String aboutAppUrl = 'https://kolbe-app.site/';
+
+const String backgroundColor = 'background';
+
+const String trackColor = 'trackColor';
+
+const String progressBarColor = 'progressBarColor';
+
+const String splashColor = 'splashColor';

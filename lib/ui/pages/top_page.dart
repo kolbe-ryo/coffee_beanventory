@@ -28,7 +28,7 @@ class TopPage extends ConsumerWidget {
     return initialLoader.when(
       data: (state) => SafeArea(
         child: Scaffold(
-          backgroundColor: colorIndexEnum.colors['background'],
+          backgroundColor: colorIndexEnum.colors[backgroundColor],
           body: Padding(
             padding: const EdgeInsets.all(kPadding / 2),
             child: Stack(

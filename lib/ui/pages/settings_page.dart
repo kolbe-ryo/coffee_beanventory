@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:coffee_beanventory/enum/color_index_enum.dart';
 import 'package:coffee_beanventory/global/global_manager.dart';
+import 'package:coffee_beanventory/ui/pages/base_web_view.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -19,10 +20,10 @@ class SettingsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
     return Scaffold(
-      backgroundColor: colorIndexEnum.colors['background'],
+      backgroundColor: colorIndexEnum.colors[backgroundColor],
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: colorIndexEnum.colors['background'],
+        backgroundColor: colorIndexEnum.colors[backgroundColor],
         elevation: 0,
         title: const Text(
           'Settings',
@@ -51,8 +52,13 @@ class SettingsPage extends ConsumerWidget {
                   flex: 2,
                   child: CommonCard(
                     height: cardHeight * 2,
-                    // TODO: マイページに遷移
-                    onTap: () {},
+                    onTap: () => Navigator.push(
+                      context,
+                      BaseWebView.route(
+                        title: 'このアプリについて',
+                        url: aboutAppUrl,
+                      ),
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
