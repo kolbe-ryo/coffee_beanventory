@@ -16,6 +16,8 @@ import 'package:coffee_beanventory/ui/pages/base_web_view.dart';
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
 
+  // TODO animation for change color
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
