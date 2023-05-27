@@ -119,7 +119,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                 ),
                 const SpacerH(),
                 CommonCard(
-                  // TODO
+                  // TODO テキスト入力させる
                   onTap: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -144,7 +144,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                   children: [
                     Expanded(
                       child: SquareCard(
-                        // TODO: Something
                         onTap: () => ref.watch(globalManagerProvider.notifier).switchColor(),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

@@ -54,10 +54,14 @@ class GlobalManager extends _$GlobalManager {
     }
   }
 
+  Future<void> saveToLocalStorage() async {
+    await GetIt.I<LocalStorageInterface>().save(state);
+  }
+
   // Add action by user
   Future<void> addBeanGrams(int grams) async {
     state = state.copyWith(beanGrams: state.beanGrams + grams);
-    await GetIt.I<LocalStorageInterface>().save(state);
+    await saveToLocalStorage();
     await _gameWorld.addBeans(grams);
   }
 
