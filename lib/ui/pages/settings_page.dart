@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/ui/view_model/color_controller_view_model.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -13,220 +14,238 @@ import 'package:coffee_beanventory/global/global_manager.dart';
 import 'package:coffee_beanventory/ui/component/common_card.dart';
 import 'package:coffee_beanventory/ui/pages/base_web_view.dart';
 
-class SettingsPage extends ConsumerWidget {
+class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({super.key});
 
-  // TODO animation for change color
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerProviderStateMixin {
+  @override
+  void initState() {
+    ref.read(globalManagerProvider.notifier).colorControllerViewModel = ColorControllerViewModel(
+      vsync: this,
+      initialColorIndex: ref.read(globalManagerProvider).colorIndex,
+    );
+    super.initState();
+  }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
-    return Scaffold(
-      backgroundColor: colorIndexEnum.colors[backgroundColor],
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: colorIndexEnum.colors[backgroundColor],
-        elevation: 0,
-        title: const Text('Settings'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.close),
-            iconSize: 40,
-            splashRadius: 10,
-            padding: const EdgeInsets.only(right: kPadding),
-            onPressed: () => context.pop(),
+  Widget build(BuildContext context) {
+    // final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
+    final animationViewModel = ref.watch(globalManagerProvider.notifier).colorControllerViewModel;
+    return AnimatedBuilder(
+      animation: animationViewModel.animationController,
+      builder: (context, _) {
+        return Scaffold(
+          backgroundColor: animationViewModel.animation.value,
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            backgroundColor: animationViewModel.animation.value,
+            elevation: 0,
+            title: const Text('Settings'),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.close),
+                iconSize: 40,
+                splashRadius: 10,
+                padding: const EdgeInsets.only(right: kPadding),
+                onPressed: () => context.pop(),
+              ),
+            ],
           ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: kPadding),
-        child: Column(
-          children: [
-            Row(
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: kPadding),
+            child: Column(
               children: [
-                Flexible(
-                  flex: 2,
-                  child: CommonCard(
-                    height: cardHeight * 2,
-                    onTap: () => Navigator.push(
-                      context,
-                      BaseWebView.route(
-                        title: 'About Thid App',
-                        url: aboutAppUrl,
+                Row(
+                  children: [
+                    Flexible(
+                      flex: 2,
+                      child: CommonCard(
+                        height: cardHeight * 2,
+                        onTap: () => Navigator.push(
+                          context,
+                          BaseWebView.route(
+                            title: 'About Thid App',
+                            url: aboutAppUrl,
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            FaIcon(
+                              FontAwesomeIcons.appStore,
+                              size: settingIconSize,
+                            ),
+                            SpacerH(space: kPadding),
+                            Text(
+                              'About Thid App',
+                              style: TextStyle(
+                                fontSize: largeFontSize,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        FaIcon(
-                          FontAwesomeIcons.appStore,
-                          size: settingIconSize,
+                    const SpacerW(),
+                    Flexible(
+                      child: CommonCard(
+                        height: cardHeight * 2,
+                        onTap: () => showLicensePage(context: context),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            FaIcon(
+                              FontAwesomeIcons.certificate,
+                              size: settingIconSize,
+                            ),
+                            SpacerH(space: kPadding),
+                            Text(
+                              'Licenses',
+                              style: TextStyle(
+                                fontSize: largeFontSize,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
                         ),
-                        SpacerH(space: kPadding),
-                        Text(
-                          'About Thid App',
-                          style: TextStyle(
-                            fontSize: largeFontSize,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
+                  ],
+                ),
+                const SpacerH(),
+                CommonCard(
+                  onTap: () => ref.watch(globalManagerProvider.notifier).switchColor(),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      FaIcon(
+                        FontAwesomeIcons.paintRoller,
+                        size: settingIconSize,
+                      ),
+                      SpacerW(space: kPadding),
+                      Text(
+                        'Color Setting',
+                        style: TextStyle(
+                          fontSize: largeFontSize,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const SpacerW(),
-                Flexible(
-                  child: CommonCard(
-                    height: cardHeight * 2,
-                    onTap: () => showLicensePage(context: context),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        FaIcon(
-                          FontAwesomeIcons.certificate,
-                          size: settingIconSize,
+                const SpacerH(),
+                Row(
+                  children: [
+                    Expanded(
+                      child: SquareCard(
+                        // TODO: Something
+                        onTap: () {},
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            FaIcon(
+                              FontAwesomeIcons.trash,
+                              size: settingIconSize,
+                            ),
+                            SpacerH(space: kPadding),
+                            Text(
+                              // TODO
+                              'Something',
+                              style: TextStyle(
+                                fontSize: largeFontSize,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
                         ),
-                        SpacerH(space: kPadding),
-                        Text(
-                          'Licenses',
-                          style: TextStyle(
-                            fontSize: largeFontSize,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                    const SpacerW(),
+                    Expanded(
+                      child: SquareCard(
+                        // TODO: Change maximum volume for bin
+                        onTap: () {},
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            FaIcon(
+                              FontAwesomeIcons.fillDrip,
+                              size: settingIconSize,
+                            ),
+                            SpacerH(space: kPadding),
+                            Text(
+                              'Change Volume',
+                              style: TextStyle(
+                                fontSize: largeFontSize,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            const SpacerH(),
-            CommonCard(
-              onTap: () => ref.watch(globalManagerProvider.notifier).switchColor(),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  FaIcon(
-                    FontAwesomeIcons.paintRoller,
-                    size: settingIconSize,
-                  ),
-                  SpacerW(space: kPadding),
-                  Text(
-                    'Color Setting',
-                    style: TextStyle(
-                      fontSize: largeFontSize,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SpacerH(),
-            Row(
-              children: [
-                Expanded(
-                  child: SquareCard(
-                    // TODO: Something
-                    onTap: () {},
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        FaIcon(
+                const SpacerH(),
+                Row(
+                  children: [
+                    Flexible(
+                      child: CommonCard(
+                        // TODO: Delete All
+                        onTap: () {},
+                        child: const FaIcon(
                           FontAwesomeIcons.trash,
                           size: settingIconSize,
                         ),
-                        SpacerH(space: kPadding),
-                        Text(
-                          // TODO
-                          'Something',
-                          style: TextStyle(
-                            fontSize: largeFontSize,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                const SpacerW(),
-                Expanded(
-                  child: SquareCard(
-                    // TODO: Change maximum volume for bin
-                    onTap: () {},
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        FaIcon(
-                          FontAwesomeIcons.fillDrip,
-                          size: settingIconSize,
+                    const SpacerW(),
+                    Flexible(
+                      flex: 2,
+                      child: CommonCard(
+                        // TODO: Something
+                        onTap: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            FaIcon(
+                              FontAwesomeIcons.paintRoller,
+                              size: settingIconSize,
+                            ),
+                            SpacerW(space: kPadding),
+                            Text(
+                              // TODO
+                              'Something',
+                              style: TextStyle(
+                                fontSize: largeFontSize,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
                         ),
-                        SpacerH(space: kPadding),
-                        Text(
-                          'Change Volume',
-                          style: TextStyle(
-                            fontSize: largeFontSize,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
+                // const SpacerH(),
+                // Row(
+                //   children: const [
+                //     Expanded(child: SquareCard()),
+                //     SpacerW(),
+                //     Expanded(child: SquareCard()),
+                //   ],
+                // ),
               ],
             ),
-            const SpacerH(),
-            Row(
-              children: [
-                Flexible(
-                  child: CommonCard(
-                    // TODO: Delete All
-                    onTap: () {},
-                    child: const FaIcon(
-                      FontAwesomeIcons.trash,
-                      size: settingIconSize,
-                    ),
-                  ),
-                ),
-                const SpacerW(),
-                Flexible(
-                  flex: 2,
-                  child: CommonCard(
-                    // TODO: Something
-                    onTap: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        FaIcon(
-                          FontAwesomeIcons.paintRoller,
-                          size: settingIconSize,
-                        ),
-                        SpacerW(space: kPadding),
-                        Text(
-                          // TODO
-                          'Something',
-                          style: TextStyle(
-                            fontSize: largeFontSize,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            // const SpacerH(),
-            // Row(
-            //   children: const [
-            //     Expanded(child: SquareCard()),
-            //     SpacerW(),
-            //     Expanded(child: SquareCard()),
-            //   ],
-            // ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

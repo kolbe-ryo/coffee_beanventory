@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/ui/view_model/color_controller_view_model.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -21,6 +22,8 @@ class GlobalManager extends _$GlobalManager {
 
   bool _isLoadedLocalStorage = false;
   bool get isLoadedLocalStorage => _isLoadedLocalStorage;
+
+  late ColorControllerViewModel colorControllerViewModel;
 
   // AsyncValueStateでFutureではないStateを更新するにはrequiredValueを使用する
   @override
@@ -84,5 +87,12 @@ class GlobalManager extends _$GlobalManager {
   // Change using bean by user
   void changeUseBeans(int grams) => state = state.copyWith(useBeans: grams);
 
-  void switchColor() => state = state.copyWith(colorIndex: state.colorIndex.switchColorIndex);
+  Future<void> switchColor() async {
+    // Nothing to do if animating
+    if (colorControllerViewModel.animationController.isAnimating) {
+      return;
+    }
+    state = state.copyWith(colorIndex: state.colorIndex.switchColorIndex);
+    colorControllerViewModel.changeColor();
+  }
 }

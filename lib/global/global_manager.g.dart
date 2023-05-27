@@ -6,7 +6,7 @@ part of 'global_manager.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$globalManagerHash() => r'45c22ef23e5085bd2d7198704fcb21601f96b904';
+String _$globalManagerHash() => r'996506e511c4a458b9d2d582976accfa1ff9de2e';
 
 /// See also [GlobalManager].
 @ProviderFor(GlobalManager)
