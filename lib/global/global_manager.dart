@@ -71,7 +71,11 @@ class GlobalManager extends _$GlobalManager {
       state = state.copyWith(beanGrams: remainBeans, useBeans: grams);
       await GetIt.I<LocalStorageInterface>().save(state);
       await _gameWorld.onRemove();
-      await Future<void>.delayed(Duration(milliseconds: grams * 30));
+      // TODO 個数によって、Bottomの開放期間を変更する
+      // TODO または　削除量が足りていない場合はさらに追加でbottomを開放する
+      await Future<void>.delayed(
+        Duration(milliseconds: _releaseCalculator(grams)),
+      );
       _gameWorld.onCreateBottomWall();
 
       // Remove falling beans after 1 second
@@ -80,6 +84,10 @@ class GlobalManager extends _$GlobalManager {
     } on Exception catch (e) {
       // TODO: handle exception
     }
+  }
+
+  int _releaseCalculator(int grams) {
+    return grams * 25;
   }
 
   // Change adding bean by user

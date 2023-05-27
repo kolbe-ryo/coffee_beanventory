@@ -147,18 +147,17 @@ class GameWorld extends Forge2DGame with HasTappables {
     logger.info(world.bodies.length - 7);
 
     // 削除しすぎた場合、追加する処理
-    final diff = remainingBeans - (world.bodies.length - 7);
-    if (diff != 0) {
-      await addBeans(diff);
-      logger.info(world.bodies.length - 7);
-    }
+    await fallBeanObserver(remainingBeans - (world.bodies.length - 7));
   }
 
   Future<void> addBeans(int balls) async {
     _generator.generateBalls(balls).forEach(add);
   }
 
-  Future<bool> fallBeanObserver(int useBeans) async {
-    return false;
+  Future<void> fallBeanObserver(int diff) async {
+    if (diff != 0) {
+      await addBeans(diff);
+      logger.info(world.bodies.length - 7);
+    }
   }
 }
