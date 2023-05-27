@@ -26,57 +26,55 @@ class TopPage extends ConsumerWidget {
     final globalManager = ref.watch(globalManagerProvider.notifier);
     final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
     return initialLoader.when(
-      data: (state) => SafeArea(
-        child: Scaffold(
-          backgroundColor: colorIndexEnum.colors[backgroundColor],
-          body: Padding(
-            padding: const EdgeInsets.all(kPadding / 2),
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: GameWidget(
-                    game: globalManager.world,
-                  ),
-                ),
-                const Align(
-                  alignment: Alignment.topCenter,
-                  child: ImageWidget(frameImagePath),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: IconButton(
-                    icon: const Icon(Icons.settings),
-                    color: Colors.white,
-                    iconSize: 40,
-                    splashRadius: 10,
-                    onPressed: () => context.go('/settings'),
-                  ),
-                ),
-                const Align(
-                  alignment: Alignment.topCenter,
-                  child: CoffeeBeanInfo(),
-                ),
-              ],
-            ),
-          ),
-          floatingActionButton: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+      data: (state) => Scaffold(
+        backgroundColor: colorIndexEnum.colors[backgroundColor],
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(kPadding / 2, kPadding * 4, kPadding / 2, 0),
+          child: Stack(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: kPadding * 2),
-                child: DispenseKnobButton(
-                  buttonText: 'Add',
-                  function: ref.watch(globalManagerProvider.notifier).addBeanGrams,
+              Align(
+                alignment: Alignment.topCenter,
+                child: GameWidget(
+                  game: globalManager.world,
                 ),
               ),
-              DispenseKnobButton(
-                buttonText: 'Use',
-                function: ref.watch(globalManagerProvider.notifier).removeBeanGrams,
+              const Align(
+                alignment: Alignment.topCenter,
+                child: ImageWidget(frameImagePath),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: const Icon(Icons.settings),
+                  color: Colors.white,
+                  iconSize: 40,
+                  splashRadius: 10,
+                  onPressed: () => context.go('/settings'),
+                ),
+              ),
+              const Align(
+                alignment: Alignment.topCenter,
+                child: CoffeeBeanInfo(),
               ),
             ],
           ),
+        ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: kPadding * 2),
+              child: DispenseKnobButton(
+                buttonText: 'Add',
+                function: ref.watch(globalManagerProvider.notifier).addBeanGrams,
+              ),
+            ),
+            DispenseKnobButton(
+              buttonText: 'Use',
+              function: ref.watch(globalManagerProvider.notifier).removeBeanGrams,
+            ),
+          ],
         ),
       ),
       loading: () => const Center(
