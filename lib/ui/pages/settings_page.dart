@@ -119,17 +119,18 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                 ),
                 const SpacerH(),
                 CommonCard(
-                  onTap: () => ref.watch(globalManagerProvider.notifier).switchColor(),
+                  // TODO
+                  onTap: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       FaIcon(
-                        FontAwesomeIcons.paintRoller,
+                        FontAwesomeIcons.tag,
                         size: settingIconSize,
                       ),
                       SpacerW(space: kPadding),
                       Text(
-                        'Color Setting',
+                        'Change Name',
                         style: TextStyle(
                           fontSize: largeFontSize,
                           fontWeight: FontWeight.w600,
@@ -144,22 +145,22 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                     Expanded(
                       child: SquareCard(
                         // TODO: Something
-                        onTap: () {},
+                        onTap: () => ref.watch(globalManagerProvider.notifier).switchColor(),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
                             FaIcon(
-                              FontAwesomeIcons.trash,
+                              FontAwesomeIcons.paintRoller,
                               size: settingIconSize,
                             ),
                             SpacerH(space: kPadding),
                             Text(
-                              // TODO
-                              'Something',
+                              'Color Theme',
                               style: TextStyle(
                                 fontSize: largeFontSize,
                                 fontWeight: FontWeight.w600,
                               ),
+                              textAlign: TextAlign.center,
                             ),
                           ],
                         ),

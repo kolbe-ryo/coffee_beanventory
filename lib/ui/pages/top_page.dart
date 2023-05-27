@@ -96,27 +96,29 @@ class CoffeeBeanInfo extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final stockBeans = ref.watch(globalManagerProvider.select((value) => value.beanGrams));
     final maxStockBeans = ref.watch(globalManagerProvider.select((value) => value.beanStockMax));
-    return Column(
-      children: [
-        const SpacerH(space: kPadding * 8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const FaIcon(
-              FontAwesomeIcons.mugHot,
-              size: 50,
-            ),
-            const SpacerW(space: kPadding),
-            Text(
-              '${stockBeans}g',
-              style: const TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.bold,
+    return DefaultTextStyle(
+      style: const TextStyle(
+        fontSize: 50,
+        fontWeight: FontWeight.bold,
+      ),
+      child: Column(
+        children: [
+          const SpacerH(space: kPadding * 8),
+          Text('Coffee Name'),
+          const SpacerH(space: kPadding * 2),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const FaIcon(
+                FontAwesomeIcons.mugHot,
+                size: 50,
               ),
-            ),
-          ],
-        ),
-      ],
+              const SpacerW(space: kPadding),
+              Text('${stockBeans}g'),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

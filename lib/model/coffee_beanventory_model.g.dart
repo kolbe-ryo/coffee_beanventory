@@ -12,6 +12,7 @@ _$_CoffeeBeanventoryModel _$$_CoffeeBeanventoryModelFromJson(
       colorIndex:
           $enumDecodeNullable(_$ColorIndexEnumEnumMap, json['colorIndex']) ??
               ColorIndexEnum.warm,
+      coffeeName: json['coffeeName'] as String? ?? '',
       beanGrams: json['beanGrams'] as int? ?? 0,
       beanStockMax: json['beanStockMax'] as int? ?? 0,
       beanAddMax: json['beanAddMax'] as int? ?? 0,
@@ -23,6 +24,7 @@ Map<String, dynamic> _$$_CoffeeBeanventoryModelToJson(
         _$_CoffeeBeanventoryModel instance) =>
     <String, dynamic>{
       'colorIndex': _$ColorIndexEnumEnumMap[instance.colorIndex]!,
+      'coffeeName': instance.coffeeName,
       'beanGrams': instance.beanGrams,
       'beanStockMax': instance.beanStockMax,
       'beanAddMax': instance.beanAddMax,

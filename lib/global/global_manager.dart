@@ -39,6 +39,7 @@ class GlobalManager extends _$GlobalManager {
       final response = await GetIt.I<LocalStorageInterface>().fetch();
       state = state.copyWith(
         colorIndex: response.colorIndex,
+        coffeeName: response.coffeeName,
         beanGrams: response.beanGrams,
         beanStockMax: response.beanStockMax,
         beanAddMax: response.beanAddMax,
