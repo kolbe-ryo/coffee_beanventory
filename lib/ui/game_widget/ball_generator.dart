@@ -15,9 +15,10 @@ class BeanGenerator {
 
   List<Bean> generateBalls(int beans) {
     final ballList = <Bean>[];
+    // final xCoordinate = 20 / 2 / gameZoom;
     final yCoordinate = width / 2 / gameZoom;
     for (var i = 0; i < beans; i++) {
-      final position = Vector2(Random().nextDouble() + yCoordinate - 1, 0);
+      final position = Vector2(Random().nextDouble() + yCoordinate - 1, Random().nextDouble() * 3);
       ballList.add(Bean(position));
     }
     return ballList;
