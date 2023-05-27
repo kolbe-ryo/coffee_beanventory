@@ -44,8 +44,9 @@ class GlobalManager extends _$GlobalManager {
         useBeans: response.useBeans,
       );
       logger.info(state);
+      await _gameWorld.addBeans(state.beanGrams);
     } on Exception catch (e) {
-      // TODO catch expected Exception
+      // TODO 取得に失敗した場合、際ローディングにより取得する手段を提供する
       logger.info(e);
     }
   }
@@ -86,14 +87,18 @@ class GlobalManager extends _$GlobalManager {
   // Change using bean by user
   void changeUseBeans(int grams) => state = state.copyWith(useBeans: grams);
 
-  void switchColor() {
+  Future<void> switchColor() async {
     // Nothing to do if animating
     if (colorControllerViewModel.animationController.isAnimating) {
       return;
     }
     state = state.copyWith(colorIndex: state.colorIndex.switchColorIndex);
     colorControllerViewModel.changeColor();
+    await saveToLocalStorage();
   }
 
-  // void
+  Future<void> changeCoffeeName(String coffeeName) async {
+    state = state.copyWith(coffeeName: coffeeName);
+    await saveToLocalStorage();
+  }
 }
