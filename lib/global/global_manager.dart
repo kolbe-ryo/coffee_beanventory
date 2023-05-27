@@ -71,8 +71,6 @@ class GlobalManager extends _$GlobalManager {
       state = state.copyWith(beanGrams: remainBeans, useBeans: grams);
       await GetIt.I<LocalStorageInterface>().save(state);
       await _gameWorld.onRemove();
-      // TODO: 個数によって、Bottomの開放期間を変更する
-      // TODO: または　削除量が足りていない場合はさらに追加でbottomを開放する
       await Future<void>.delayed(
         Duration(milliseconds: _releaseCalculator(grams)),
       );
@@ -86,6 +84,8 @@ class GlobalManager extends _$GlobalManager {
     }
   }
 
+  // TODO: 個数によって、Bottomの開放期間を変更する
+  // TODO: または　削除量が足りていない場合はさらに追加でbottomを開放する
   int _releaseCalculator(int grams) {
     return grams * 25;
   }
