@@ -46,7 +46,7 @@ class GlobalManager extends _$GlobalManager {
       logger.info(state);
       await _gameWorld.addBeans(state.beanGrams);
     } on Exception catch (e) {
-      // TODO 取得に失敗した場合、際ローディングにより取得する手段を提供する
+      // TODO: 取得に失敗した場合、際ローディングにより取得する手段を提供する
       logger.info(e);
     }
   }
@@ -71,8 +71,8 @@ class GlobalManager extends _$GlobalManager {
       state = state.copyWith(beanGrams: remainBeans, useBeans: grams);
       await GetIt.I<LocalStorageInterface>().save(state);
       await _gameWorld.onRemove();
-      // TODO 個数によって、Bottomの開放期間を変更する
-      // TODO または　削除量が足りていない場合はさらに追加でbottomを開放する
+      // TODO: 個数によって、Bottomの開放期間を変更する
+      // TODO: または　削除量が足りていない場合はさらに追加でbottomを開放する
       await Future<void>.delayed(
         Duration(milliseconds: _releaseCalculator(grams)),
       );

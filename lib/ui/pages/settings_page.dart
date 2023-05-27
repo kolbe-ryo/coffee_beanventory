@@ -119,7 +119,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                 ),
                 const SpacerH(),
                 CommonCard(
-                  // TODO テキスト入力させる
+                  // TODO: テキスト入力させる
                   onTap: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -220,7 +220,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                             ),
                             SpacerW(space: kPadding),
                             Text(
-                              // TODO
+                              // TODO: Something
                               'Something',
                               style: TextStyle(
                                 fontSize: largeFontSize,

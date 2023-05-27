@@ -65,7 +65,6 @@ class DispenseKnobButton extends ConsumerWidget {
         // max: 100,
         initialValue: beanGrams.toDouble(),
         onChange: (value) {
-          // TODO: 100に設定するのに設定できていない問題の修正
           if (isAdd) {
             ref.read(globalManagerProvider.notifier).changeAddBeans(value.round());
           } else {
