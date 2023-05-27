@@ -20,9 +20,6 @@ class GlobalManager extends _$GlobalManager {
   late final GameWorld _gameWorld;
   GameWorld get world => _gameWorld;
 
-  bool _isLoadedLocalStorage = false;
-  bool get isLoadedLocalStorage => _isLoadedLocalStorage;
-
   late ColorControllerViewModel colorControllerViewModel;
 
   // AsyncValueStateでFutureではないStateを更新するにはrequiredValueを使用する
@@ -46,7 +43,6 @@ class GlobalManager extends _$GlobalManager {
         addBeans: response.addBeans,
         useBeans: response.useBeans,
       );
-      _isLoadedLocalStorage = true;
       logger.info(state);
     } on Exception catch (e) {
       // TODO catch expected Exception
@@ -54,6 +50,7 @@ class GlobalManager extends _$GlobalManager {
     }
   }
 
+  // Save to local storage after some action for changing state
   Future<void> saveToLocalStorage() async {
     await GetIt.I<LocalStorageInterface>().save(state);
   }
@@ -65,17 +62,12 @@ class GlobalManager extends _$GlobalManager {
     await _gameWorld.addBeans(grams);
   }
 
-  // Change adding bean by user
-  void changeAddBeans(int grams) => state = state.copyWith(addBeans: grams);
-
   // Remove action by user
   Future<void> removeBeanGrams(int grams) async {
-    if (state.beanGrams - grams <= 0) {
-      return;
-    }
+    final remainBeans = (state.beanGrams - grams >= 0) ? state.beanGrams - grams : 0;
 
     try {
-      state = state.copyWith(beanGrams: state.beanGrams - grams, useBeans: grams);
+      state = state.copyWith(beanGrams: remainBeans, useBeans: grams);
       await GetIt.I<LocalStorageInterface>().save(state);
       await _gameWorld.onRemove();
       await Future<void>.delayed(Duration(milliseconds: grams * 30));
@@ -89,6 +81,8 @@ class GlobalManager extends _$GlobalManager {
     }
   }
 
+  // Change adding bean by user
+  void changeAddBeans(int grams) => state = state.copyWith(addBeans: grams);
   // Change using bean by user
   void changeUseBeans(int grams) => state = state.copyWith(useBeans: grams);
 
