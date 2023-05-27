@@ -1,6 +1,9 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/enum/color_index_enum.dart';
-import 'package:flutter/material.dart';
 
 class ColorControllerViewModel {
   ColorControllerViewModel({

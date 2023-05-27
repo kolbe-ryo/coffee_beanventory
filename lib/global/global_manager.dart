@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:coffee_beanventory/ui/view_model/color_controller_view_model.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,6 +10,7 @@ import 'package:coffee_beanventory/enum/color_index_enum.dart';
 import 'package:coffee_beanventory/model/coffee_beanventory_model.dart';
 import 'package:coffee_beanventory/repository/interface/local_storage_interface.dart';
 import 'package:coffee_beanventory/ui/game_widget/game_world.dart';
+import 'package:coffee_beanventory/ui/view_model/color_controller_view_model.dart';
 import 'package:coffee_beanventory/util/logger.dart';
 
 part 'global_manager.g.dart';
