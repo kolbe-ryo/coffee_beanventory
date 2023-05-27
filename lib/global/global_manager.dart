@@ -86,7 +86,7 @@ class GlobalManager extends _$GlobalManager {
   // Change using bean by user
   void changeUseBeans(int grams) => state = state.copyWith(useBeans: grams);
 
-  Future<void> switchColor() async {
+  void switchColor() {
     // Nothing to do if animating
     if (colorControllerViewModel.animationController.isAnimating) {
       return;
@@ -94,4 +94,6 @@ class GlobalManager extends _$GlobalManager {
     state = state.copyWith(colorIndex: state.colorIndex.switchColorIndex);
     colorControllerViewModel.changeColor();
   }
+
+  // void
 }
