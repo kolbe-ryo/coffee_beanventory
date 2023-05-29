@@ -1,3 +1,4 @@
+//TODO: Flavorテキストの修正
 const gSheetsId = String.fromEnvironment('GSHEETSID');
 
 const jsogSheetsCredentialsnKey = {
