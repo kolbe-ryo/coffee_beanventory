@@ -34,6 +34,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
     super.initState();
   }
 
+  void switchEditting() => setState(() => _isEditting = !_isEditting);
+
   @override
   Widget build(BuildContext context) {
     // final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
@@ -122,31 +124,36 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                 ),
                 const SpacerH(),
                 CommonCard(
-                  onTap: () {
-                    setState(() {
-                      _isEditting = !_isEditting;
-                    });
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const FaIcon(
-                        FontAwesomeIcons.tag,
-                        size: settingIconSize,
-                      ),
-                      const SpacerW(space: kPadding),
-                      _isEditting
-                          ? const Expanded(
-                              child: CustomTextField(),
-                            )
-                          : const Text(
-                              'Change Name',
-                              style: TextStyle(
-                                fontSize: largeFontSize,
-                                fontWeight: FontWeight.w600,
+                  onTap: switchEditting,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: kPadding * 2),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const FaIcon(
+                          FontAwesomeIcons.tag,
+                          size: settingIconSize,
+                        ),
+                        const SpacerW(space: kPadding),
+                        _isEditting
+                            ? Expanded(
+                                child: CustomTextField(
+                                  switchEditting: switchEditting,
+                                ),
+                              )
+                            : ConstrainedBox(
+                                constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 2),
+                                child: Text(
+                                  ref.watch(globalManagerProvider.select((value) => value.coffeeName)),
+                                  style: const TextStyle(
+                                    fontSize: largeFontSize,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
-                            ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 const SpacerH(),

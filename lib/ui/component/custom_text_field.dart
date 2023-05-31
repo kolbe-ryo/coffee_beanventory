@@ -1,9 +1,15 @@
+import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/global/global_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CustomTextField extends ConsumerStatefulWidget {
-  const CustomTextField({super.key});
+  const CustomTextField({
+    required this.switchEditting,
+    super.key,
+  });
+
+  final void Function() switchEditting;
 
   @override
   ConsumerState<CustomTextField> createState() => _CustomTextFieldState();
@@ -11,13 +17,22 @@ class CustomTextField extends ConsumerStatefulWidget {
 
 class _CustomTextFieldState extends ConsumerState<CustomTextField> {
   late final TextEditingController _textEditingController;
+  late final FocusNode _focusNode;
 
   @override
   void initState() {
     _textEditingController = TextEditingController(
       text: ref.read(globalManagerProvider).coffeeName,
     );
+    _focusNode = FocusNode();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    _focusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -26,25 +41,17 @@ class _CustomTextFieldState extends ConsumerState<CustomTextField> {
       controller: _textEditingController,
       cursorColor: Colors.white,
       cursorWidth: 1,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.zero,
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-        ),
-        // focusedBorder: OutlineInputBorder(
-        //   borderRadius: BorderRadius.circular(kBorder),
-        //   borderSide: const BorderSide(color: AppColors.lightGrey60),
-        // ),
-        // prefixIcon: const Icon(
-        //   Icons.search,
-        //   color: Colors.tealAccent,
-        // ),
-      ),
+      focusNode: _focusNode,
       style: const TextStyle(
         color: Colors.white,
-        fontSize: 18,
+        fontSize: largeFontSize,
+        fontWeight: FontWeight.w600,
       ),
-      onChanged: (text) => _textEditingController.text = text,
+      onEditingComplete: () {
+        ref.read(globalManagerProvider.notifier).changeCoffeeName(_textEditingController.text);
+        widget.switchEditting();
+        _focusNode.unfocus();
+      },
     );
   }
 }
