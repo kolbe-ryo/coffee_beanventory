@@ -1,10 +1,11 @@
 // Package imports:
 import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:flutter/material.dart';
 
 class Wall extends BodyComponent {
   Wall(this._start, this._end)
       : super(
-        // paint: Paint()..color = Colors.transparent,
+          paint: Paint()..color = Colors.transparent,
         );
   final Vector2 _start;
   final Vector2 _end;
