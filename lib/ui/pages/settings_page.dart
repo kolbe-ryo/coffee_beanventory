@@ -69,7 +69,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                           context,
                           BaseWebView.route(
                             title: 'About Thid App',
-                            url: aboutAppUrl,
+                            url: baseAppUrl,
                           ),
                         ),
                         child: Column(
@@ -209,19 +209,23 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                     Flexible(
                       flex: 2,
                       child: CommonCard(
-                        // TODO: Something
-                        onTap: () {},
+                        onTap: () => Navigator.push(
+                          context,
+                          BaseWebView.route(
+                            title: 'Privacy',
+                            url: policyUrl,
+                          ),
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
                             FaIcon(
-                              FontAwesomeIcons.paintRoller,
+                              FontAwesomeIcons.userShield,
                               size: settingIconSize,
                             ),
                             SpacerW(space: kPadding),
                             Text(
-                              // TODO: Something
-                              'Something',
+                              'Privacy',
                               style: TextStyle(
                                 fontSize: largeFontSize,
                                 fontWeight: FontWeight.w600,
