@@ -77,7 +77,7 @@ class GlobalManager extends _$GlobalManager {
       _gameWorld.onCreateBottomWall();
 
       // Remove falling beans after 1 second
-      await Future<void>.delayed(const Duration(seconds: 1));
+      await Future<void>.delayed(const Duration(seconds: 2));
       await _gameWorld.onRemoveBeans(remainingBeans: state.beanGrams);
     } on Exception catch (error) {
       logger.info(error);
