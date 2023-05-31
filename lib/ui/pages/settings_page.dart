@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/ui/component/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -22,6 +23,8 @@ class SettingsPage extends ConsumerStatefulWidget {
 }
 
 class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerProviderStateMixin {
+  bool _isEditting = false;
+
   @override
   void initState() {
     ref.read(globalManagerProvider.notifier).colorControllerViewModel = ColorControllerViewModel(
@@ -119,23 +122,30 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                 ),
                 const SpacerH(),
                 CommonCard(
-                  // TODO: テキスト入力させる
-                  onTap: () {},
+                  onTap: () {
+                    setState(() {
+                      _isEditting = !_isEditting;
+                    });
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      FaIcon(
+                    children: [
+                      const FaIcon(
                         FontAwesomeIcons.tag,
                         size: settingIconSize,
                       ),
-                      SpacerW(space: kPadding),
-                      Text(
-                        'Change Name',
-                        style: TextStyle(
-                          fontSize: largeFontSize,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+                      const SpacerW(space: kPadding),
+                      _isEditting
+                          ? const Expanded(
+                              child: CustomTextField(),
+                            )
+                          : const Text(
+                              'Change Name',
+                              style: TextStyle(
+                                fontSize: largeFontSize,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                     ],
                   ),
                 ),
