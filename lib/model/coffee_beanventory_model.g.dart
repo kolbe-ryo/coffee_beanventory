@@ -12,7 +12,7 @@ _$_CoffeeBeanventoryModel _$$_CoffeeBeanventoryModelFromJson(
       colorIndex:
           $enumDecodeNullable(_$ColorIndexEnumEnumMap, json['colorIndex']) ??
               ColorIndexEnum.warm,
-      coffeeName: json['coffeeName'] as String? ?? '',
+      coffeeName: json['coffeeName'] as String? ?? 'Coffee Name',
       beanGrams: json['beanGrams'] as int? ?? 0,
       beanStockMax: json['beanStockMax'] as int? ?? 0,
       beanAddMax: json['beanAddMax'] as int? ?? 0,

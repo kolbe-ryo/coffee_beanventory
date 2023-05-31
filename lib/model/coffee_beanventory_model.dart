@@ -11,7 +11,7 @@ part 'coffee_beanventory_model.g.dart';
 class CoffeeBeanventoryModel with _$CoffeeBeanventoryModel {
   const factory CoffeeBeanventoryModel({
     @Default(ColorIndexEnum.warm) ColorIndexEnum colorIndex,
-    @Default('') String coffeeName,
+    @Default('Coffee Name') String coffeeName,
     @Default(0) int beanGrams,
     @Default(0) int beanStockMax,
     @Default(0) int beanAddMax,

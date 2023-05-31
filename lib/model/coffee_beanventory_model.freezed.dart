@@ -182,7 +182,7 @@ class __$$_CoffeeBeanventoryModelCopyWithImpl<$Res>
 class _$_CoffeeBeanventoryModel extends _CoffeeBeanventoryModel {
   const _$_CoffeeBeanventoryModel(
       {this.colorIndex = ColorIndexEnum.warm,
-      this.coffeeName = '',
+      this.coffeeName = 'Coffee Name',
       this.beanGrams = 0,
       this.beanStockMax = 0,
       this.beanAddMax = 0,
