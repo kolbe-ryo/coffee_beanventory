@@ -1,7 +1,12 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+// Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/global/global_manager.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CustomTextField extends ConsumerStatefulWidget {
   const CustomTextField({
@@ -21,9 +26,7 @@ class _CustomTextFieldState extends ConsumerState<CustomTextField> {
 
   @override
   void initState() {
-    _textEditingController = TextEditingController(
-      text: ref.read(globalManagerProvider).coffeeName,
-    );
+    _textEditingController = TextEditingController(text: ref.read(globalManagerProvider).coffeeName);
     _focusNode = FocusNode();
     super.initState();
   }

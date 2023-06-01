@@ -1,6 +1,8 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:flame_forge2d/flame_forge2d.dart';
-import 'package:flutter/material.dart';
 
 class Wall extends BodyComponent {
   Wall(this._start, this._end)
