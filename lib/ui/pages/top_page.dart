@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/ui/view_model/counter_controller_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -89,11 +90,41 @@ class TopPage extends ConsumerWidget {
   }
 }
 
-class CoffeeBeanInfo extends ConsumerWidget {
+class CoffeeBeanInfo extends ConsumerStatefulWidget {
   const CoffeeBeanInfo({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _CoffeeBeanInfoState();
+}
+
+class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with SingleTickerProviderStateMixin {
+  late double _counter;
+
+  @override
+  void initState() {
+    final state = ref.read(globalManagerProvider);
+    var counterControllerViewModel = ref.read(globalManagerProvider.notifier).counterControllerViewModel;
+    counterControllerViewModel = CounterControllerViewModel(
+      vsync: this,
+      begin: 0,
+      end: state.beanGrams.toDouble(),
+    );
+    counterControllerViewModel.animationController.addListener(
+      () => setState(
+        () => _counter = counterControllerViewModel.animation.value,
+      ),
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    ref.read(globalManagerProvider.notifier).counterControllerViewModel.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final stockBeans = ref.watch(globalManagerProvider.select((value) => value.beanGrams));
     final coffeeName = ref.watch(globalManagerProvider.select((value) => value.coffeeName));
     return DefaultTextStyle(
@@ -124,7 +155,7 @@ class CoffeeBeanInfo extends ConsumerWidget {
               const SpacerW(space: kPadding),
               // TODO: 豆の増減に合わせてアニメーションで変化させる（use easeInOutQuart or easeInOutQuint）
               // refrences: https://api.flutter.dev/flutter/animation/Curves-class.html
-              Text('${stockBeans}g'),
+              Text('${_counter}g'),
             ],
           ),
         ],
