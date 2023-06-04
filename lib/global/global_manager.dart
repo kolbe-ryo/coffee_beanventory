@@ -95,6 +95,16 @@ class GlobalManager extends _$GlobalManager {
   // Change using bean by user
   void changeUseBeans(int grams) => state = state.copyWith(useBeans: grams);
 
+  // Method for Settings Page
+  // ########################################################################
+
+  // Coffee Name
+  Future<void> changeCoffeeName(String coffeeName) async {
+    state = state.copyWith(coffeeName: coffeeName);
+    await saveToLocalStorage();
+  }
+
+  // Color Theme
   Future<void> switchColor() async {
     // Nothing to do if animating
     if (colorControllerViewModel.animationController.isAnimating) {
@@ -105,13 +115,17 @@ class GlobalManager extends _$GlobalManager {
     await saveToLocalStorage();
   }
 
-  Future<void> changeCoffeeName(String coffeeName) async {
-    state = state.copyWith(coffeeName: coffeeName);
+  // Change Volume
+  // TODO change state and setting min(100) and max(300?)
+  Future<void> changeVolume({required bool isCountUp}) async {
+    state = state.copyWith();
     await saveToLocalStorage();
   }
 
+  // Delete
   Future<void> deleteAllSettins() async {
     state = const CoffeeBeanventoryModel();
     await saveToLocalStorage();
   }
+  // ########################################################################
 }

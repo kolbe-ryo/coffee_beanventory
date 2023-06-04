@@ -251,6 +251,7 @@ class _MaximumVolume extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final storageSize = ref.watch(globalManagerProvider.select((value) => value.beanStockMax));
+    final globalManager = ref.watch(globalManagerProvider.notifier);
     return Expanded(
       child: SquareCard(
         onTap: () {},
@@ -278,8 +279,7 @@ class _MaximumVolume extends ConsumerWidget {
                     FontAwesomeIcons.arrowLeft,
                     size: settingMinIconSize,
                   ),
-                  // TODO: Change maximum volume for bin
-                  onPressed: () {},
+                  onPressed: () => globalManager.changeVolume(isCountUp: true),
                 ),
                 Text(
                   '$storageSize',
@@ -293,8 +293,7 @@ class _MaximumVolume extends ConsumerWidget {
                     FontAwesomeIcons.arrowRight,
                     size: settingMinIconSize,
                   ),
-                  // TODO: Change maximum volume for bin
-                  onPressed: () {},
+                  onPressed: () => globalManager.changeVolume(isCountUp: false),
                 ),
               ],
             ),
