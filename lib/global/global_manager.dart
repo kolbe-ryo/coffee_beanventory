@@ -109,4 +109,9 @@ class GlobalManager extends _$GlobalManager {
     state = state.copyWith(coffeeName: coffeeName);
     await saveToLocalStorage();
   }
+
+  Future<void> deleteAllSettins() async {
+    state = const CoffeeBeanventoryModel();
+    await saveToLocalStorage();
+  }
 }

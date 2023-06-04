@@ -96,6 +96,7 @@ class CoffeeBeanInfo extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final stockBeans = ref.watch(globalManagerProvider.select((value) => value.beanGrams));
     final maxStockBeans = ref.watch(globalManagerProvider.select((value) => value.beanStockMax));
+    final coffeeName = ref.watch(globalManagerProvider.select((value) => value.coffeeName));
     return DefaultTextStyle(
       style: const TextStyle(
         fontSize: 50,
@@ -104,7 +105,7 @@ class CoffeeBeanInfo extends ConsumerWidget {
       child: Column(
         children: [
           const SpacerH(space: kPadding * 8),
-          Text('Coffee Name'),
+          Text(coffeeName),
           const SpacerH(space: kPadding * 2),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -114,6 +115,7 @@ class CoffeeBeanInfo extends ConsumerWidget {
                 size: 50,
               ),
               const SpacerW(space: kPadding),
+              // TODO: 豆の増減に合わせてアニメーションで変化させる
               Text('${stockBeans}g'),
             ],
           ),
