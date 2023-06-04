@@ -122,7 +122,8 @@ class CoffeeBeanInfo extends ConsumerWidget {
                 size: 50,
               ),
               const SpacerW(space: kPadding),
-              // TODO: 豆の増減に合わせてアニメーションで変化させる
+              // TODO: 豆の増減に合わせてアニメーションで変化させる（use easeInOutQuart or easeInOutQuint）
+              // refrences: https://api.flutter.dev/flutter/animation/Curves-class.html
               Text('${stockBeans}g'),
             ],
           ),
