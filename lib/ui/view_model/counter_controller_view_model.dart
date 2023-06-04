@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 class CounterControllerViewModel {
   CounterControllerViewModel({
     required TickerProvider vsync,
+    required this.begin,
+    required this.end,
   }) : _animationController = AnimationController(
           vsync: vsync,
           duration: const Duration(seconds: 2),
         );
+
+  final double begin;
+  final double end;
 
   // Define Animation Controller
   final AnimationController _animationController;
