@@ -32,6 +32,7 @@ class DispenseKnobButton extends ConsumerWidget {
         }
       }),
     );
+    final beanAddMax = ref.watch(globalManagerProvider.select((value) => value.beanAddMax));
     return InkWell(
       borderRadius: BorderRadius.circular(knobRadius / 2),
       splashColor: colorIndexEnum.colors[splashColor],
@@ -59,8 +60,7 @@ class DispenseKnobButton extends ConsumerWidget {
             ),
             modifier: (percentage) => '${percentage.round()}g',
           ),
-          // TODO 最大追加量をstateから取得する（どこで変更するか？Settingに追加する？）
-          size: circleMeterRadius,
+          size: beanAddMax.toDouble(),
           startAngle: circleAngle,
         ),
         // max: 100,
