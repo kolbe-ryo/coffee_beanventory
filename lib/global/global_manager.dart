@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/ui/view_model/counter_controller_view_model.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -21,6 +22,8 @@ class GlobalManager extends _$GlobalManager {
   GameWorld get world => _gameWorld;
 
   late ColorControllerViewModel colorControllerViewModel;
+
+  late CounterControllerViewModel counterControllerViewModel;
 
   // Tips: AsyncValueStateでFutureではないStateを更新するにはrequiredValueを使用する
   @override
