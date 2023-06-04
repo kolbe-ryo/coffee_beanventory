@@ -13,6 +13,8 @@ import 'package:coffee_beanventory/util/di.dart';
 
 void main() {
   setUpDI();
+  // TODO Firebase Crashlitycs
+  // TODO Admob
   runApp(
     const ProviderScope(
       child: RootPage(),

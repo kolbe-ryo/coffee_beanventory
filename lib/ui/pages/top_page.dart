@@ -104,6 +104,7 @@ class CoffeeBeanInfo extends ConsumerWidget {
       child: Column(
         children: [
           const SpacerH(space: kPadding * 8),
+          // TODO: 名前の最大表示を決める
           Text(coffeeName),
           const SpacerH(space: kPadding * 2),
           Row(

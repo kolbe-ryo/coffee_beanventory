@@ -10,12 +10,19 @@ part 'coffee_beanventory_model.g.dart';
 @freezed
 class CoffeeBeanventoryModel with _$CoffeeBeanventoryModel {
   const factory CoffeeBeanventoryModel({
+    // Color Theme
     @Default(ColorIndexEnum.warm) ColorIndexEnum colorIndex,
+    // Coffee Bean Name
     @Default('Coffee Name') String coffeeName,
+    // Storage Bean Grams
     @Default(0) int beanGrams,
-    @Default(0) int beanStockMax,
-    @Default(0) int beanAddMax,
+    // Storage Size For Beans
+    @Default(100) int beanStockMax,
+    // Max Adding Size
+    @Default(100) int beanAddMax,
+    // Previous Adding Size
     @Default(0) int addBeans,
+    // Previous Using Size
     @Default(0) int useBeans,
   }) = _CoffeeBeanventoryModel;
 

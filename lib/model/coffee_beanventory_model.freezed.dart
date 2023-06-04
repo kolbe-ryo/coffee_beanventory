@@ -21,12 +21,17 @@ CoffeeBeanventoryModel _$CoffeeBeanventoryModelFromJson(
 
 /// @nodoc
 mixin _$CoffeeBeanventoryModel {
-  ColorIndexEnum get colorIndex => throw _privateConstructorUsedError;
-  String get coffeeName => throw _privateConstructorUsedError;
-  int get beanGrams => throw _privateConstructorUsedError;
-  int get beanStockMax => throw _privateConstructorUsedError;
-  int get beanAddMax => throw _privateConstructorUsedError;
-  int get addBeans => throw _privateConstructorUsedError;
+// Color Theme
+  ColorIndexEnum get colorIndex =>
+      throw _privateConstructorUsedError; // Coffee Bean Name
+  String get coffeeName =>
+      throw _privateConstructorUsedError; // Storage Bean Grams
+  int get beanGrams =>
+      throw _privateConstructorUsedError; // Storage Size For Beans
+  int get beanStockMax => throw _privateConstructorUsedError; // Max Adding Size
+  int get beanAddMax =>
+      throw _privateConstructorUsedError; // Previous Adding Size
+  int get addBeans => throw _privateConstructorUsedError; // Previous Using Size
   int get useBeans => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -184,8 +189,8 @@ class _$_CoffeeBeanventoryModel extends _CoffeeBeanventoryModel {
       {this.colorIndex = ColorIndexEnum.warm,
       this.coffeeName = 'Coffee Name',
       this.beanGrams = 0,
-      this.beanStockMax = 0,
-      this.beanAddMax = 0,
+      this.beanStockMax = 100,
+      this.beanAddMax = 100,
       this.addBeans = 0,
       this.useBeans = 0})
       : super._();
@@ -193,24 +198,31 @@ class _$_CoffeeBeanventoryModel extends _CoffeeBeanventoryModel {
   factory _$_CoffeeBeanventoryModel.fromJson(Map<String, dynamic> json) =>
       _$$_CoffeeBeanventoryModelFromJson(json);
 
+// Color Theme
   @override
   @JsonKey()
   final ColorIndexEnum colorIndex;
+// Coffee Bean Name
   @override
   @JsonKey()
   final String coffeeName;
+// Storage Bean Grams
   @override
   @JsonKey()
   final int beanGrams;
+// Storage Size For Beans
   @override
   @JsonKey()
   final int beanStockMax;
+// Max Adding Size
   @override
   @JsonKey()
   final int beanAddMax;
+// Previous Adding Size
   @override
   @JsonKey()
   final int addBeans;
+// Previous Using Size
   @override
   @JsonKey()
   final int useBeans;
@@ -275,19 +287,19 @@ abstract class _CoffeeBeanventoryModel extends CoffeeBeanventoryModel {
   factory _CoffeeBeanventoryModel.fromJson(Map<String, dynamic> json) =
       _$_CoffeeBeanventoryModel.fromJson;
 
-  @override
+  @override // Color Theme
   ColorIndexEnum get colorIndex;
-  @override
+  @override // Coffee Bean Name
   String get coffeeName;
-  @override
+  @override // Storage Bean Grams
   int get beanGrams;
-  @override
+  @override // Storage Size For Beans
   int get beanStockMax;
-  @override
+  @override // Max Adding Size
   int get beanAddMax;
-  @override
+  @override // Previous Adding Size
   int get addBeans;
-  @override
+  @override // Previous Using Size
   int get useBeans;
   @override
   @JsonKey(ignore: true)

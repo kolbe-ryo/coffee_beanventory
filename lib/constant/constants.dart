@@ -41,7 +41,7 @@ const double cardHeight = 80;
 // Settings
 const double settingIconSize = 40;
 
-const double settingMinIconSize = 20;
+const double settingMinIconSize = 30;
 
 const String baseAppUrl = 'https://kolbe-app.site';
 

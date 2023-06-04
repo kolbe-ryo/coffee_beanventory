@@ -59,6 +59,7 @@ class DispenseKnobButton extends ConsumerWidget {
             ),
             modifier: (percentage) => '${percentage.round()}g',
           ),
+          // TODO 最大追加量をstateから取得する
           size: circleMeterRadius,
           startAngle: circleAngle,
         ),

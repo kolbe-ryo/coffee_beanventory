@@ -245,14 +245,14 @@ class _ColorTheme extends ConsumerWidget {
   }
 }
 
-class _MaximumVolume extends StatelessWidget {
+class _MaximumVolume extends ConsumerWidget {
   const _MaximumVolume();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final storageSize = ref.watch(globalManagerProvider.select((value) => value.beanStockMax));
     return Expanded(
       child: SquareCard(
-        // TODO: Change maximum volume for bin
         onTap: () {},
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -271,15 +271,30 @@ class _MaximumVolume extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Row(
-              children: const [
-                FaIcon(
-                  FontAwesomeIcons.fillDrip,
-                  size: settingMinIconSize,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: const FaIcon(
+                    FontAwesomeIcons.arrowLeft,
+                    size: settingMinIconSize,
+                  ),
+                  // TODO: Change maximum volume for bin
+                  onPressed: () {},
                 ),
-                Text('100'),
-                FaIcon(
-                  FontAwesomeIcons.fillDrip,
-                  size: settingMinIconSize,
+                Text(
+                  '$storageSize',
+                  style: const TextStyle(
+                    fontSize: largeFontSize,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                IconButton(
+                  icon: const FaIcon(
+                    FontAwesomeIcons.arrowRight,
+                    size: settingMinIconSize,
+                  ),
+                  // TODO: Change maximum volume for bin
+                  onPressed: () {},
                 ),
               ],
             ),
@@ -290,15 +305,14 @@ class _MaximumVolume extends StatelessWidget {
   }
 }
 
-class _DeleteSettings extends StatelessWidget {
+class _DeleteSettings extends ConsumerWidget {
   const _DeleteSettings();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Flexible(
       child: CommonCard(
-        // TODO: Delete All 初期値のモデルをセットする
-        onTap: () {},
+        onTap: ref.watch(globalManagerProvider.notifier).deleteAllSettins,
         child: const FaIcon(
           FontAwesomeIcons.trash,
           size: settingIconSize,
