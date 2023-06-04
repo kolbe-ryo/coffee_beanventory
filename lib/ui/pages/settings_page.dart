@@ -33,7 +33,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
 
   @override
   Widget build(BuildContext context) {
-    // final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
     final animationViewModel = ref.watch(globalManagerProvider.notifier).colorControllerViewModel;
     return AnimatedBuilder(
       animation: animationViewModel.animationController,
@@ -59,6 +58,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
             padding: const EdgeInsets.symmetric(horizontal: kPadding),
             child: Column(
               children: [
+                const SpacerH(),
                 Row(
                   children: const [
                     _AboutThisApp(),
@@ -70,118 +70,20 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                 const _NameLabel(),
                 const SpacerH(),
                 Row(
-                  children: [
-                    Expanded(
-                      child: SquareCard(
-                        onTap: () => ref.watch(globalManagerProvider.notifier).switchColor(),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            FaIcon(
-                              FontAwesomeIcons.paintRoller,
-                              size: settingIconSize,
-                            ),
-                            SpacerH(space: kPadding),
-                            Text(
-                              'Color Theme',
-                              style: TextStyle(
-                                fontSize: largeFontSize,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SpacerW(),
-                    Expanded(
-                      child: SquareCard(
-                        // TODO: Change maximum volume for bin
-                        onTap: () {},
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const FaIcon(
-                              FontAwesomeIcons.fillDrip,
-                              size: settingIconSize,
-                            ),
-                            const SpacerH(space: kPadding),
-                            const Text(
-                              'Volume',
-                              style: TextStyle(
-                                fontSize: largeFontSize,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            Row(
-                              children: [
-                                const FaIcon(
-                                  FontAwesomeIcons.fillDrip,
-                                  size: settingIconSize,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                  children: const [
+                    _ColorTheme(),
+                    SpacerW(),
+                    _MaximumVolume(),
                   ],
                 ),
                 const SpacerH(),
                 Row(
-                  children: [
-                    Flexible(
-                      child: CommonCard(
-                        // TODO: Delete All 初期値のモデルをセットする
-                        onTap: () {},
-                        child: const FaIcon(
-                          FontAwesomeIcons.trash,
-                          size: settingIconSize,
-                        ),
-                      ),
-                    ),
-                    const SpacerW(),
-                    Flexible(
-                      flex: 2,
-                      child: CommonCard(
-                        onTap: () => Navigator.push(
-                          context,
-                          BaseWebView.route(
-                            title: 'Privacy',
-                            url: policyUrl,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            FaIcon(
-                              FontAwesomeIcons.userShield,
-                              size: settingIconSize,
-                            ),
-                            SpacerW(space: kPadding),
-                            Text(
-                              'Privacy',
-                              style: TextStyle(
-                                fontSize: largeFontSize,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                  children: const [
+                    _DeleteSettings(),
+                    SpacerW(),
+                    _PrivacyPage(),
                   ],
                 ),
-                // const SpacerH(),
-                // Row(
-                //   children: const [
-                //     Expanded(child: SquareCard()),
-                //     SpacerW(),
-                //     Expanded(child: SquareCard()),
-                //   ],
-                // ),
               ],
             ),
           ),
@@ -303,6 +205,137 @@ class _NameLabelState extends ConsumerState<_NameLabel> {
                 child: CustomTextField(
                   switchEditting: switchEditting,
                 ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ColorTheme extends ConsumerWidget {
+  const _ColorTheme();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Expanded(
+      child: SquareCard(
+        onTap: () => ref.watch(globalManagerProvider.notifier).switchColor(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            FaIcon(
+              FontAwesomeIcons.paintRoller,
+              size: settingIconSize,
+            ),
+            SpacerH(space: kPadding),
+            Text(
+              'Color Theme',
+              style: TextStyle(
+                fontSize: largeFontSize,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MaximumVolume extends StatelessWidget {
+  const _MaximumVolume();
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: SquareCard(
+        // TODO: Change maximum volume for bin
+        onTap: () {},
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const FaIcon(
+              FontAwesomeIcons.fillDrip,
+              size: settingIconSize,
+            ),
+            const SpacerH(space: kPadding),
+            const Text(
+              'Volume',
+              style: TextStyle(
+                fontSize: largeFontSize,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Row(
+              children: const [
+                FaIcon(
+                  FontAwesomeIcons.fillDrip,
+                  size: settingMinIconSize,
+                ),
+                Text('100'),
+                FaIcon(
+                  FontAwesomeIcons.fillDrip,
+                  size: settingMinIconSize,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DeleteSettings extends StatelessWidget {
+  const _DeleteSettings();
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: CommonCard(
+        // TODO: Delete All 初期値のモデルをセットする
+        onTap: () {},
+        child: const FaIcon(
+          FontAwesomeIcons.trash,
+          size: settingIconSize,
+        ),
+      ),
+    );
+  }
+}
+
+class _PrivacyPage extends StatelessWidget {
+  const _PrivacyPage();
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      flex: 2,
+      child: CommonCard(
+        onTap: () => Navigator.push(
+          context,
+          BaseWebView.route(
+            title: 'Privacy',
+            url: policyUrl,
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            FaIcon(
+              FontAwesomeIcons.userShield,
+              size: settingIconSize,
+            ),
+            SpacerW(space: kPadding),
+            Text(
+              'Privacy',
+              style: TextStyle(
+                fontSize: largeFontSize,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
