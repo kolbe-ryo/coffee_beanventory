@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
-import 'package:coffee_beanventory/enum/color_index_enum.dart';
 import 'package:coffee_beanventory/global/global_manager.dart';
 import 'package:coffee_beanventory/ui/component/common_card.dart';
 import 'package:coffee_beanventory/ui/component/custom_text_field.dart';
@@ -23,8 +22,6 @@ class SettingsPage extends ConsumerStatefulWidget {
 }
 
 class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerProviderStateMixin {
-  bool _isEditting = false;
-
   @override
   void initState() {
     ref.read(globalManagerProvider.notifier).colorControllerViewModel = ColorControllerViewModel(
@@ -33,8 +30,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
     );
     super.initState();
   }
-
-  void switchEditting() => setState(() => _isEditting = !_isEditting);
 
   @override
   Widget build(BuildContext context) {
@@ -65,97 +60,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
             child: Column(
               children: [
                 Row(
-                  children: [
-                    Flexible(
-                      flex: 2,
-                      child: CommonCard(
-                        height: cardHeight * 2,
-                        onTap: () => Navigator.push(
-                          context,
-                          BaseWebView.route(
-                            title: 'About Thid App',
-                            url: baseAppUrl,
-                          ),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            FaIcon(
-                              FontAwesomeIcons.appStore,
-                              size: settingIconSize,
-                            ),
-                            SpacerH(space: kPadding),
-                            Text(
-                              'About Thid App',
-                              style: TextStyle(
-                                fontSize: largeFontSize,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SpacerW(),
-                    Flexible(
-                      child: CommonCard(
-                        height: cardHeight * 2,
-                        onTap: () => showLicensePage(context: context),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            FaIcon(
-                              FontAwesomeIcons.certificate,
-                              size: settingIconSize,
-                            ),
-                            SpacerH(space: kPadding),
-                            Text(
-                              'Licenses',
-                              style: TextStyle(
-                                fontSize: largeFontSize,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                  children: const [
+                    _AboutThisApp(),
+                    SpacerW(),
+                    _Licenses(),
                   ],
                 ),
                 const SpacerH(),
-                CommonCard(
-                  onTap: switchEditting,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: kPadding * 2),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const FaIcon(
-                          FontAwesomeIcons.tag,
-                          size: settingIconSize,
-                        ),
-                        const SpacerW(space: kPadding),
-                        _isEditting
-                            ? Expanded(
-                                child: CustomTextField(
-                                  switchEditting: switchEditting,
-                                ),
-                              )
-                            : ConstrainedBox(
-                                constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 2),
-                                child: Text(
-                                  ref.watch(globalManagerProvider.select((value) => value.coffeeName)),
-                                  style: const TextStyle(
-                                    fontSize: largeFontSize,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                      ],
-                    ),
-                  ),
-                ),
+                const _NameLabel(),
                 const SpacerH(),
                 Row(
                   children: [
@@ -204,7 +116,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                               textAlign: TextAlign.center,
                             ),
                             Row(
-                              children: [],
+                              children: [
+                                const FaIcon(
+                                  FontAwesomeIcons.fillDrip,
+                                  size: settingIconSize,
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -270,6 +187,127 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
           ),
         );
       },
+    );
+  }
+}
+
+class _AboutThisApp extends StatelessWidget {
+  const _AboutThisApp();
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      flex: 2,
+      child: CommonCard(
+        height: cardHeight * 2,
+        onTap: () => Navigator.push(
+          context,
+          BaseWebView.route(
+            title: 'About Thid App',
+            url: baseAppUrl,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            FaIcon(
+              FontAwesomeIcons.appStore,
+              size: settingIconSize,
+            ),
+            SpacerH(space: kPadding),
+            Text(
+              'About Thid App',
+              style: TextStyle(
+                fontSize: largeFontSize,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Licenses extends StatelessWidget {
+  const _Licenses();
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: CommonCard(
+        height: cardHeight * 2,
+        onTap: () => showLicensePage(context: context),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            FaIcon(
+              FontAwesomeIcons.certificate,
+              size: settingIconSize,
+            ),
+            SpacerH(space: kPadding),
+            Text(
+              'Licenses',
+              style: TextStyle(
+                fontSize: largeFontSize,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _NameLabel extends ConsumerStatefulWidget {
+  const _NameLabel();
+
+  @override
+  ConsumerState<_NameLabel> createState() => _NameLabelState();
+}
+
+class _NameLabelState extends ConsumerState<_NameLabel> {
+  bool _isEditting = false;
+
+  void switchEditting() => setState(() => _isEditting = !_isEditting);
+
+  @override
+  Widget build(BuildContext context) {
+    return CommonCard(
+      onTap: switchEditting,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: kPadding * 2),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const FaIcon(
+              FontAwesomeIcons.tag,
+              size: settingIconSize,
+            ),
+            const SpacerW(space: kPadding),
+            Visibility(
+              visible: _isEditting,
+              replacement: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 2),
+                child: Text(
+                  ref.watch(globalManagerProvider.select((value) => value.coffeeName)),
+                  style: const TextStyle(
+                    fontSize: largeFontSize,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              child: Expanded(
+                child: CustomTextField(
+                  switchEditting: switchEditting,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
