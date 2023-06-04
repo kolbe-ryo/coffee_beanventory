@@ -189,19 +189,22 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                         onTap: () {},
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            FaIcon(
+                          children: [
+                            const FaIcon(
                               FontAwesomeIcons.fillDrip,
                               size: settingIconSize,
                             ),
-                            SpacerH(space: kPadding),
-                            Text(
-                              'Change Volume',
+                            const SpacerH(space: kPadding),
+                            const Text(
+                              'Volume',
                               style: TextStyle(
                                 fontSize: largeFontSize,
                                 fontWeight: FontWeight.w600,
                               ),
                               textAlign: TextAlign.center,
+                            ),
+                            Row(
+                              children: [],
                             ),
                           ],
                         ),
@@ -214,7 +217,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
                   children: [
                     Flexible(
                       child: CommonCard(
-                        // TODO: Delete All
+                        // TODO: Delete All 初期値のモデルをセットする
                         onTap: () {},
                         child: const FaIcon(
                           FontAwesomeIcons.trash,
