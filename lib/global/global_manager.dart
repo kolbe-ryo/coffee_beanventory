@@ -118,7 +118,18 @@ class GlobalManager extends _$GlobalManager {
   // Change Volume
   // TODO change state and setting min(100) and max(300?)
   Future<void> changeVolume({required bool isCountUp}) async {
-    state = state.copyWith();
+    // Nothing to do below
+    if (isCountUp && state.beanStockMax == 300) {
+      return;
+    }
+    if (!isCountUp && state.beanStockMax == 100) {
+      return;
+    }
+    if (isCountUp) {
+      state = state.copyWith(beanStockMax: state.beanStockMax + 50);
+    } else {
+      state = state.copyWith(beanStockMax: state.beanStockMax - 50);
+    }
     await saveToLocalStorage();
   }
 

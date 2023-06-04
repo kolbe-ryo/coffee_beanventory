@@ -34,6 +34,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
   @override
   Widget build(BuildContext context) {
     final animationViewModel = ref.watch(globalManagerProvider.notifier).colorControllerViewModel;
+    // Delete Settingsしたときに背景色が変わらない
     return AnimatedBuilder(
       animation: animationViewModel.animationController,
       builder: (context, _) {
@@ -279,7 +280,7 @@ class _MaximumVolume extends ConsumerWidget {
                     FontAwesomeIcons.arrowLeft,
                     size: settingMinIconSize,
                   ),
-                  onPressed: () => globalManager.changeVolume(isCountUp: true),
+                  onPressed: () => globalManager.changeVolume(isCountUp: false),
                 ),
                 Text(
                   '$storageSize',
@@ -293,7 +294,7 @@ class _MaximumVolume extends ConsumerWidget {
                     FontAwesomeIcons.arrowRight,
                     size: settingMinIconSize,
                   ),
-                  onPressed: () => globalManager.changeVolume(isCountUp: false),
+                  onPressed: () => globalManager.changeVolume(isCountUp: true),
                 ),
               ],
             ),
