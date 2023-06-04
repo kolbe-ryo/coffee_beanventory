@@ -95,7 +95,6 @@ class CoffeeBeanInfo extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stockBeans = ref.watch(globalManagerProvider.select((value) => value.beanGrams));
-    final maxStockBeans = ref.watch(globalManagerProvider.select((value) => value.beanStockMax));
     final coffeeName = ref.watch(globalManagerProvider.select((value) => value.coffeeName));
     return DefaultTextStyle(
       style: const TextStyle(
