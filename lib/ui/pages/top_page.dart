@@ -104,8 +104,15 @@ class CoffeeBeanInfo extends ConsumerWidget {
       child: Column(
         children: [
           const SpacerH(space: kPadding * 8),
-          // TODO: 名前の最大表示を決める
-          Text(coffeeName),
+          // TODO: Check this code is well done
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 2),
+            child: Text(
+              coffeeName,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
           const SpacerH(space: kPadding * 2),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

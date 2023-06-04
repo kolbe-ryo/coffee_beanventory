@@ -22,7 +22,7 @@ class GlobalManager extends _$GlobalManager {
 
   late ColorControllerViewModel colorControllerViewModel;
 
-  // AsyncValueStateでFutureではないStateを更新するにはrequiredValueを使用する
+  // Tips: AsyncValueStateでFutureではないStateを更新するにはrequiredValueを使用する
   @override
   CoffeeBeanventoryModel build() {
     final context = GetIt.I<GlobalKey<NavigatorState>>().currentContext!;
@@ -64,21 +64,26 @@ class GlobalManager extends _$GlobalManager {
   }
 
   // Remove action by user
-  Future<void> removeBeanGrams(int grams) async {
-    final remainBeans = (state.beanGrams - grams >= 0) ? state.beanGrams - grams : 0;
+  Future<void> removeBeanGrams(int useGrams) async {
+    final remainBeans = (state.beanGrams - useGrams >= 0) ? state.beanGrams - useGrams : 0;
 
     try {
-      state = state.copyWith(beanGrams: remainBeans, useBeans: grams);
+      state = state.copyWith(beanGrams: remainBeans, useBeans: useGrams);
       await GetIt.I<LocalStorageInterface>().save(state);
       await _gameWorld.onRemove();
       await Future<void>.delayed(
-        Duration(milliseconds: _releaseCalculator(grams)),
+        Duration(milliseconds: _releaseCalculator(useGrams)),
       );
       _gameWorld.onCreateBottomWall();
 
       // Remove falling beans after 1 second
       await Future<void>.delayed(const Duration(seconds: 2));
       await _gameWorld.onRemoveBeans(remainingBeans: state.beanGrams);
+
+      // Log for checking correct use and remove bean
+      logger
+        ..info('フカホリ: $useGrams')
+        ..info('フカホリ: ${_gameWorld.world.bodies.length - 7}');
     } on Exception catch (error) {
       logger.info(error);
     }
@@ -125,6 +130,7 @@ class GlobalManager extends _$GlobalManager {
     if (!isCountUp && state.beanStockMax == 100) {
       return;
     }
+    // Set state
     if (isCountUp) {
       state = state.copyWith(beanStockMax: state.beanStockMax + 50);
     } else {
@@ -133,7 +139,7 @@ class GlobalManager extends _$GlobalManager {
     await saveToLocalStorage();
   }
 
-  // Delete
+  // Initialization
   Future<void> deleteAllSettins() async {
     state = const CoffeeBeanventoryModel();
     await saveToLocalStorage();
