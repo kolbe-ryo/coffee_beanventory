@@ -68,8 +68,10 @@ class DispenseKnobButton extends ConsumerWidget {
         onChange: (value) {
           if (isAdd) {
             ref.read(globalManagerProvider.notifier).changeAddBeans(value.round());
+            // TODO: ボタン押下と同時にAnimationを更新する（begin, end） startAnimation
           } else {
             ref.read(globalManagerProvider.notifier).changeUseBeans(value.round());
+            // TODO: ボタン押下と同時にAnimationを更新する（begin, end） startAnimation
           }
         },
       ),
