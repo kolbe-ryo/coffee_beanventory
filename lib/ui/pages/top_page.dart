@@ -104,35 +104,24 @@ class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with TickerProv
 
   // late AnimationController _controller;
   // late Animation<double> _animation;
-  // int _currentCount = 0;
+  int _currentCount = 0;
 
   @override
   void initState() {
-    //TODO : Color アニメーションのようにやってみる
-    // ref.read(globalManagerProvider.notifier).counterControllerViewModel = CounterControllerViewModel(
-    //   vsync: this,
-    // )
-    //   ..setAnimation(begin: 0, end: ref.read(globalManagerProvider).beanGrams.toDouble())
-    //   ..animationController?.addListener(
-    //     () => setState(
-    //       () => _currentCount =
-    //           ref.watch(globalManagerProvider.notifier).counterControllerViewModel.animation.value.toInt(),
-    //     ),
-    //   );
-    // );
-    // _currentCount = ref.read(globalManagerProvider).beanGrams;
-    // ref.read(globalManagerProvider.notifier).counterControllerViewModel.startAnimation();
     super.initState();
-    // _controller = AnimationController(
-    //   vsync: this,
-    //   duration: const Duration(seconds: 3),
-    // );
-    // _controller.addListener(() {
-    //   setState(() {
-    //     _currentCount = _animation.value.toInt();
-    //   });
-    // });
-    // _controller.forward();
+    //TODO: リファクタ
+    ref.read(globalManagerProvider.notifier).counterControllerViewModel = CounterControllerViewModel(
+      vsync: this,
+      begin: 0,
+      end: ref.read(globalManagerProvider).beanGrams.toDouble(),
+    )..animationController.addListener(
+        () => setState(
+          () => _currentCount =
+              ref.watch(globalManagerProvider.notifier).counterControllerViewModel.animation.value.toInt(),
+        ),
+      );
+    _currentCount = ref.read(globalManagerProvider).beanGrams;
+    ref.read(globalManagerProvider.notifier).counterControllerViewModel.startAnimation();
   }
 
   @override
@@ -173,8 +162,6 @@ class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with TickerProv
                 size: 50,
               ),
               const SpacerW(space: kPadding),
-              // TODO: 豆の増減に合わせてアニメーションで変化させる（use easeInOutQuart or easeInOutQuint）
-              // refrences: https://api.flutter.dev/flutter/animation/Curves-class.html
               Text('${_currentCount}g'),
             ],
           ),

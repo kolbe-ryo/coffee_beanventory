@@ -78,11 +78,9 @@ class DispenseKnobButton extends ConsumerWidget {
         final previousGrams = ref.read(globalManagerProvider).beanGrams.toDouble();
         function(beanGrams);
         final end = isAdd ? previousGrams + beanGrams : previousGrams - beanGrams;
-        ref
-            .read(globalManagerProvider.notifier)
-            .counterControllerViewModel
-            .setAnimation(begin: previousGrams, end: end);
-        ref.read(globalManagerProvider.notifier).counterControllerViewModel.startAnimation();
+        ref.read(globalManagerProvider.notifier).counterControllerViewModel
+          ..setAnimation(begin: previousGrams, end: end)
+          ..startAnimation();
       },
     );
   }
