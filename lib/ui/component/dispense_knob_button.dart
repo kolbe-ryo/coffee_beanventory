@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/ui/view_model/counter_controller_view_model.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -68,14 +69,21 @@ class DispenseKnobButton extends ConsumerWidget {
         onChange: (value) {
           if (isAdd) {
             ref.read(globalManagerProvider.notifier).changeAddBeans(value.round());
-            // TODO: ボタン押下と同時にAnimationを更新する（begin, end） startAnimation
           } else {
             ref.read(globalManagerProvider.notifier).changeUseBeans(value.round());
-            // TODO: ボタン押下と同時にAnimationを更新する（begin, end） startAnimation
           }
         },
       ),
-      onLongPress: () => function(beanGrams),
+      onLongPress: () {
+        final previousGrams = ref.read(globalManagerProvider).beanGrams.toDouble();
+        function(beanGrams);
+        final end = isAdd ? previousGrams + beanGrams : previousGrams - beanGrams;
+        ref
+            .read(globalManagerProvider.notifier)
+            .counterControllerViewModel
+            .setAnimation(begin: previousGrams, end: end);
+        ref.read(globalManagerProvider.notifier).counterControllerViewModel.startAnimation();
+      },
     );
   }
 

@@ -2,28 +2,27 @@ import 'package:flutter/material.dart';
 
 class CounterControllerViewModel {
   CounterControllerViewModel({
-    required TickerProvider vsync,
-    required this.begin,
-    required this.end,
-  }) : _animationController = AnimationController(
-          vsync: vsync,
-          duration: const Duration(seconds: 2),
-        );
+    required this.vsync,
+  });
 
-  final double begin;
-  final double end;
+  final TickerProvider vsync;
 
   // Define Animation Controller
-  final AnimationController _animationController;
+  late AnimationController _animationController;
 
-  AnimationController get animationController => _animationController;
+  AnimationController? get animationController => _animationController;
 
   // Define Animation
-  late Animation<double> _animation = Tween<double>(begin: 0, end: 100).animate(_animationController);
+  late Animation<double> _animation;
 
   Animation<double> get animation => _animation;
 
   void setAnimation({required double begin, required double end}) {
+    // dispose();
+    _animationController = AnimationController(
+      vsync: vsync,
+      duration: const Duration(seconds: 3),
+    );
     _animation = Tween<double>(begin: begin, end: end).animate(_animationController);
   }
 

@@ -26,6 +26,8 @@ class TopPage extends ConsumerWidget {
     final initialLoader = ref.watch(initialLoaderProvider);
     final globalManager = ref.watch(globalManagerProvider.notifier);
     final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
+    final beanGrams = ref.watch(globalManagerProvider).beanGrams.toDouble();
+
     return initialLoader.when(
       data: (state) => Scaffold(
         backgroundColor: colorIndexEnum.colors[backgroundColor],
@@ -97,24 +99,40 @@ class CoffeeBeanInfo extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _CoffeeBeanInfoState();
 }
 
-class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with SingleTickerProviderStateMixin {
-  late double _counter;
+class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with TickerProviderStateMixin {
+  // late double _counter;
+
+  // late AnimationController _controller;
+  // late Animation<double> _animation;
+  // int _currentCount = 0;
 
   @override
   void initState() {
-    final state = ref.read(globalManagerProvider);
-    var counterControllerViewModel = ref.read(globalManagerProvider.notifier).counterControllerViewModel;
-    counterControllerViewModel = CounterControllerViewModel(
-      vsync: this,
-      begin: 0,
-      end: state.beanGrams.toDouble(),
-    );
-    counterControllerViewModel.animationController.addListener(
-      () => setState(
-        () => _counter = counterControllerViewModel.animation.value,
-      ),
-    );
+    //TODO : Color アニメーションのようにやってみる
+    // ref.read(globalManagerProvider.notifier).counterControllerViewModel = CounterControllerViewModel(
+    //   vsync: this,
+    // )
+    //   ..setAnimation(begin: 0, end: ref.read(globalManagerProvider).beanGrams.toDouble())
+    //   ..animationController?.addListener(
+    //     () => setState(
+    //       () => _currentCount =
+    //           ref.watch(globalManagerProvider.notifier).counterControllerViewModel.animation.value.toInt(),
+    //     ),
+    //   );
+    // );
+    // _currentCount = ref.read(globalManagerProvider).beanGrams;
+    // ref.read(globalManagerProvider.notifier).counterControllerViewModel.startAnimation();
     super.initState();
+    // _controller = AnimationController(
+    //   vsync: this,
+    //   duration: const Duration(seconds: 3),
+    // );
+    // _controller.addListener(() {
+    //   setState(() {
+    //     _currentCount = _animation.value.toInt();
+    //   });
+    // });
+    // _controller.forward();
   }
 
   @override
@@ -125,8 +143,10 @@ class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with SingleTick
 
   @override
   Widget build(BuildContext context) {
+    // _animation = Tween<double>(begin: 0, end: 100).animate(_controller);
     final stockBeans = ref.watch(globalManagerProvider.select((value) => value.beanGrams));
     final coffeeName = ref.watch(globalManagerProvider.select((value) => value.coffeeName));
+    // _currentCount = ref.watch(globalManagerProvider.notifier).counterControllerViewModel.animation.value.toInt();
     return DefaultTextStyle(
       style: const TextStyle(
         fontSize: 50,
@@ -135,13 +155,13 @@ class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with SingleTick
       child: Column(
         children: [
           const SpacerH(space: kPadding * 8),
-          // TODO: Check this code is well done
           ConstrainedBox(
             constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 2),
             child: Text(
               coffeeName,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
             ),
           ),
           const SpacerH(space: kPadding * 2),
@@ -155,7 +175,7 @@ class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with SingleTick
               const SpacerW(space: kPadding),
               // TODO: 豆の増減に合わせてアニメーションで変化させる（use easeInOutQuart or easeInOutQuint）
               // refrences: https://api.flutter.dev/flutter/animation/Curves-class.html
-              Text('${_counter}g'),
+              Text('${_currentCount}g'),
             ],
           ),
         ],

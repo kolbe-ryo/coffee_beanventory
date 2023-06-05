@@ -34,7 +34,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> with SingleTickerPr
   @override
   Widget build(BuildContext context) {
     final animationViewModel = ref.watch(globalManagerProvider.notifier).colorControllerViewModel;
-    // Delete Settingsしたときに背景色が変わらない
     return AnimatedBuilder(
       animation: animationViewModel.animationController,
       builder: (context, _) {
