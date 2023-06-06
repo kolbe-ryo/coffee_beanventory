@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:coffee_beanventory/ui/view_model/counter_controller_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +15,7 @@ import 'package:coffee_beanventory/global/global_manager.dart';
 import 'package:coffee_beanventory/ui/component/common_card.dart';
 import 'package:coffee_beanventory/ui/component/dispense_knob_button.dart';
 import 'package:coffee_beanventory/ui/component/paint/frame_sketch.dart';
+import 'package:coffee_beanventory/ui/view_model/counter_controller_view_model.dart';
 import 'package:coffee_beanventory/util/initial_loader.dart';
 
 class TopPage extends ConsumerWidget {

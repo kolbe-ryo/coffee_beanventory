@@ -1,6 +1,8 @@
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 
-import 'sample_test.dart';
+// Project imports:
+import '/Users/ryofukahori/development/flutter/coffee_beanventory/test/sample_test.dart';
 
 void main() {
   group('Counter Test', () {
