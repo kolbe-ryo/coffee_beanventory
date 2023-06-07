@@ -18,8 +18,6 @@ class CoffeeBeanventoryModel with _$CoffeeBeanventoryModel {
     @Default(0) int beanGrams,
     // Storage Size For Beans
     @Default(100) int beanStockMax,
-    // Max Adding Size
-    @Default(100) int beanAddMax,
     // Previous Adding Size
     @Default(0) int addBeans,
     // Previous Using Size
@@ -29,4 +27,7 @@ class CoffeeBeanventoryModel with _$CoffeeBeanventoryModel {
   const CoffeeBeanventoryModel._();
 
   factory CoffeeBeanventoryModel.fromJson(Map<String, dynamic> json) => _$CoffeeBeanventoryModelFromJson(json);
+
+  bool get isInitialized =>
+      coffeeName == 'Coffee Name' && beanGrams == 0 && beanStockMax == 100 && addBeans == 0 && useBeans == 0;
 }

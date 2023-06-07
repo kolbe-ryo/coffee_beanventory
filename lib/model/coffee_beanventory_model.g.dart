@@ -15,7 +15,6 @@ _$_CoffeeBeanventoryModel _$$_CoffeeBeanventoryModelFromJson(
       coffeeName: json['coffeeName'] as String? ?? 'Coffee Name',
       beanGrams: json['beanGrams'] as int? ?? 0,
       beanStockMax: json['beanStockMax'] as int? ?? 100,
-      beanAddMax: json['beanAddMax'] as int? ?? 100,
       addBeans: json['addBeans'] as int? ?? 0,
       useBeans: json['useBeans'] as int? ?? 0,
     );
@@ -27,7 +26,6 @@ Map<String, dynamic> _$$_CoffeeBeanventoryModelToJson(
       'coffeeName': instance.coffeeName,
       'beanGrams': instance.beanGrams,
       'beanStockMax': instance.beanStockMax,
-      'beanAddMax': instance.beanAddMax,
       'addBeans': instance.addBeans,
       'useBeans': instance.useBeans,
     };
