@@ -148,6 +148,9 @@ class GlobalManager extends _$GlobalManager {
       colorControllerViewModel.changeColor();
     }
     state = CoffeeBeanventoryModel(colorIndex: colorControllerViewModel.initialColorIndex);
+
+    // TODO: 最初の画面から開始する
+    // await _gameWorld.onRemoveAll();
     await saveToLocalStorage();
   }
   // ########################################################################

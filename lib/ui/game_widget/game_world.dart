@@ -153,9 +153,13 @@ class GameWorld extends Forge2DGame with HasTappables {
 
   // Remove All Beans
   Future<void> onRemoveAll() async {
-    for (var i = 0; i < world.bodies.length; i++) {
-      world.destroyBody(world.bodies[i]);
-    }
+    // await onRemove();
+
+    // for (var i = 0; i < world.bodies.length; i++) {
+    //   world.destroyBody(world.bodies[i--]);
+    // }
+    // logger.info(world.bodies.length);
+    // createBoundaries().forEach(add);
   }
 
   Future<void> addBeans(int balls) async {
