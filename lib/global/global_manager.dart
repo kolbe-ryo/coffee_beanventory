@@ -142,9 +142,13 @@ class GlobalManager extends _$GlobalManager {
     await saveToLocalStorage();
   }
 
-  // Initialization
+  // Reset All
   Future<void> deleteAllSettins() async {
-    state = const CoffeeBeanventoryModel();
+    // Set initializing color if not
+    if (colorControllerViewModel.initialColorIndex != state.colorIndex) {
+      colorControllerViewModel.changeColor();
+    }
+    state = CoffeeBeanventoryModel(colorIndex: colorControllerViewModel.initialColorIndex);
     await saveToLocalStorage();
   }
   // ########################################################################
