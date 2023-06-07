@@ -100,27 +100,20 @@ class CoffeeBeanInfo extends ConsumerStatefulWidget {
 }
 
 class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with TickerProviderStateMixin {
-  // late double _counter;
-
-  // late AnimationController _controller;
-  // late Animation<double> _animation;
-  int _currentCount = 0;
+  late int _currentCount;
 
   @override
   void initState() {
     super.initState();
-    //TODO: リファクタ
+    // Initialize count
+    _currentCount = ref.read(globalManagerProvider).beanGrams;
+    // Initialize Counter Animation Class
     ref.read(globalManagerProvider.notifier).counterControllerViewModel = CounterControllerViewModel(
       vsync: this,
       begin: 0,
-      end: ref.read(globalManagerProvider).beanGrams.toDouble(),
-    )..animationController.addListener(
-        () => setState(
-          () => _currentCount =
-              ref.watch(globalManagerProvider.notifier).counterControllerViewModel.animation.value.toInt(),
-        ),
-      );
-    _currentCount = ref.read(globalManagerProvider).beanGrams;
+      end: _currentCount.toDouble(),
+    )..animationController.addListener(_updateState);
+    // Start Initial Animation
     ref.read(globalManagerProvider.notifier).counterControllerViewModel.startAnimation();
   }
 
@@ -130,12 +123,16 @@ class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with TickerProv
     super.dispose();
   }
 
+  void _updateState() {
+    setState(
+      () =>
+          _currentCount = ref.watch(globalManagerProvider.notifier).counterControllerViewModel.animation.value.toInt(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // _animation = Tween<double>(begin: 0, end: 100).animate(_controller);
-    final stockBeans = ref.watch(globalManagerProvider.select((value) => value.beanGrams));
     final coffeeName = ref.watch(globalManagerProvider.select((value) => value.coffeeName));
-    // _currentCount = ref.watch(globalManagerProvider.notifier).counterControllerViewModel.animation.value.toInt();
     return DefaultTextStyle(
       style: const TextStyle(
         fontSize: 50,
@@ -162,6 +159,7 @@ class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with TickerProv
                 size: 50,
               ),
               const SpacerW(space: kPadding),
+              // TODO: リセットした時に0にする
               Text('${_currentCount}g'),
             ],
           ),
