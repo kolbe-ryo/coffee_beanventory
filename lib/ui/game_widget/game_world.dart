@@ -135,6 +135,7 @@ class GameWorld extends Forge2DGame with HasTappables {
     _bottomFlameWall.onRemove();
   }
 
+  // Remove beans under bottom screen
   Future<void> onRemoveBeans({required int remainingBeans}) async {
     logger.info(world.bodies[0].position.g);
     // 画面外に出たタイミングでBodyを削除する
@@ -148,6 +149,13 @@ class GameWorld extends Forge2DGame with HasTappables {
 
     // 削除しすぎた場合、追加する処理
     await fallBeanObserver(remainingBeans - (world.bodies.length - 7));
+  }
+
+  // Remove All Beans
+  Future<void> onRemoveAll() async {
+    for (var i = 0; i < world.bodies.length; i++) {
+      world.destroyBody(world.bodies[i]);
+    }
   }
 
   Future<void> addBeans(int balls) async {

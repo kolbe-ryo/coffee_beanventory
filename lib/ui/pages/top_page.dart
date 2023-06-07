@@ -124,6 +124,10 @@ class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with TickerProv
   }
 
   void _updateState() {
+    if (ref.watch(globalManagerProvider.select((value) => value.isInitialized))) {
+      setState(() => _currentCount = 0);
+      return;
+    }
     setState(
       () =>
           _currentCount = ref.watch(globalManagerProvider.notifier).counterControllerViewModel.animation.value.toInt(),

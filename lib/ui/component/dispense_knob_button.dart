@@ -33,7 +33,6 @@ class DispenseKnobButton extends ConsumerWidget {
         }
       }),
     );
-    final beanAddMax = ref.watch(globalManagerProvider.select((value) => value.beanAddMax));
     return InkWell(
       borderRadius: BorderRadius.circular(knobRadius / 2),
       splashColor: colorIndexEnum.colors[splashColor],
@@ -61,7 +60,7 @@ class DispenseKnobButton extends ConsumerWidget {
             ),
             modifier: (percentage) => '${percentage.round()}g',
           ),
-          size: beanAddMax.toDouble(),
+          size: 100,
           startAngle: circleAngle,
         ),
         // max: 100,
