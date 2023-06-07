@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/ui/component/show_dialog.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -311,7 +312,12 @@ class _DeleteSettings extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Flexible(
       child: CommonCard(
-        onTap: ref.watch(globalManagerProvider.notifier).deleteAllSettins,
+        onTap: () async {
+          final result = await baseShowDialog(context: context, title: 'Are you sure delete?');
+          if (result ?? false) {
+            await ref.watch(globalManagerProvider.notifier).deleteAllSettins();
+          }
+        },
         child: const FaIcon(
           FontAwesomeIcons.trash,
           size: settingIconSize,
