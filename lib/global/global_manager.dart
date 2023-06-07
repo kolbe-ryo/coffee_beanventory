@@ -42,7 +42,6 @@ class GlobalManager extends _$GlobalManager {
         coffeeName: response.coffeeName,
         beanGrams: response.beanGrams,
         beanStockMax: response.beanStockMax,
-        beanAddMax: response.beanAddMax,
         addBeans: response.addBeans,
         useBeans: response.useBeans,
       );
