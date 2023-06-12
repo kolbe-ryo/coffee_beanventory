@@ -131,7 +131,7 @@ class GameWorld extends Forge2DGame with HasTappables {
 
   // Remove bottom layer
   @override
-  Future<void> onRemove() async {
+  Future<void> onRemoveBottom() async {
     _bottomFlameWall.onRemove();
   }
 

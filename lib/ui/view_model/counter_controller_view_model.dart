@@ -26,8 +26,8 @@ class CounterControllerViewModel {
 
   void setAnimation({required double begin, required double end}) {
     _animationController.reset();
-    // TODO: 0の時はそれ以下にはしない処理
-    _animation = Tween<double>(begin: begin, end: end).animate(_animationController);
+    final endCount = (end > 0) ? end : 0.0;
+    _animation = Tween<double>(begin: begin, end: endCount).animate(_animationController);
   }
 
   void startAnimation() {

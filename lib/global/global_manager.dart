@@ -72,7 +72,7 @@ class GlobalManager extends _$GlobalManager {
     try {
       state = state.copyWith(beanGrams: remainBeans, useBeans: useGrams);
       await GetIt.I<LocalStorageInterface>().save(state);
-      await _gameWorld.onRemove();
+      await _gameWorld.onRemoveBottom();
       await Future<void>.delayed(
         Duration(milliseconds: _releaseCalculator(useGrams)),
       );
@@ -142,7 +142,7 @@ class GlobalManager extends _$GlobalManager {
   }
 
   // Reset All
-  Future<void> deleteAllSettins() async {
+  Future<bool> deleteAllSettins() async {
     // Set initializing color if not
     if (colorControllerViewModel.initialColorIndex != state.colorIndex) {
       colorControllerViewModel.changeColor();
@@ -150,8 +150,13 @@ class GlobalManager extends _$GlobalManager {
     state = CoffeeBeanventoryModel(colorIndex: colorControllerViewModel.initialColorIndex);
 
     // TODO: 最初の画面から開始する
-    // await _gameWorld.onRemoveAll();
+    await _gameWorld.onRemoveBottom();
+    await Future<void>.delayed(const Duration(seconds: 10));
+    _gameWorld.onCreateBottomWall();
+
+    // update state
     await saveToLocalStorage();
+    return true;
   }
   // ########################################################################
 }

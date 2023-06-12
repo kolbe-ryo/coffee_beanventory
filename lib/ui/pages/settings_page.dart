@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/ui/component/app_loading.dart';
 import 'package:coffee_beanventory/ui/component/show_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -313,9 +314,11 @@ class _DeleteSettings extends ConsumerWidget {
     return Flexible(
       child: CommonCard(
         onTap: () async {
+          final navigator = Navigator.of(context);
           final result = await baseShowDialog(context: context, title: 'Are you sure delete?');
           if (result ?? false) {
-            await ref.watch(globalManagerProvider.notifier).deleteAllSettins();
+            navigator.pop();
+            await showLoadingModal(future: ref.watch(globalManagerProvider.notifier).deleteAllSettins());
           }
         },
         child: const FaIcon(

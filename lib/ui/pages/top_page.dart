@@ -123,20 +123,22 @@ class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with TickerProv
     super.dispose();
   }
 
-  void _updateState() {
-    if (ref.watch(globalManagerProvider.select((value) => value.isInitialized))) {
-      setState(() => _currentCount = 0);
-      return;
-    }
-    setState(
-      () =>
-          _currentCount = ref.watch(globalManagerProvider.notifier).counterControllerViewModel.animation.value.toInt(),
-    );
-  }
+  void _updateState() => setState(
+        () => _currentCount =
+            ref.watch(globalManagerProvider.notifier).counterControllerViewModel.animation.value.toInt(),
+      );
 
   @override
   Widget build(BuildContext context) {
     final coffeeName = ref.watch(globalManagerProvider.select((value) => value.coffeeName));
+    final isInitialize = ref.watch(
+      globalManagerProvider.select((value) {
+        if (value.isInitialized) {
+          return true;
+        }
+        return false;
+      }),
+    );
     return DefaultTextStyle(
       style: const TextStyle(
         fontSize: 50,
@@ -163,8 +165,7 @@ class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with TickerProv
                 size: 50,
               ),
               const SpacerW(space: kPadding),
-              // TODO: リセットした時に0にする
-              Text('${_currentCount}g'),
+              Text('${isInitialize ? 0 : _currentCount}g'),
             ],
           ),
         ],
