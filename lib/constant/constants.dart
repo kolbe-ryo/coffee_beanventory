@@ -18,6 +18,10 @@ const double widthRate = 0.7;
 
 const double gameZoom = 5;
 
+const int maxStorage = 350;
+
+const int minStorage = 100;
+
 // Meter constants
 const double circleMeterRadius = 100;
 

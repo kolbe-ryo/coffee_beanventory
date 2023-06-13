@@ -254,6 +254,8 @@ class _MaximumVolume extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final storageSize = ref.watch(globalManagerProvider.select((value) => value.beanStockMax));
     final globalManager = ref.watch(globalManagerProvider.notifier);
+    final isMax = ref.watch(globalManagerProvider.select((value) => value.beanStockMax == maxStorage));
+    final isMin = ref.watch(globalManagerProvider.select((value) => value.beanStockMax == minStorage));
     return Expanded(
       child: SquareCard(
         onTap: () {},
@@ -277,10 +279,12 @@ class _MaximumVolume extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
+                  color: isMin ? Colors.transparent : null,
                   icon: const FaIcon(
                     FontAwesomeIcons.arrowLeft,
                     size: settingMinIconSize,
                   ),
+                  // TODO 大きい数字から小さい数字にする際は50ずづ削除する処理を入れる
                   onPressed: () => globalManager.changeVolume(isCountUp: false),
                 ),
                 Text(
@@ -291,6 +295,7 @@ class _MaximumVolume extends ConsumerWidget {
                   ),
                 ),
                 IconButton(
+                  color: isMax ? Colors.transparent : null,
                   icon: const FaIcon(
                     FontAwesomeIcons.arrowRight,
                     size: settingMinIconSize,

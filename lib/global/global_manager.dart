@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/util/di.dart';
 import 'package:flutter/material.dart';
 
@@ -65,8 +66,8 @@ class GlobalManager extends _$GlobalManager {
     var addGrams = grams;
 
     if (currentGrams >= state.beanStockMax) {
-      state = state.copyWith(beanGrams: state.beanStockMax);
       addGrams = state.beanStockMax - state.beanGrams;
+      state = state.copyWith(beanGrams: state.beanStockMax);
     } else {
       state = state.copyWith(beanGrams: state.beanGrams + grams);
     }
@@ -140,10 +141,10 @@ class GlobalManager extends _$GlobalManager {
   // TODO change state and setting min(100) and max(300?)
   Future<void> changeVolume({required bool isCountUp}) async {
     // Nothing to do below
-    if (isCountUp && state.beanStockMax == 350) {
+    if (isCountUp && state.beanStockMax == maxStorage) {
       return;
     }
-    if (!isCountUp && state.beanStockMax == 100) {
+    if (!isCountUp && state.beanStockMax == minStorage) {
       return;
     }
     // Set state
