@@ -130,7 +130,6 @@ class GameWorld extends Forge2DGame with HasTappables {
   }
 
   // Remove bottom layer
-  @override
   Future<void> onRemoveBottom() async {
     _bottomFlameWall.onRemove();
   }
@@ -151,19 +150,7 @@ class GameWorld extends Forge2DGame with HasTappables {
     await fallBeanObserver(remainingBeans - (world.bodies.length - 7));
   }
 
-  // Remove All Beans
-  Future<void> onRemoveAll() async {
-    // await onRemove();
-
-    // for (var i = 0; i < world.bodies.length; i++) {
-    //   world.destroyBody(world.bodies[i--]);
-    // }
-    // logger.info(world.bodies.length);
-    // createBoundaries().forEach(add);
-  }
-
   Future<void> addBeans(int balls) async {
-    // TODO: 少しづつ追加する
     _generator.generateBalls(balls).forEach(add);
   }
 

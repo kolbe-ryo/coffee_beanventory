@@ -150,7 +150,7 @@ class GlobalManager extends _$GlobalManager {
     }
     state = CoffeeBeanventoryModel(colorIndex: colorControllerViewModel.initialColorIndex);
 
-    // 全ての
+    // Remove All beans
     await _gameWorld.onRemoveBottom();
     // TODO　全ての豆の削除に必要な最低限の秒数を算出する（豆の量によって秒数を変更する）
     await Future<void>.delayed(const Duration(seconds: 10));
