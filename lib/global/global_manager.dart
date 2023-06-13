@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:coffee_beanventory/util/di.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -36,7 +37,7 @@ class GlobalManager extends _$GlobalManager {
   // Fetch from local storage as the initiral action for starting
   Future<void> fetchFromLocalStorage() async {
     try {
-      final response = await GetIt.I<LocalStorageInterface>().fetch();
+      final response = await ref.watch(localStorageInterfaceProvider).fetch();
       state = state.copyWith(
         colorIndex: response.colorIndex,
         coffeeName: response.coffeeName,
@@ -55,7 +56,7 @@ class GlobalManager extends _$GlobalManager {
 
   // Save to local storage after some action for changing state
   Future<void> saveToLocalStorage() async {
-    await GetIt.I<LocalStorageInterface>().save(state);
+    await ref.watch(localStorageInterfaceProvider).save(state);
   }
 
   // Add action by user
@@ -71,7 +72,7 @@ class GlobalManager extends _$GlobalManager {
 
     try {
       state = state.copyWith(beanGrams: remainBeans, useBeans: useGrams);
-      await GetIt.I<LocalStorageInterface>().save(state);
+      await saveToLocalStorage();
       await _gameWorld.onRemoveBottom();
       await Future<void>.delayed(
         Duration(milliseconds: _releaseCalculator(useGrams)),
@@ -151,7 +152,7 @@ class GlobalManager extends _$GlobalManager {
 
     // 全ての
     await _gameWorld.onRemoveBottom();
-    // TODO　全ての豆の削除に必要な最低限の秒数を算出する
+    // TODO　全ての豆の削除に必要な最低限の秒数を算出する（豆の量によって秒数を変更する）
     await Future<void>.delayed(const Duration(seconds: 10));
     _gameWorld.onCreateBottomWall();
 
