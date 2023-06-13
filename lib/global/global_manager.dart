@@ -127,7 +127,7 @@ class GlobalManager extends _$GlobalManager {
   // TODO change state and setting min(100) and max(300?)
   Future<void> changeVolume({required bool isCountUp}) async {
     // Nothing to do below
-    if (isCountUp && state.beanStockMax == 300) {
+    if (isCountUp && state.beanStockMax == 350) {
       return;
     }
     if (!isCountUp && state.beanStockMax == 100) {
