@@ -61,9 +61,22 @@ class GlobalManager extends _$GlobalManager {
 
   // Add action by user
   Future<void> addBeanGrams(int grams) async {
-    state = state.copyWith(beanGrams: state.beanGrams + grams);
+    final currentGrams = state.beanGrams + grams;
+    var addGrams = grams;
+
+    if (currentGrams >= state.beanStockMax) {
+      state = state.copyWith(beanGrams: state.beanStockMax);
+      addGrams = state.beanStockMax - state.beanGrams;
+    } else {
+      state = state.copyWith(beanGrams: state.beanGrams + grams);
+    }
     await saveToLocalStorage();
-    await _gameWorld.addBeans(grams);
+
+    // Nothing to do if max beans
+    if (addGrams == 0) {
+      return;
+    }
+    await _gameWorld.addBeans(addGrams);
   }
 
   // Remove action by user

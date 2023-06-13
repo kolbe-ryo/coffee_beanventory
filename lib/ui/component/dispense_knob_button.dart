@@ -14,12 +14,12 @@ import 'package:coffee_beanventory/ui/view_model/counter_controller_view_model.d
 class DispenseKnobButton extends ConsumerWidget {
   const DispenseKnobButton({
     required this.buttonText,
-    required this.function,
+    required this.beanChanger,
     super.key,
   });
 
   final String buttonText;
-  final Future<void> Function(int) function;
+  final Future<void> Function(int) beanChanger;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -75,7 +75,7 @@ class DispenseKnobButton extends ConsumerWidget {
       ),
       onLongPress: () {
         final previousGrams = ref.read(globalManagerProvider).beanGrams.toDouble();
-        function(beanGrams);
+        beanChanger(beanGrams);
         final end = isAdd ? previousGrams + beanGrams : previousGrams - beanGrams;
         ref.read(globalManagerProvider.notifier).counterControllerViewModel
           ..setAnimation(begin: previousGrams, end: end)
@@ -84,5 +84,5 @@ class DispenseKnobButton extends ConsumerWidget {
     );
   }
 
-  bool get isAdd => function.toString().contains('addBeanGrams');
+  bool get isAdd => beanChanger.toString().contains('addBeanGrams');
 }

@@ -30,12 +30,7 @@ class CounterControllerViewModel {
     _animation = Tween<double>(begin: begin, end: endCount).animate(_animationController);
   }
 
-  void startAnimation() {
-    // if (_animationController.isAnimating) {
-    //   return;
-    // }
-    _animationController.forward();
-  }
+  void startAnimation() => _animationController.forward();
 
   void dispose() => _animationController.dispose();
 }

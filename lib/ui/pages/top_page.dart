@@ -70,12 +70,12 @@ class TopPage extends ConsumerWidget {
               padding: const EdgeInsets.only(left: kPadding * 2),
               child: DispenseKnobButton(
                 buttonText: 'Add',
-                function: ref.watch(globalManagerProvider.notifier).addBeanGrams,
+                beanChanger: ref.watch(globalManagerProvider.notifier).addBeanGrams,
               ),
             ),
             DispenseKnobButton(
               buttonText: 'Use',
-              function: ref.watch(globalManagerProvider.notifier).removeBeanGrams,
+              beanChanger: ref.watch(globalManagerProvider.notifier).removeBeanGrams,
             ),
           ],
         ),
