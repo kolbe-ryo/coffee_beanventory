@@ -1,6 +1,4 @@
 // Flutter imports:
-import 'package:coffee_beanventory/ui/component/app_loading.dart';
-import 'package:coffee_beanventory/ui/component/show_dialog.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,8 +9,10 @@ import 'package:go_router/go_router.dart';
 // Project imports:
 import 'package:coffee_beanventory/constant/constants.dart';
 import 'package:coffee_beanventory/global/global_manager.dart';
+import 'package:coffee_beanventory/ui/component/app_loading.dart';
 import 'package:coffee_beanventory/ui/component/common_card.dart';
 import 'package:coffee_beanventory/ui/component/custom_text_field.dart';
+import 'package:coffee_beanventory/ui/component/show_dialog.dart';
 import 'package:coffee_beanventory/ui/pages/base_web_view.dart';
 import 'package:coffee_beanventory/ui/view_model/color_controller_view_model.dart';
 
