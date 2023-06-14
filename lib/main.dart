@@ -15,6 +15,7 @@ void main() {
   setUpDI();
   // TODO Firebase Crashlitycs
   // TODO Admob
+  // TODO unitテストを記述する
   runApp(
     const ProviderScope(
       child: RootPage(),
