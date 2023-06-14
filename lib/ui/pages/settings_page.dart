@@ -252,7 +252,6 @@ class _MaximumVolume extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final globalManager = ref.watch(globalManagerProvider.notifier);
     return Expanded(
       child: SquareCard(
         onTap: () {},

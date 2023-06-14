@@ -57,7 +57,7 @@ class TopPage extends ConsumerWidget {
               ),
               const Align(
                 alignment: Alignment.topCenter,
-                child: CoffeeBeanInfo(),
+                child: _CoffeeBeanInfo(),
               ),
             ],
           ),
@@ -92,14 +92,14 @@ class TopPage extends ConsumerWidget {
   }
 }
 
-class CoffeeBeanInfo extends ConsumerStatefulWidget {
-  const CoffeeBeanInfo({super.key});
+class _CoffeeBeanInfo extends ConsumerStatefulWidget {
+  const _CoffeeBeanInfo();
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CoffeeBeanInfoState();
 }
 
-class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with TickerProviderStateMixin {
+class _CoffeeBeanInfoState extends ConsumerState<_CoffeeBeanInfo> with TickerProviderStateMixin {
   late int _currentCount;
 
   @override
@@ -134,6 +134,7 @@ class _CoffeeBeanInfoState extends ConsumerState<CoffeeBeanInfo> with TickerProv
     final isInitialize = ref.watch(
       globalManagerProvider.select((value) {
         if (value.isInitialized) {
+          _currentCount = 0;
           return true;
         }
         return false;

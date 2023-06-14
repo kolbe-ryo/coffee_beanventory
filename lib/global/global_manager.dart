@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -105,10 +107,16 @@ class GlobalManager extends _$GlobalManager {
     }
   }
 
-  // TODO: 個数によって、Bottomの開放期間を変更する
-  // TODO: または　削除量が足りていない場合はさらに追加でbottomを開放する
   int _releaseCalculator(int grams) {
-    return grams * 25;
+    if (grams <= 5) {
+      return grams * 50 ~/ (log(grams + 1) / 2);
+    } else if (grams <= 25) {
+      return grams * 25 ~/ (log(grams + 1) / 3);
+    } else if (grams <= 60) {
+      return grams * 17 ~/ (log(grams + 1) / 4);
+    } else {
+      return grams * 15 ~/ (log(grams + 1) / 5);
+    }
   }
 
   // Change adding bean by user
@@ -138,16 +146,15 @@ class GlobalManager extends _$GlobalManager {
 
   // Reset All
   Future<bool> deleteAllSettins() async {
-    // Set initializing color if not
-    if (colorControllerViewModel.initialColorIndex != state.colorIndex) {
-      colorControllerViewModel.changeColor();
-    }
+    // Set initializing color
     state = CoffeeBeanventoryModel(colorIndex: colorControllerViewModel.initialColorIndex);
 
     // Remove All beans
     await _gameWorld.onRemoveBottom();
-    // TODO　全ての豆の削除に必要な最低限の秒数を算出する（豆の量によって秒数を変更する）
-    await Future<void>.delayed(const Duration(seconds: 10));
+    // TODO 排出量が十分か確認する
+    await Future<void>.delayed(
+      Duration(milliseconds: _releaseCalculator(state.beanGrams)),
+    );
     _gameWorld.onCreateBottomWall();
 
     // update state
