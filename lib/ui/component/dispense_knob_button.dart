@@ -76,8 +76,8 @@ class DispenseKnobButton extends ConsumerWidget {
         final previousGrams = ref.read(globalManagerProvider).beanGrams.toDouble();
         beanChanger(beanGrams);
         var end = isAdd ? previousGrams + beanGrams : previousGrams - beanGrams;
-        if (end >= ref.read(globalManagerProvider).beanStockMax) {
-          end = ref.read(globalManagerProvider).beanStockMax.toDouble();
+        if (end >= maxStorage) {
+          end = maxStorage.toDouble();
         }
         ref.read(globalManagerProvider.notifier).counterControllerViewModel
           ..setAnimation(begin: previousGrams, end: end)

@@ -16,8 +16,6 @@ class CoffeeBeanventoryModel with _$CoffeeBeanventoryModel {
     @Default('Coffee Name') String coffeeName,
     // Storage Bean Grams
     @Default(0) int beanGrams,
-    // Storage Size For Beans
-    @Default(100) int beanStockMax,
     // Previous Adding Size
     @Default(0) int addBeans,
     // Previous Using Size
@@ -28,6 +26,5 @@ class CoffeeBeanventoryModel with _$CoffeeBeanventoryModel {
 
   factory CoffeeBeanventoryModel.fromJson(Map<String, dynamic> json) => _$CoffeeBeanventoryModelFromJson(json);
 
-  bool get isInitialized =>
-      coffeeName == 'Coffee Name' && beanGrams == 0 && beanStockMax == 100 && addBeans == 0 && useBeans == 0;
+  bool get isInitialized => coffeeName == 'Coffee Name' && beanGrams == 0 && addBeans == 0 && useBeans == 0;
 }

@@ -43,7 +43,6 @@ class GlobalManager extends _$GlobalManager {
         colorIndex: response.colorIndex,
         coffeeName: response.coffeeName,
         beanGrams: response.beanGrams,
-        beanStockMax: response.beanStockMax,
         addBeans: response.addBeans,
         useBeans: response.useBeans,
       );
@@ -65,9 +64,9 @@ class GlobalManager extends _$GlobalManager {
     final currentGrams = state.beanGrams + grams;
     var addGrams = grams;
 
-    if (currentGrams >= state.beanStockMax) {
-      addGrams = state.beanStockMax - state.beanGrams;
-      state = state.copyWith(beanGrams: state.beanStockMax);
+    if (currentGrams >= maxStorage) {
+      addGrams = maxStorage - state.beanGrams;
+      state = state.copyWith(beanGrams: maxStorage);
     } else {
       state = state.copyWith(beanGrams: state.beanGrams + grams);
     }
@@ -134,25 +133,6 @@ class GlobalManager extends _$GlobalManager {
     }
     state = state.copyWith(colorIndex: state.colorIndex.switchColorIndex);
     colorControllerViewModel.changeColor();
-    await saveToLocalStorage();
-  }
-
-  // Change Volume
-  // TODO change state and setting min(100) and max(300?)
-  Future<void> changeVolume({required bool isCountUp}) async {
-    // Nothing to do below
-    if (isCountUp && state.beanStockMax == maxStorage) {
-      return;
-    }
-    if (!isCountUp && state.beanStockMax == minStorage) {
-      return;
-    }
-    // Set state
-    if (isCountUp) {
-      state = state.copyWith(beanStockMax: state.beanStockMax + 50);
-    } else {
-      state = state.copyWith(beanStockMax: state.beanStockMax - 50);
-    }
     await saveToLocalStorage();
   }
 

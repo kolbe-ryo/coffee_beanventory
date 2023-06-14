@@ -252,22 +252,19 @@ class _MaximumVolume extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final storageSize = ref.watch(globalManagerProvider.select((value) => value.beanStockMax));
     final globalManager = ref.watch(globalManagerProvider.notifier);
-    final isMax = ref.watch(globalManagerProvider.select((value) => value.beanStockMax == maxStorage));
-    final isMin = ref.watch(globalManagerProvider.select((value) => value.beanStockMax == minStorage));
     return Expanded(
       child: SquareCard(
         onTap: () {},
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const FaIcon(
+          children: const [
+            FaIcon(
               FontAwesomeIcons.fillDrip,
               size: settingIconSize,
             ),
-            const SpacerH(space: kPadding),
-            const Text(
+            SpacerH(space: kPadding),
+            Text(
               'Volume',
               style: TextStyle(
                 fontSize: largeFontSize,
@@ -275,34 +272,12 @@ class _MaximumVolume extends ConsumerWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  color: isMin ? Colors.transparent : null,
-                  icon: const FaIcon(
-                    FontAwesomeIcons.arrowLeft,
-                    size: settingMinIconSize,
-                  ),
-                  // TODO 大きい数字から小さい数字にする際は50ずづ削除する処理を入れる
-                  onPressed: () => globalManager.changeVolume(isCountUp: false),
-                ),
-                Text(
-                  '$storageSize',
-                  style: const TextStyle(
-                    fontSize: largeFontSize,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                IconButton(
-                  color: isMax ? Colors.transparent : null,
-                  icon: const FaIcon(
-                    FontAwesomeIcons.arrowRight,
-                    size: settingMinIconSize,
-                  ),
-                  onPressed: () => globalManager.changeVolume(isCountUp: true),
-                ),
-              ],
+            Text(
+              '$maxStorage',
+              style: TextStyle(
+                fontSize: largeFontSize,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ],
         ),

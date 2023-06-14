@@ -27,8 +27,6 @@ mixin _$CoffeeBeanventoryModel {
   String get coffeeName =>
       throw _privateConstructorUsedError; // Storage Bean Grams
   int get beanGrams =>
-      throw _privateConstructorUsedError; // Storage Size For Beans
-  int get beanStockMax =>
       throw _privateConstructorUsedError; // Previous Adding Size
   int get addBeans => throw _privateConstructorUsedError; // Previous Using Size
   int get useBeans => throw _privateConstructorUsedError;
@@ -49,7 +47,6 @@ abstract class $CoffeeBeanventoryModelCopyWith<$Res> {
       {ColorIndexEnum colorIndex,
       String coffeeName,
       int beanGrams,
-      int beanStockMax,
       int addBeans,
       int useBeans});
 }
@@ -71,7 +68,6 @@ class _$CoffeeBeanventoryModelCopyWithImpl<$Res,
     Object? colorIndex = null,
     Object? coffeeName = null,
     Object? beanGrams = null,
-    Object? beanStockMax = null,
     Object? addBeans = null,
     Object? useBeans = null,
   }) {
@@ -87,10 +83,6 @@ class _$CoffeeBeanventoryModelCopyWithImpl<$Res,
       beanGrams: null == beanGrams
           ? _value.beanGrams
           : beanGrams // ignore: cast_nullable_to_non_nullable
-              as int,
-      beanStockMax: null == beanStockMax
-          ? _value.beanStockMax
-          : beanStockMax // ignore: cast_nullable_to_non_nullable
               as int,
       addBeans: null == addBeans
           ? _value.addBeans
@@ -116,7 +108,6 @@ abstract class _$$_CoffeeBeanventoryModelCopyWith<$Res>
       {ColorIndexEnum colorIndex,
       String coffeeName,
       int beanGrams,
-      int beanStockMax,
       int addBeans,
       int useBeans});
 }
@@ -136,7 +127,6 @@ class __$$_CoffeeBeanventoryModelCopyWithImpl<$Res>
     Object? colorIndex = null,
     Object? coffeeName = null,
     Object? beanGrams = null,
-    Object? beanStockMax = null,
     Object? addBeans = null,
     Object? useBeans = null,
   }) {
@@ -152,10 +142,6 @@ class __$$_CoffeeBeanventoryModelCopyWithImpl<$Res>
       beanGrams: null == beanGrams
           ? _value.beanGrams
           : beanGrams // ignore: cast_nullable_to_non_nullable
-              as int,
-      beanStockMax: null == beanStockMax
-          ? _value.beanStockMax
-          : beanStockMax // ignore: cast_nullable_to_non_nullable
               as int,
       addBeans: null == addBeans
           ? _value.addBeans
@@ -176,7 +162,6 @@ class _$_CoffeeBeanventoryModel extends _CoffeeBeanventoryModel {
       {this.colorIndex = ColorIndexEnum.warm,
       this.coffeeName = 'Coffee Name',
       this.beanGrams = 0,
-      this.beanStockMax = 100,
       this.addBeans = 0,
       this.useBeans = 0})
       : super._();
@@ -196,10 +181,6 @@ class _$_CoffeeBeanventoryModel extends _CoffeeBeanventoryModel {
   @override
   @JsonKey()
   final int beanGrams;
-// Storage Size For Beans
-  @override
-  @JsonKey()
-  final int beanStockMax;
 // Previous Adding Size
   @override
   @JsonKey()
@@ -211,7 +192,7 @@ class _$_CoffeeBeanventoryModel extends _CoffeeBeanventoryModel {
 
   @override
   String toString() {
-    return 'CoffeeBeanventoryModel(colorIndex: $colorIndex, coffeeName: $coffeeName, beanGrams: $beanGrams, beanStockMax: $beanStockMax, addBeans: $addBeans, useBeans: $useBeans)';
+    return 'CoffeeBeanventoryModel(colorIndex: $colorIndex, coffeeName: $coffeeName, beanGrams: $beanGrams, addBeans: $addBeans, useBeans: $useBeans)';
   }
 
   @override
@@ -225,8 +206,6 @@ class _$_CoffeeBeanventoryModel extends _CoffeeBeanventoryModel {
                 other.coffeeName == coffeeName) &&
             (identical(other.beanGrams, beanGrams) ||
                 other.beanGrams == beanGrams) &&
-            (identical(other.beanStockMax, beanStockMax) ||
-                other.beanStockMax == beanStockMax) &&
             (identical(other.addBeans, addBeans) ||
                 other.addBeans == addBeans) &&
             (identical(other.useBeans, useBeans) ||
@@ -235,8 +214,8 @@ class _$_CoffeeBeanventoryModel extends _CoffeeBeanventoryModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, colorIndex, coffeeName,
-      beanGrams, beanStockMax, addBeans, useBeans);
+  int get hashCode => Object.hash(
+      runtimeType, colorIndex, coffeeName, beanGrams, addBeans, useBeans);
 
   @JsonKey(ignore: true)
   @override
@@ -258,7 +237,6 @@ abstract class _CoffeeBeanventoryModel extends CoffeeBeanventoryModel {
       {final ColorIndexEnum colorIndex,
       final String coffeeName,
       final int beanGrams,
-      final int beanStockMax,
       final int addBeans,
       final int useBeans}) = _$_CoffeeBeanventoryModel;
   const _CoffeeBeanventoryModel._() : super._();
@@ -272,8 +250,6 @@ abstract class _CoffeeBeanventoryModel extends CoffeeBeanventoryModel {
   String get coffeeName;
   @override // Storage Bean Grams
   int get beanGrams;
-  @override // Storage Size For Beans
-  int get beanStockMax;
   @override // Previous Adding Size
   int get addBeans;
   @override // Previous Using Size
