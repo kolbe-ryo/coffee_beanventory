@@ -18,6 +18,7 @@ void main() {
   // TODO unitテストを記述する
   runApp(
     const ProviderScope(
+      overrides: [],
       child: RootPage(),
     ),
   );
