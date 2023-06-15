@@ -151,8 +151,14 @@ class GameWorld extends Forge2DGame with HasTappables {
   }
 
   Future<void> addBeans(int balls) async {
-    // TODO: 350だと処理が重すぎるので、分割して落下できる仕様に変更する
-    _generator.generateBalls(balls).forEach(add);
+    if (balls < 0) {
+      return;
+    }
+    final divideBalls = [...List.generate(balls ~/ 100, (index) => 100), balls % 100]..removeWhere((e) => e == 0);
+    for (final i in divideBalls) {
+      _generator.generateBalls(i).forEach(add);
+      await Future<void>.delayed(const Duration(seconds: 2));
+    }
   }
 
   Future<void> fallBeanObserver(int diff) async {

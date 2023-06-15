@@ -147,13 +147,13 @@ class GlobalManager extends _$GlobalManager {
   // Reset All
   Future<bool> deleteAllSettins() async {
     // Set initializing color
+    final removeBeans = state.beanGrams;
     state = CoffeeBeanventoryModel(colorIndex: colorControllerViewModel.initialColorIndex);
 
     // Remove All beans
     await _gameWorld.onRemoveBottom();
-    // TODO 排出量が十分か確認する
     await Future<void>.delayed(
-      Duration(milliseconds: _releaseCalculator(state.beanGrams)),
+      Duration(milliseconds: _releaseCalculator(removeBeans) * 2),
     );
     _gameWorld.onCreateBottomWall();
 
