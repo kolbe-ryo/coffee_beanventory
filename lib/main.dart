@@ -18,7 +18,8 @@ void main() {
   // TODO unitテストを記述する
   runApp(
     const ProviderScope(
-      overrides: [],
+      // UnimplementなProviderを登録し、テスト側でのMock活用を容易化する
+      // overrides: [],
       child: RootPage(),
     ),
   );
