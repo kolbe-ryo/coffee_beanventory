@@ -26,7 +26,7 @@ class TopPage extends ConsumerWidget {
     final initialLoader = ref.watch(initialLoaderProvider);
     final globalManager = ref.watch(globalManagerProvider.notifier);
     final colorIndexEnum = ref.watch(globalManagerProvider.select((value) => value.colorIndex));
-    final beanGrams = ref.watch(globalManagerProvider).beanGrams.toDouble();
+    // final beanGrams = ref.watch(globalManagerProvider).beanGrams.toDouble();
 
     return initialLoader.when(
       data: (state) => Scaffold(
